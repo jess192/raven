@@ -1,0 +1,2 @@
+INSERT INTO PRICES (ID, TIMESTAMP, price)
+VALUES (?, ?, ?)
