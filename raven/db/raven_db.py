@@ -6,15 +6,15 @@ from loguru import logger
 
 class RavenDb:
     def __init__(self):
-        self.db_name = self._abspath('raven/db/raven.db')
-        self.schema_sql = self._abspath('raven/db/sql/schema.sql')
-        self.select_items_sql = self._abspath('raven/db/sql/select_items.sql')
-        self.insert_items_sql = self._abspath('raven/db/sql/insert_items.sql')
-        self.insert_prices_sql = self._abspath('raven/db/sql/insert_prices.sql')
+        self.db_name = self._get_path('raven.db')
+        self.schema_sql = self._get_path('sql/schema.sql')
+        self.select_items_sql = self._get_path('sql/select_items.sql')
+        self.insert_items_sql = self._get_path('sql/insert_items.sql')
+        self.insert_prices_sql = self._get_path('sql/insert_prices.sql')
 
     @staticmethod
-    def _abspath(path: str) -> str:
-        return os.path.abspath(path)
+    def _get_path(path: str) -> str:
+        return f'{os.path.dirname(__file__)}/{path}'
 
     def _create_connection(self) -> Connection:
         try:
