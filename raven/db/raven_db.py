@@ -1,6 +1,7 @@
 import sqlite3
 from sqlite3 import Connection, Cursor
 import os
+from loguru import logger
 
 
 class RavenDb:
@@ -22,7 +23,7 @@ class RavenDb:
             raise
 
     def db_init(self) -> None:
-        print('Initializing DB..')
+        logger.info('Initializing DB')
         conn: Connection = self._create_connection()
 
         with conn:
@@ -38,7 +39,7 @@ class RavenDb:
                 raise
 
     def select_items(self) -> list:
-        print('Selecting items..')
+        logger.info('Selecting items')
         conn: Connection = self._create_connection()
 
         with conn:
@@ -53,7 +54,7 @@ class RavenDb:
                 raise
 
     def insert_item(self, item):
-        print('Inserting item: ', item)
+        logger.info(f'Inserting item: {item}')
         conn: Connection = self._create_connection()
 
         with conn:
@@ -75,7 +76,7 @@ class RavenDb:
                 raise
 
     def insert_price(self, price_info: dict):
-        print('Inserting price: ', price_info)
+        logger.info(f'Inserting price: {price_info}')
         conn: Connection = self._create_connection()
 
         with conn:

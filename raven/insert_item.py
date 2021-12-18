@@ -2,6 +2,8 @@ import sys
 from raven.utils.amazon_provider import AmazonProvider
 from db.raven_db import RavenDb
 from raven.utils.exceptions import BotException, NotValidURL
+from loguru import logger
+
 
 if __name__ == '__main__':
     url = sys.argv[1]
@@ -10,10 +12,10 @@ if __name__ == '__main__':
         amazon_item_data = AmazonProvider().get_item_info(url)
         RavenDb().insert_item(amazon_item_data)
     except BotException as e:
-        print('BotException: ', e)
+        logger.error(e)
     except NotValidURL as e:
-        print('NotValidURL: ', e)
+        logger.error(e)
     except Exception as e:
-        print('Exception: ', e)
+        logger.error(e)
 
 
