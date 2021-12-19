@@ -1,7 +1,7 @@
 import time
-from raven.utils.amazon_provider import AmazonProvider
+from utils.amazon_provider import AmazonProvider
 from db.raven_db import RavenDb
-from raven.utils.exceptions import BotException
+from utils.exceptions import BotException
 import schedule
 from loguru import logger
 

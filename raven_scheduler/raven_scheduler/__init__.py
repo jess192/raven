@@ -2,6 +2,7 @@ from loguru import logger
 import sys
 import os
 
+__version__ = '0.1.0'
 
 logging_config = {
     'handlers': [

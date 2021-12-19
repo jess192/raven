@@ -1,7 +1,7 @@
 import sys
-from raven.utils.amazon_provider import AmazonProvider
+from utils.amazon_provider import AmazonProvider
 from db.raven_db import RavenDb
-from raven.utils.exceptions import BotException, NotValidURL
+from utils.exceptions import BotException, NotValidURL
 from loguru import logger
 
 

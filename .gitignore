@@ -1,4 +1,4 @@
 .idea
 __pycache__
-raven/db/raven.db
-logs
+raven_scheduler/raven_scheduler/db/raven.db
+raven_scheduler/raven_scheduler/logs
