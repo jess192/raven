@@ -46,7 +46,7 @@ def run_raven():
 if __name__ == '__main__':
     logger.info('Raven begin')
 
-    schedule.every().hour.at(':00').do(run_raven)
+    schedule.every(3).hours.at(':00').do(run_raven)
     logger.info(schedule.jobs)
 
     try:
