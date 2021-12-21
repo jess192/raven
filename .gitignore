@@ -1,4 +1,6 @@
 .idea
+*.iml
 __pycache__
+
 raven_scheduler/raven_scheduler/db/raven.db
 raven_scheduler/raven_scheduler/logs
