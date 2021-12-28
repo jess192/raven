@@ -2,5 +2,5 @@
 *.iml
 __pycache__
 
-raven_scheduler/raven_scheduler/db/raven.db
-raven_scheduler/raven_scheduler/logs
+raven_core/raven_core/db/raven.db
+raven_core/logs

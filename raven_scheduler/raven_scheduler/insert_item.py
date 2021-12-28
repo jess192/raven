@@ -1,11 +1,13 @@
 import sys
 from utils.amazon_provider import AmazonProvider
-from db.raven_db import RavenDb
+from raven_core.db.raven_db import RavenDb
+from raven_core.utils.logger import configure_logging
 from utils.exceptions import BotException, NotValidURL
 from loguru import logger
 
 
 if __name__ == '__main__':
+    configure_logging()
     url = sys.argv[1]
 
     try:

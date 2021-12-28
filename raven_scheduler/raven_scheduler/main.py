@@ -1,6 +1,7 @@
 import time
 from utils.amazon_provider import AmazonProvider
-from db.raven_db import RavenDb
+from raven_core.db.raven_db import RavenDb
+from raven_core.utils.logger import configure_logging
 from utils.exceptions import BotException
 import schedule
 from loguru import logger
@@ -44,6 +45,7 @@ def run_raven():
 
 
 if __name__ == '__main__':
+    configure_logging()
     logger.info('Raven begin')
 
     schedule.every(3).hours.at(':00').do(run_raven)

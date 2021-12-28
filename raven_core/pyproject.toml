@@ -1,16 +1,11 @@
 [tool.poetry]
-name = "raven_scheduler"
+name = "raven_core"
 version = "0.1.0"
 description = ""
 authors = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
-raven_core = {path = "../raven_core", develop = true }
-beautifulsoup4 = "^4.10.0"
-requests = "^2.26.0"
-schedule = "^0.6.0"
-loguru = "^0.5.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
