@@ -4,7 +4,7 @@ class BotException(Exception):
         self.url: str = url
 
     def __str__(self):
-        return f'{self.provider} thinks you are a bot trying to access {self.url}'
+        return f'BotException: {self.provider} thinks you are a bot trying to access {self.url}'
 
 
 class NotValidURL(Exception):
@@ -12,4 +12,4 @@ class NotValidURL(Exception):
         self.url: str = url
 
     def __str__(self):
-        return f'{self.url}  is not valid.'
+        return f'NotValidURL: {self.url}  is not valid.'

@@ -2,5 +2,5 @@
 *.iml
 __pycache__
 
-raven_core/raven_core/db/raven.db
-raven_core/logs
+raven.db
+logs

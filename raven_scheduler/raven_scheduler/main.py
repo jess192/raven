@@ -1,59 +1,38 @@
-import time
-from utils.amazon_provider import AmazonProvider
+from raven_core.logging.logger import configure_logging, logger
 from raven_core.db.raven_db import RavenDb
-from raven_core.utils.logger import configure_logging
-from utils.exceptions import BotException
+from raven_core.logging.exceptions import BotException
 import schedule
-from loguru import logger
+import time
 
 
-class Raven:
+class RavenScheduler:
     def __init__(self):
-        self._amazon_provider = AmazonProvider()
         self._raven_db = RavenDb()
+        configure_logging()
 
-    def scrape_for_new_prices(self):
-        logger.info('Running Raven')
+    def run_job(self) -> None:
         try:
-            items: list = self._raven_db.select_items()
-
-            for item in items:
-                id_: str = item[0]
-                source: str = item[1]
-
-                if source == 'amazon':
-                    price_info = self._amazon_provider.get_item_prices(id_)
-                else:
-                    raise Exception('Source does not exist')
-
-                self._raven_db.insert_price(price_info)
-                time.sleep(5)
-
+            self._raven_db.scrape_for_product_prices()
         except BotException as e:
             logger.error(e)
+        except KeyboardInterrupt:
+            logger.warning('KeyboardInterrupt: Stopped scraping for product prices')
         except Exception as e:
             logger.error(e)
+        else:
+            logger.success('Scraping for product prices finished')
+            logger.info(schedule.jobs)
+
+    def run_scheduler(self) -> None:
+        logger.info('Running Raven Scheduler')
+        schedule.every(3).hours.at(':00').do(self.run_job)
+        logger.info(schedule.jobs)
+
+        try:
+            while True:
+                schedule.run_pending()
+                time.sleep(30)
         except KeyboardInterrupt:
-            logger.info('KeyboardInterrupt: Cancelled Raven')
-        finally:
-            logger.info('Raven script ended')
-
-
-def run_raven():
-    Raven().scrape_for_new_prices()
-    logger.info(schedule.jobs)
-
-
-if __name__ == '__main__':
-    configure_logging()
-    logger.info('Raven begin')
-
-    schedule.every(3).hours.at(':00').do(run_raven)
-    logger.info(schedule.jobs)
-
-    try:
-        while True:
-            schedule.run_pending()
-            time.sleep(30)
-    except KeyboardInterrupt:
-        logger.info('KeyboardInterrupt: Leaving scheduler.')
+            logger.warning('KeyboardInterrupt: Stopped scheduler')
+        except Exception as e:
+            logger.error(e)

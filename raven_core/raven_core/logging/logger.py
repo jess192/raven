@@ -2,7 +2,7 @@ from loguru import logger
 import sys
 import os
 
-log_location: str = os.path.abspath(__file__ + '/../../../')
+log_location: str = os.path.abspath(__file__ + '/../../../../')
 
 logging_config = {
     'handlers': [
@@ -32,7 +32,5 @@ def configure_logging():
     except Exception as e:
         print('Logger configuration failed. ', e)
         sys.exit(1)
-    finally:
-        logger.info('Logging setup complete')
-
-
+    else:
+        logger.success('Logging setup complete')

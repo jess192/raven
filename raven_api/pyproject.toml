@@ -2,10 +2,13 @@
 name = "raven_api"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = []
 
 [tool.poetry.dependencies]
 python = "^3.9"
+raven_core = {path = "../raven_core", develop = true }
+fastapi = "^0.70.1"
+uvicorn = {extras = ["standard"], version = "^0.16.0"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

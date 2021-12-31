@@ -1,16 +1,16 @@
+import os
+import time
 import sqlite3
 from sqlite3 import Connection, Cursor
-import os
-from loguru import logger
+from raven_core.logging.logger import logger
+from raven_core.providers.amazon_provider import AmazonProvider
 
 
 class RavenDb:
     def __init__(self):
-        self.db_name = self._get_path('raven.db')
-        self.schema_sql = self._get_path('sql/schema.sql')
-        self.select_items_sql = self._get_path('sql/select_items.sql')
-        self.insert_items_sql = self._get_path('sql/insert_items.sql')
-        self.insert_prices_sql = self._get_path('sql/insert_prices.sql')
+        self._db_name = self._get_path('raven.db')
+        self._schema_sql = self._get_path('sql/schema.sql')
+        self._amazon_provider = AmazonProvider()
 
     @staticmethod
     def _get_path(path: str) -> str:
@@ -18,7 +18,7 @@ class RavenDb:
 
     def _create_connection(self) -> Connection:
         try:
-            return sqlite3.connect(self.db_name)
+            return sqlite3.connect(self._db_name)
         except Exception:
             raise
 
@@ -30,66 +30,107 @@ class RavenDb:
             curr: Cursor = conn.cursor()
 
             try:
-                with open(self.schema_sql) as f:
+                with open(self._schema_sql) as f:
                     curr.executescript(f.read())
 
                 conn.commit()
-                print('Database has been initialized.')
             except Exception:
                 raise
+            else:
+                logger.success('Database has been initialized')
 
-    def select_items(self) -> list:
-        logger.info('Selecting items')
+    def get_product_list(self) -> list:
+        logger.info('Getting list of products')
         conn: Connection = self._create_connection()
 
         with conn:
             curr: Cursor = conn.cursor()
 
-            try:
-                with open(self.select_items_sql, 'r') as file:
-                    curr.execute(file.read())
+            statement = '''SELECT ID, SOURCE FROM ITEMS'''
+            curr.execute(statement)
+            return curr.fetchall()
 
-                return curr.fetchall()
-            except Exception:
-                raise
+    def scrape_for_product_prices(self) -> None:
+        logger.info('Scraping for product prices')
 
-    def insert_item(self, item):
-        logger.info(f'Inserting item: {item}')
-        conn: Connection = self._create_connection()
+        products: list = self.get_product_list()
 
-        with conn:
-            curr: Cursor = conn.cursor()
+        for product in products:
+            product_id: str = product[0]
+            source: str = product[1]
 
-            try:
-                with open(self.insert_items_sql, 'r') as file:
-                    curr.execute(
-                        file.read(),
-                        (item['id'], item['timestamp'], item['source'], item['title'], item['image_url'])
-                    )
+            if source == 'amazon':
+                price_info = self._amazon_provider.get_product_prices(product_id)
+            else:
+                raise Exception('Source does not exist')
 
-                with open(self.insert_prices_sql, 'r') as file:
-                    curr.execute(
-                        file.read(),
-                        (item['id'], item['timestamp'], item['price'])
-                    )
-            except Exception:
-                raise
+            self.insert_price(price_info)
+            time.sleep(5)
 
-    def insert_price(self, price_info: dict):
+
+    def insert_price(self, price_info: dict) -> None:
         logger.info(f'Inserting price: {price_info}')
         conn: Connection = self._create_connection()
 
         with conn:
             curr: Cursor = conn.cursor()
+            statement = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
+            curr.execute(statement, (price_info['id'], price_info['timestamp'], price_info['price']))
 
-            try:
-                with open(self.insert_prices_sql, 'r') as file:
-                    curr.execute(
-                        file.read(),
-                        (price_info['id'], price_info['timestamp'], price_info['price'])
-                    )
-            except Exception:
-                raise
+    def insert_product(self, url: str) -> None:
+        logger.info(f'Inserting product: {url}')
+        try:
+            product = AmazonProvider().get_product_info(url)
+        except Exception as e:
+            raise
+
+        conn: Connection = self._create_connection()
+
+        with conn:
+            curr: Cursor = conn.cursor()
+
+            statement0 = '''INSERT INTO ITEMS (ID, TIMESTAMP , SOURCE, TITLE, IMAGE_URL) 
+                VALUES (?, ?, ?, ?, ?)
+                '''
+            curr.execute(
+                statement0,
+                (product['id'], product['timestamp'], product['source'], product['title'], product['image_url'])
+            )
+
+            statement = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
+            curr.execute(
+                statement,
+                (product['id'], product['timestamp'], product['price']))
+
+
+    def select_products_prices(self) -> dict:
+        conn: Connection = self._create_connection()
+        conn.row_factory = sqlite3.Row
+
+        with conn:
+            curr: Cursor = conn.cursor()
+
+            statement = '''SELECT ID, TITLE, IMAGE_URL FROM ITEMS'''
+            curr.execute(statement)
+
+            rows = curr.fetchall()
+
+            new_obj = []
+
+            for row in rows:
+                row_id: str = row['ID']
+                statement_2 = """SELECT TIMESTAMP, PRICE FROM PRICES WHERE ID = ?"""
+                curr.execute(statement_2, [row_id])
+                rows_2 = curr.fetchall()
+
+                new_obj.append({
+                    'ID': row['ID'],
+                    'TITLE': row['TITLE'],
+                    'IMAGE_URL': row['IMAGE_URL'],
+                    'PRICES': rows_2
+                })
+
+            return new_obj
 
 
 if __name__ == '__main__':
