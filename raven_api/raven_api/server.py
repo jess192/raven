@@ -1,9 +1,18 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from raven_core.db.raven_db import RavenDb
 from raven_core.logging.logger import configure_logging, logger
 from raven_core.logging.exceptions import BotException, NotValidURL
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*']
+)
+
 configure_logging()
 
 
