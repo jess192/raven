@@ -10,8 +10,7 @@ if __name__ == '__main__':
         uvicorn.run(
             app='raven_api.server:app',
             host='0.0.0.0',
-            port=8090,
-            reload=True
+            port=8090
         )
     except KeyboardInterrupt:
         logger.info('KeyboardInterrupt: exiting raven_api')
