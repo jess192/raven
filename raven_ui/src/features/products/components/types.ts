@@ -1,4 +1,4 @@
-import { ProductListType } from '@/types';
+import { ProductListType, FilterType } from '@/types';
 
 // move to src/types/index.ts ??
 
@@ -20,7 +20,7 @@ export type ProductTileProps = {
 
 export type ProductGridProps = {
   productItems: ProductListType,
-  searchFilter: string[],
+  filter: FilterType,
   error: string | null,
   loading: boolean
 }

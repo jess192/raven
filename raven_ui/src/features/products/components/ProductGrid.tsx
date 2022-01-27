@@ -1,38 +1,57 @@
 import React from 'react';
-import { ProductsGridStyle } from './style';
-import { ProductListType } from '@/types';
+import { ProductListType, FilterType } from '@/types';
 import { Throbber } from '@/components/throbber';
+import { ProductsGridStyle } from './style';
 import { ProductTile } from '.';
 import { ProductType, ProductGridProps } from './types';
 
-const showItems = (productItems: ProductListType, error: string | null, loading: boolean) => {
-  if (error) {
-    return 'Error '.concat(error);
-  }
-  if (loading) {
-    return (
-      <div className="throbber-container">
-        <Throbber />
-      </div>
-    );
-  }
-  return (
-    productItems.map((item: ProductType, index) => (
-      <ProductTile
-        key={'product-tile-'.concat(index.toString())}
-        product={item}
-      />
-    ))
-  );
+const filterProducts = (productItems: ProductListType, filter: FilterType) => {
+  const { search, availability, price } = filter;
+
+  return productItems.filter((product: ProductType) => {
+    const title = product.TITLE.toLowerCase();
+    const currentPrice = product.PRICES.at(-1).PRICE;
+
+    const searchFilter = !search || search.some((searchString: string) => {
+      return title.indexOf(searchString) !== -1;
+    });
+    const availabilityFilter = !availability || currentPrice !== null;
+    const minPriceFilter = price.min > 0 ? currentPrice >= price.min : true;
+    const maxPriceFilter = price.max > 0 && price.max >= price.min
+      ? currentPrice <= price.max && currentPrice !== null : true;
+
+    return searchFilter && availabilityFilter && minPriceFilter && maxPriceFilter;
+  });
 };
 
 export function ProductGrid(props: ProductGridProps) {
   const {
-    productItems, searchFilter, error, loading,
+    productItems, filter, error, loading,
   } = props;
+
+  if (error) {
+    return (<ProductsGridStyle>{'Error '.concat(error)}</ProductsGridStyle>);
+  }
+  if (loading) {
+    return (
+      <ProductsGridStyle>
+        <div className="throbber-container">
+          <Throbber />
+        </div>
+      </ProductsGridStyle>
+    );
+  }
+
+  const productItemsFiltered = filterProducts(productItems, filter);
+
   return (
     <ProductsGridStyle>
-      {showItems(productItems, error, loading)}
+      {productItemsFiltered.map((item: ProductType, index: number) => (
+        <ProductTile
+          key={'product-tile-'.concat(index.toString())}
+          product={item}
+        />
+      ))}
     </ProductsGridStyle>
   );
 }

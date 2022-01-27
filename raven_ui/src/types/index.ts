@@ -8,4 +8,13 @@ type ProductType = {
   }[]
 }
 
+export type FilterType = {
+  search: string[],
+  availability: boolean,
+  price: {
+    min: number,
+    max: number
+  }
+}
+
 export type ProductListType = ProductType[]

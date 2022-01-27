@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '@/providers/GlobalProvider';
 
-export function FilterSearch() {
+export function SearchFilter() {
   const { dispatch } = useContext(GlobalContext);
   const [search, setSearch] = useState('');
 

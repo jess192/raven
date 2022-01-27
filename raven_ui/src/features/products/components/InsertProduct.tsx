@@ -1,8 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '@/providers/GlobalProvider';
+import axios from 'axios';
 import { InsertProductStyle } from './style';
-
-const axios = require('axios').default;
 
 export function InsertProduct() {
   const { dispatch } = useContext(GlobalContext);

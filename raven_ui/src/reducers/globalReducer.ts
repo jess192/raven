@@ -1,12 +1,11 @@
-import { ProductListType } from '@/types';
+import { ProductListType, FilterType } from '@/types';
 
 type StateType = {
   active: boolean,
   theme: 'LIGHT' | 'DARK',
   productList: ProductListType,
-  productListFilter: ProductListType,
   insertProductNew: boolean,
-  searchFilter: string[],
+  filter: FilterType
 }
 
 type ActionType = {
@@ -26,17 +25,15 @@ export const initialState = {
       PRICE: 0,
     }],
   }],
-  productListFilter: [{
-    ID: 'n/a',
-    TITLE: 'n/a',
-    IMAGE_URL: 'n/a',
-    PRICES: [{
-      TIMESTAMP: 'n/a',
-      PRICE: 0,
-    }],
-  }],
   insertProductNew: false,
-  searchFilter: [''],
+  filter: {
+    search: [''],
+    availability: false,
+    price: {
+      min: 0,
+      max: 0,
+    },
+  },
 };
 
 export const globalReducer = (state: StateType, action: ActionType) => {
@@ -55,7 +52,6 @@ export const globalReducer = (state: StateType, action: ActionType) => {
       return {
         ...state,
         productList: action.value,
-        productListFilter: action.value,
         insertProductNew: false,
       };
     case 'SET_INSERT_PRODUCT_NEW':
@@ -63,17 +59,44 @@ export const globalReducer = (state: StateType, action: ActionType) => {
         ...state,
         insertProductNew: true,
       };
-    case 'FILTER_PRODUCT_LIST_BY_SEARCH': {
-      const filterArr = action.value.toLowerCase().trim().split(' ');
+    case 'FILTER_PRODUCT_LIST_BY_SEARCH':
       return {
         ...state,
-        productListFilter: state.productList.filter((product) => {
-          const title = product.TITLE.toLowerCase();
-          return filterArr.some((filter: string) => title.indexOf(filter) !== -1);
-        }),
-        searchFilter: filterArr,
+        filter: {
+          ...state.filter,
+          search: action.value.toLowerCase().trim().split(' '),
+        },
       };
-    }
+    case 'FILTER_PRODUCT_LIST_BY_AVAILABILITY':
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          availability: !state.filter.availability,
+        },
+      };
+    case 'FILTER_PRODUCT_LIST_BY_MIN_PRICE':
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          price: {
+            ...state.filter.price,
+            min: action.value,
+          },
+        },
+      };
+    case 'FILTER_PRODUCT_LIST_BY_MAX_PRICE':
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          price: {
+            ...state.filter.price,
+            max: action.value,
+          },
+        },
+      };
     default:
       return state;
   }
