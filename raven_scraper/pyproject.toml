@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "raven_scheduler"
+name = "raven_scraper"
 version = "0.1.0"
 description = ""
 authors = []

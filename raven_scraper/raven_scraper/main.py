@@ -5,7 +5,7 @@ import schedule
 import time
 
 
-class RavenScheduler:
+class RavenScraper:
     def __init__(self):
         self._raven_db = RavenDb()
         configure_logging()
@@ -23,8 +23,8 @@ class RavenScheduler:
             logger.success('Scraping for product prices finished')
             logger.info(schedule.jobs)
 
-    def run_scheduler(self) -> None:
-        logger.info('Running Raven Scheduler')
+    def run_scraper(self) -> None:
+        logger.info('Running Raven Scraper')
         schedule.every(3).hours.at(':00').do(self.run_job)
         logger.info(schedule.jobs)
 
@@ -33,6 +33,6 @@ class RavenScheduler:
                 schedule.run_pending()
                 time.sleep(30)
         except KeyboardInterrupt:
-            logger.warning('KeyboardInterrupt: Stopped scheduler')
+            logger.warning('KeyboardInterrupt: Stopped scraper')
         except Exception as e:
             logger.error(e)

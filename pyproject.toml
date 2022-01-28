@@ -7,7 +7,7 @@ authors = []
 [tool.poetry.dependencies]
 python = "^3.9"
 raven_api = {path = "raven_api", develop = true}
-raven_scheduler = {path = "raven_scheduler", develop = true}
+raven_scraper = {path = "raven_scraper", develop = true}
 
 [tool.poetry.dev-dependencies]
 

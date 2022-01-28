@@ -1,4 +1,4 @@
-from raven_scheduler import __version__
+from raven_scraper import __version__
 
 
 def test_version():
