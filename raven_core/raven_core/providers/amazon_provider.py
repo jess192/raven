@@ -16,7 +16,6 @@ class AmazonProvider:
             'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
         }
 
-
     @staticmethod
     def _get_amazon_id(url: str) -> str:
         parse: ParseResult = urlparse(url)
@@ -81,7 +80,7 @@ class AmazonProvider:
             'price': self._get_item_price(bs)
         }
 
-    def get_product_info(self, url: str) -> dict or None:
+    def get_product_info(self, url: str) -> dict:
         product_id: str = self._get_amazon_id(url)
         bs = self._get_beautiful_soup_response(url)
 

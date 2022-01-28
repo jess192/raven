@@ -46,7 +46,7 @@ class RavenDb:
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement = '''SELECT ID, SOURCE FROM ITEMS'''
+            statement: str = '''SELECT ID, SOURCE FROM ITEMS'''
             curr.execute(statement)
             return curr.fetchall()
 
@@ -67,21 +67,20 @@ class RavenDb:
             self.insert_price(price_info)
             time.sleep(5)
 
-
     def insert_price(self, price_info: dict) -> None:
         logger.info(f'Inserting price: {price_info}')
         conn: Connection = self._create_connection()
 
         with conn:
             curr: Cursor = conn.cursor()
-            statement = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
+            statement: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
             curr.execute(statement, (price_info['id'], price_info['timestamp'], price_info['price']))
 
     def insert_product(self, url: str) -> None:
         logger.info(f'Inserting product: {url}')
         try:
-            product = AmazonProvider().get_product_info(url)
-        except Exception as e:
+            product: dict = AmazonProvider().get_product_info(url)
+        except Exception:
             raise
 
         conn: Connection = self._create_connection()
@@ -89,48 +88,59 @@ class RavenDb:
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement0 = '''INSERT INTO ITEMS (ID, TIMESTAMP , SOURCE, TITLE, IMAGE_URL) 
+            statement_items: str = '''INSERT INTO ITEMS (ID, TIMESTAMP , SOURCE, TITLE, IMAGE_URL) 
                 VALUES (?, ?, ?, ?, ?)
                 '''
             curr.execute(
-                statement0,
+                statement_items,
                 (product['id'], product['timestamp'], product['source'], product['title'], product['image_url'])
             )
 
-            statement = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
+            statement_prices: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
             curr.execute(
-                statement,
-                (product['id'], product['timestamp'], product['price']))
+                statement_prices,
+                (product['id'], product['timestamp'], product['price'])
+            )
 
-
-    def select_products_prices(self) -> dict:
+    def select_products_prices(self) -> list[dict]:
         conn: Connection = self._create_connection()
         conn.row_factory = sqlite3.Row
 
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement = '''SELECT ID, TITLE, IMAGE_URL FROM ITEMS'''
-            curr.execute(statement)
+            statement_items: str = '''SELECT ID, TITLE, IMAGE_URL FROM ITEMS'''
+            curr.execute(statement_items)
 
-            rows = curr.fetchall()
-
-            new_obj = []
+            rows: list = curr.fetchall()
+            product_prices: list[dict] = []
 
             for row in rows:
                 row_id: str = row['ID']
-                statement_2 = """SELECT TIMESTAMP, PRICE FROM PRICES WHERE ID = ?"""
-                curr.execute(statement_2, [row_id])
-                rows_2 = curr.fetchall()
+                statement_prices: str = """SELECT TIMESTAMP, PRICE FROM PRICES WHERE ID = ?"""
+                curr.execute(statement_prices, [row_id])
 
-                new_obj.append({
+                product_prices.append({
                     'ID': row['ID'],
                     'TITLE': row['TITLE'],
                     'IMAGE_URL': row['IMAGE_URL'],
-                    'PRICES': rows_2
+                    'PRICES': curr.fetchall()
                 })
 
-            return new_obj
+            return product_prices
+
+    def delete_product(self, product_id: str) -> None:
+        logger.info(f'Deleting product: {product_id}')
+        conn: Connection = self._create_connection()
+
+        with conn:
+            curr: Cursor = conn.cursor()
+
+            statement_prices: str = """DELETE FROM PRICES WHERE ID = ?"""
+            curr.execute(statement_prices, [product_id])
+
+            statement_items: str = """DELETE FROM ITEMS WHERE ID = ?"""
+            curr.execute(statement_items, [product_id])
 
 
 if __name__ == '__main__':

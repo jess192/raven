@@ -19,7 +19,7 @@ configure_logging()
 @app.get('/prices')
 def get_prices():
     try:
-        product_prices: dict = RavenDb().select_products_prices()
+        product_prices: list[dict] = RavenDb().select_products_prices()
     except Exception as e:
         logger.error('Unable to get prices for products ', e)
         return {'status': 'ERROR'}
@@ -48,4 +48,18 @@ def add_product(url: str):
         return {'status': 'ERROR'}
     else:
         logger.success(f'Successfully inserted {url}')
+        return {'status': 'SUCCESS'}
+
+
+@app.delete('/')
+def delete_product(product_id: str):
+    logger.info(f'Deleting {product_id}')
+
+    try:
+        RavenDb().delete_product(product_id)
+    except Exception as e:
+        logger.error('Unable to delete product ', e)
+        return {'status': 'ERROR'}
+    else:
+        logger.success(f'Successfully deleted {product_id}')
         return {'status': 'SUCCESS'}
