@@ -3,7 +3,7 @@ import time
 import sqlite3
 from sqlite3 import Connection, Cursor
 from raven_core.logging.logger import logger
-from raven_core.providers.amazon_provider import AmazonProvider
+from raven_scraper.providers.amazon_provider import AmazonProvider
 
 
 class RavenDb:
@@ -79,7 +79,7 @@ class RavenDb:
     def insert_product(self, url: str) -> None:
         logger.info(f'Inserting product: {url}')
         try:
-            product: dict = AmazonProvider().get_product_info(url)
+            product: dict = self._amazon_provider.get_product_info(url)
         except Exception:
             raise
 

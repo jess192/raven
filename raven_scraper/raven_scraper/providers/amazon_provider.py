@@ -56,13 +56,9 @@ class AmazonProvider:
         return image_url
 
     @staticmethod
-    def _get_item_price(bs: BeautifulSoup) -> str or float:
-        price = bs.find(class_='apexPriceToPay')
-        if price:
-            price = price.find(class_='a-offscreen')
-            if price:
-                price = float(price.get_text().lstrip('$'))
-        return price
+    def _get_item_price(bs: BeautifulSoup) -> float:
+        price = bs.find('input', {'id': 'twister-plus-price-data-price'})
+        return price.get('value') if price else None
 
     def _get_beautiful_soup_response(self, url: str) -> BeautifulSoup:
         page = requests.get(url, headers=self._amazon_headers)
