@@ -10,7 +10,6 @@ class RavenDb:
     def __init__(self):
         self._db_name = self._get_path('raven.db')
         self._schema_sql = self._get_path('sql/schema.sql')
-        self._amazon_provider = AmazonProvider()
 
     @staticmethod
     def _get_path(path: str) -> str:
@@ -60,7 +59,7 @@ class RavenDb:
             source: str = product[1]
 
             if source == 'amazon':
-                price_info = self._amazon_provider.get_product_prices(product_id)
+                price_info = AmazonProvider().get_product_prices(product_id)
             else:
                 raise Exception('Source does not exist')
 
@@ -79,7 +78,7 @@ class RavenDb:
     def insert_product(self, url: str) -> None:
         logger.info(f'Inserting product: {url}')
         try:
-            product: dict = self._amazon_provider.get_product_info(url)
+            product: dict = AmazonProvider().get_product_info(url)
         except Exception:
             raise
 
