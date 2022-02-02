@@ -1,4 +1,4 @@
-type ProductType = {
+export type ProductType = {
   ID: string,
   TITLE: string,
   IMAGE_URL: string,

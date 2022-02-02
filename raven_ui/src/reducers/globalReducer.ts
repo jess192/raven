@@ -1,4 +1,4 @@
-import { ProductListType, FilterType } from '@/types';
+import { ProductListType, FilterType, ProductType } from '@/types';
 
 type StateType = {
   active: boolean,
@@ -58,6 +58,11 @@ export const globalReducer = (state: StateType, action: ActionType) => {
       return {
         ...state,
         insertProductNew: true,
+      };
+    case 'DELETE_PRODUCT':
+      return {
+        ...state,
+        productList: state.productList.filter((item: ProductType) => item.ID !== action.value),
       };
     case 'FILTER_PRODUCT_LIST_BY_SEARCH':
       return {

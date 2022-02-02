@@ -38,6 +38,12 @@ export const ProductTileStyle = styled.div`
   }
 `;
 
+export const ProductDeleteButtonStyle = styled.button`
+  width: 50px;
+  align-self: end;
+  pointer: cursor;
+`;
+
 export const ProductPriceStyle = styled.div<{type: string}>`
   width: 150px;
   border: 1px solid black;
