@@ -69,8 +69,9 @@ class AmazonProvider:
 
     @staticmethod
     def _get_item_image_url(bs: BeautifulSoup) -> Optional[str]:
-        image = bs.find('img', id='landingImage')
+        image = bs.find('img', id='landingImage') or bs.find('img', id='imgBlkFront')
         image_url: Optional[str] = None
+
         if image:
             image_url: str = image.get('src')
         return image_url
