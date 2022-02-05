@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '@/providers/GlobalProvider';
+import { GlobalActions, FilterBy } from '@/types/enums';
 
 export function SearchFilter() {
   const { dispatch } = useContext(GlobalContext);
@@ -9,7 +10,7 @@ export function SearchFilter() {
     event.persist();
     const val: string = event.target.value;
     setSearch(() => (val));
-    dispatch({ type: 'FILTER_PRODUCT_LIST_BY_SEARCH', value: val });
+    dispatch({ type: GlobalActions.SET_FILTER_BY, subType: FilterBy.SEARCH, value: val });
   };
 
   return (

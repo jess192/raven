@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { GlobalContext } from '@/providers/GlobalProvider';
 import axios from 'axios';
+import { GlobalContext } from '@/providers/GlobalProvider';
+import { GlobalActions } from '@/types/enums';
 import { InsertProductStyle } from './style';
 
 export function InsertProduct() {
@@ -36,7 +37,7 @@ export function InsertProduct() {
         if (response.data.status === 'SUCCESS') {
           setIsLoaded(true);
           setSubmitted(url);
-          dispatch({ type: 'SET_INSERT_PRODUCT_NEW' });
+          dispatch({ type: GlobalActions.SET_INSERT_PRODUCT_NEW });
         } else {
           throw new Error('not successful');
         }

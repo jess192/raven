@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
+import axios, { AxiosResponse } from 'axios';
 import moment from 'moment';
 import { formatDate, formatPrice } from '@/utils';
-import axios, { AxiosResponse } from 'axios';
 import { GlobalContext } from '@/providers/GlobalProvider';
 import { Throbber } from '@/components/throbber';
-import { ProductTileProps, PricesType } from './types';
+import { ProductTilePropsType, PricesType } from '@/types';
 import {
   ProductTileStyle,
   ProductPriceStyle,
@@ -27,7 +27,7 @@ type GetPriceInfoType = {
 }
 
 // TODO - API should be returning this info!
-const getPriceInfo = (prices: [PricesType]): GetPriceInfoType => {
+const getPriceInfo = (prices: PricesType[]): GetPriceInfoType => {
   const filterPrice = prices.filter((x: PricesType) => x.PRICE !== null);
   const current = prices.at(-1);
   const sort = filterPrice.sort((a: PricesType, b: PricesType) => b.PRICE - a.PRICE);
@@ -48,9 +48,9 @@ const getPriceInfo = (prices: [PricesType]): GetPriceInfoType => {
   };
 };
 
-const fromNow = (timestamp: string) => moment(timestamp, 'MM/DD/YYYY HH:mm:ss').fromNow();
+// const fromNow = (timestamp: string) => moment(timestamp, 'MM/DD/YYYY HH:mm:ss').fromNow();
 
-export function ProductTile(props: ProductTileProps) {
+export function ProductTile(props: ProductTilePropsType) {
   const { product } = props;
   const priceInfo: GetPriceInfoType = getPriceInfo(product.PRICES);
 

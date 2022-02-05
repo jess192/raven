@@ -1,13 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '@/providers/GlobalProvider';
+import { FilterBy, GlobalActions } from '@/types/enums';
 
 export function AvailabilityFilter() {
   const { dispatch } = useContext(GlobalContext);
-  const [checked, setChecked] = useState(false);
 
   const handleCheckboxChange = () => {
-    setChecked(!checked);
-    dispatch({ type: 'FILTER_PRODUCT_LIST_BY_AVAILABILITY', value: !checked });
+    dispatch({ type: GlobalActions.SET_FILTER_BY, subType: FilterBy.AVAILABILITY });
   };
 
   return (

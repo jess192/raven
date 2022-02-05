@@ -1,27 +1,16 @@
-import { ProductListType, FilterType, ProductType } from '@/types';
-
-type StateType = {
-  active: boolean,
-  theme: 'LIGHT' | 'DARK',
-  productList: ProductListType,
-  insertProductNew: boolean,
-  filter: FilterType
-}
-
-type ActionType = {
-  type: string,
-  value?: any
-}
+import { GlobalActionType, GlobalStateType, ProductType } from '@/types';
+import {
+  FilterBy, GlobalActions, SortBy, Theme,
+} from '@/types/enums';
 
 export const initialState = {
-  active: false,
-  theme: 'LIGHT',
+  theme: Theme.LIGHT,
   productList: [{
-    ID: 'n/a',
-    TITLE: 'n/a',
-    IMAGE_URL: 'n/a',
+    ID: '',
+    TITLE: '',
+    IMAGE_URL: '',
     PRICES: [{
-      TIMESTAMP: 'n/a',
+      TIMESTAMP: '',
       PRICE: 0,
     }],
   }],
@@ -34,73 +23,80 @@ export const initialState = {
       max: 0,
     },
   },
+  sortBy: SortBy.RECENTLY_ADDED,
 };
 
-export const globalReducer = (state: StateType, action: ActionType) => {
+export const globalReducer = (state: GlobalStateType, action: GlobalActionType) => {
   switch (action.type) {
-    case 'TOGGLE_BUTTON':
+    case GlobalActions.TOGGLE_THEME: // also save in localstorage
       return {
         ...state,
-        active: !state.active,
+        theme: state.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT,
       };
-    case 'TOGGLE_THEME': // also save in localstorage
-      return {
-        ...state,
-        theme: state.theme === 'LIGHT' ? 'DARK' : 'LIGHT',
-      };
-    case 'SET_PRODUCT_LIST':
+    case GlobalActions.SET_PRODUCT_LIST:
       return {
         ...state,
         productList: action.value,
         insertProductNew: false,
       };
-    case 'SET_INSERT_PRODUCT_NEW':
+    case GlobalActions.SET_INSERT_PRODUCT_NEW:
       return {
         ...state,
         insertProductNew: true,
       };
-    case 'DELETE_PRODUCT':
+    case GlobalActions.DELETE_PRODUCT:
       return {
         ...state,
         productList: state.productList.filter((item: ProductType) => item.ID !== action.value),
       };
-    case 'FILTER_PRODUCT_LIST_BY_SEARCH':
+    case GlobalActions.SET_FILTER_BY: {
+      switch (action.subType) {
+        case FilterBy.SEARCH:
+          return {
+            ...state,
+            filter: {
+              ...state.filter,
+              search: action.value.toLowerCase().trim().split(' '),
+            },
+          };
+        case FilterBy.AVAILABILITY:
+          return {
+            ...state,
+            filter: {
+              ...state.filter,
+              availability: !state.filter.availability,
+            },
+          };
+        case FilterBy.MIN_PRICE:
+          return {
+            ...state,
+            filter: {
+              ...state.filter,
+              price: {
+                ...state.filter.price,
+                min: action.value,
+              },
+            },
+          };
+        case FilterBy.MAX_PRICE:
+          return {
+            ...state,
+            filter: {
+              ...state.filter,
+              price: {
+                ...state.filter.price,
+                max: action.value,
+              },
+            },
+          };
+        default:
+          return state;
+      }
+    }
+    case GlobalActions.SET_SORT_BY:
       return {
         ...state,
-        filter: {
-          ...state.filter,
-          search: action.value.toLowerCase().trim().split(' '),
-        },
-      };
-    case 'FILTER_PRODUCT_LIST_BY_AVAILABILITY':
-      return {
-        ...state,
-        filter: {
-          ...state.filter,
-          availability: !state.filter.availability,
-        },
-      };
-    case 'FILTER_PRODUCT_LIST_BY_MIN_PRICE':
-      return {
-        ...state,
-        filter: {
-          ...state.filter,
-          price: {
-            ...state.filter.price,
-            min: action.value,
-          },
-        },
-      };
-    case 'FILTER_PRODUCT_LIST_BY_MAX_PRICE':
-      return {
-        ...state,
-        filter: {
-          ...state.filter,
-          price: {
-            ...state.filter.price,
-            max: action.value,
-          },
-        },
+        sortBy: action.value,
       };
     default:
       return state;

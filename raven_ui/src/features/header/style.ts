@@ -4,6 +4,15 @@ const linkColor: string = '#3D3D3D';
 const lightBkg:string = '#F2F2F2';
 const darkBkg:string = '#3B3B3B';
 
+export const HeaderStyle = styled.div`
+  border-bottom: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 65px;
+`;
+
 export const NavigationStyle = styled.nav`
   background: ${(props) => (props.theme.mode === 'LIGHT' ? lightBkg : darkBkg)};
   font-size: 30px;

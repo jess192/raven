@@ -1,15 +1,6 @@
-import * as React from 'react';
-import styled from 'styled-components';
+import React from 'react';
 import ToggleTheme from './components/ToggleTheme';
-
-export const HeaderStyle = styled.div`
-  border-bottom: 1px solid black;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 65px;
-`;
+import { HeaderStyle } from './style';
 
 export function Header() {
   return (
