@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { GlobalThemeType } from '@/styles/theme';
 
 export const ProductsGridStyle = styled.div`
   width: 100%;
-  height: calc(100vh - 162px);
+  height: calc(100vh - 217px);
   overflow-y: auto;
   
   display: flex;
@@ -31,6 +32,9 @@ export const ProductTileStyle = styled.div`
     height: 300px;
     max-width: 400px;
     margin: auto;
+    border-radius: 10%;
+    filter: ${(props: GlobalThemeType) => props.theme.imageFilter};
+  }}
   }
   
   .product-price-container {
@@ -38,14 +42,23 @@ export const ProductTileStyle = styled.div`
   }
 `;
 
-export const ProductDeleteButtonStyle = styled.button`
-  width: 50px;
+export const ProductDeleteButtonStyle = styled.div`
   align-self: end;
-  pointer: cursor;
+  cursor: pointer;
+  padding: 5px 10px;
+  
+  &:hover {
+    // color: #F4BD54;
+    // background: #CDCDCD;
+    background: #F4BD54;
+    color: #FFF;
+    border-radius: 50%;
+  }
 `;
 
 export const ProductPriceStyle = styled.div<{type: string}>`
-  width: 150px;
+  color: #000;
+  width: 200px;
   border: 1px solid black;
   border-radius: 20px;
   padding: 4px 20px;

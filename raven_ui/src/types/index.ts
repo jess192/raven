@@ -1,9 +1,9 @@
 import {
-  GlobalActions, FilterBy, SortBy, Theme,
+  GlobalActions, FilterBy, SortBy, ThemeMode,
 } from '@/types/enums';
 
 export type GlobalStateType = {
-  theme: Theme,
+  theme: ThemeMode,
   productList: ProductType[],
   insertProductNew: boolean,
   filter: FilterType,

@@ -2,10 +2,17 @@ import React, { useContext } from 'react';
 import { GlobalContext } from '@/providers/GlobalProvider';
 import { GlobalActions } from '@/types/enums';
 import styled from 'styled-components';
+import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
-export const ToggleThemeStyle = styled.button`
+export const ToggleThemeStyle = styled.div`
   cursor: pointer;
-  width: 100px;
+  padding: 5px 8px;
+  
+  &:hover {
+    background: #F4BD54;
+    color: #FFF;
+    border-radius: 50%;
+  }
 `;
 
 export default function ToggleTheme() {
@@ -13,7 +20,7 @@ export default function ToggleTheme() {
 
   return (
     <ToggleThemeStyle onClick={() => dispatch({ type: GlobalActions.TOGGLE_THEME })}>
-      {state.theme}
+      {state.theme === 'LIGHT' ? <MdOutlineDarkMode size="32" /> : <MdOutlineLightMode size="32" />}
     </ToggleThemeStyle>
   );
 }

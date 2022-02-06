@@ -1,10 +1,10 @@
 import { GlobalActionType, GlobalStateType, ProductType } from '@/types';
 import {
-  FilterBy, GlobalActions, SortBy, Theme,
+  FilterBy, GlobalActions, SortBy, ThemeMode,
 } from '@/types/enums';
 
 export const initialState = {
-  theme: Theme.LIGHT,
+  theme: ThemeMode.LIGHT,
   productList: [{
     ID: '',
     TITLE: '',
@@ -31,7 +31,7 @@ export const globalReducer = (state: GlobalStateType, action: GlobalActionType) 
     case GlobalActions.TOGGLE_THEME: // also save in localstorage
       return {
         ...state,
-        theme: state.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT,
+        theme: state.theme === ThemeMode.LIGHT ? ThemeMode.DARK : ThemeMode.LIGHT,
       };
     case GlobalActions.SET_PRODUCT_LIST:
       return {

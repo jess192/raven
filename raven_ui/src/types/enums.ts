@@ -7,7 +7,7 @@ export enum GlobalActions {
   SET_SORT_BY = 'SET_SORT_BY'
 }
 
-export enum Theme {
+export enum ThemeMode {
   LIGHT = 'LIGHT',
   DARK = 'DARK'
 }

@@ -5,10 +5,11 @@ import { formatDate, formatPrice } from '@/utils';
 import { GlobalContext } from '@/providers/GlobalProvider';
 import { Throbber } from '@/components/throbber';
 import { ProductTilePropsType, PricesType } from '@/types';
+import { FiTrash } from 'react-icons/fi';
 import {
   ProductTileStyle,
-  ProductPriceStyle,
   ProductDeleteButtonStyle,
+  ProductPriceStyle,
 } from './style';
 
 type GetPriceInfoType = {
@@ -48,7 +49,7 @@ const getPriceInfo = (prices: PricesType[]): GetPriceInfoType => {
   };
 };
 
-// const fromNow = (timestamp: string) => moment(timestamp, 'MM/DD/YYYY HH:mm:ss').fromNow();
+const fromNow = (timestamp: string) => moment(timestamp, 'MM/DD/YYYY HH:mm:ss').fromNow();
 
 export function ProductTile(props: ProductTilePropsType) {
   const { product } = props;
@@ -90,7 +91,7 @@ export function ProductTile(props: ProductTilePropsType) {
 
   return (
     <ProductTileStyle>
-      <ProductDeleteButtonStyle onClick={deleteProduct}>Delete</ProductDeleteButtonStyle>
+      <ProductDeleteButtonStyle onClick={deleteProduct}><FiTrash /></ProductDeleteButtonStyle>
 
       <img src={product.IMAGE_URL} alt={product.TITLE} />
 
@@ -99,20 +100,26 @@ export function ProductTile(props: ProductTilePropsType) {
       <div className="product-price-container">
         <ProductPriceStyle type="current">
           <div>Current:</div>
-          <div>{formatPrice(priceInfo.current.price)}</div>
-          {/* <div>{fromNow(priceInfo.current.timestamp)}</div> */}
+          <div>
+            <div>{formatPrice(priceInfo.current.price)}</div>
+            <div>{fromNow(priceInfo.current.timestamp)}</div>
+          </div>
         </ProductPriceStyle>
 
         <ProductPriceStyle type="low">
           <div>Low:</div>
-          <div>{formatPrice(priceInfo.min.price)}</div>
-          {/* <div>{fromNow(priceInfo.min.timestamp)}</div> */}
+          <div>
+            <div>{formatPrice(priceInfo.min.price)}</div>
+            <div>{fromNow(priceInfo.min.timestamp)}</div>
+          </div>
         </ProductPriceStyle>
 
         <ProductPriceStyle type="high">
           <div>High:</div>
-          <div>{formatPrice(priceInfo.max.price)}</div>
-          {/* <div>{fromNow(priceInfo.max.timestamp)}</div> */}
+          <div>
+            <div>{formatPrice(priceInfo.max.price)}</div>
+            <div>{fromNow(priceInfo.max.timestamp)}</div>
+          </div>
         </ProductPriceStyle>
       </div>
     </ProductTileStyle>
