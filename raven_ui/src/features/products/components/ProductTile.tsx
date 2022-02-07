@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
-import moment from 'moment';
 import { formatDate, formatPrice } from '@/utils';
 import { GlobalContext } from '@/providers/GlobalProvider';
 import { Throbber } from '@/components/throbber';
@@ -49,7 +48,8 @@ const getPriceInfo = (prices: PricesType[]): GetPriceInfoType => {
   };
 };
 
-const fromNow = (timestamp: string) => moment(timestamp, 'MM/DD/YYYY HH:mm:ss').fromNow();
+// TODO - create fromNow function
+const fromNow = (timestamp: string) => timestamp;
 
 export function ProductTile(props: ProductTilePropsType) {
   const { product } = props;
