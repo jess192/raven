@@ -89,11 +89,16 @@ export function ProductTile(props: ProductTilePropsType) {
     );
   }
 
+  // TODO - get url from API
+  const productURL = 'https://amazon.com/dp/'.concat(product.ID);
+
   return (
     <ProductTileStyle>
       <ProductDeleteButtonStyle onClick={deleteProduct}><FiTrash /></ProductDeleteButtonStyle>
 
-      <img src={product.IMAGE_URL} alt={product.TITLE} />
+      <a href={productURL} target="__blank">
+        <img src={product.IMAGE_URL} alt={product.TITLE} />
+      </a>
 
       <div className="product-title">{product.TITLE}</div>
 

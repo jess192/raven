@@ -28,7 +28,7 @@ export const ProductTileStyle = styled.div`
     font-size: 12px;
   }
   
-  img {
+  a, img {
     height: 300px;
     max-width: 400px;
     margin: auto;
