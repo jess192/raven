@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import Filter from '@/views/home/components/filter';
 import InsertProduct from '@/views/home/components/insert';
 import Sort from '@/views/home/components/sort';
@@ -17,16 +19,28 @@ const ProductContainerStyle = styled.div`
 `;
 
 export default function Home() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <HomeProvider>
-      <ViewContainerStyle>
-        <Filter />
-        <ProductContainerStyle>
-          <Sort />
-          <InsertProduct />
-          <Products />
-        </ProductContainerStyle>
-      </ViewContainerStyle>
+      <QueryClientProvider client={queryClient}>
+
+        <ViewContainerStyle>
+          <Filter />
+          <ProductContainerStyle>
+            <Sort />
+            <InsertProduct />
+            <Products />
+          </ProductContainerStyle>
+        </ViewContainerStyle>
+
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </HomeProvider>
   );
 }

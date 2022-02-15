@@ -1,9 +1,7 @@
-import React, { useContext, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
-import { formatPrice } from '@/utils/formatting';
-import { GlobalContext } from '@/context';
-import { Throbber } from '@/components/Throbber';
+import React from 'react';
 import { FiTrash } from 'react-icons/fi';
+import { formatPrice } from '@/utils/formatting';
+import { useDeleteProduct } from '@/api';
 import { ProductTilePropsType, PricesType } from '../types';
 import { ProductTileStyle, ProductDeleteButtonStyle, ProductPriceStyle } from '../style';
 
@@ -49,48 +47,15 @@ const fromNow = (timestamp: string) => timestamp;
 
 export function ProductTile(props: ProductTilePropsType) {
   const { product } = props;
+  const productURL = 'https://amazon.com/dp/'.concat(product.ID); // TODO - get url from API
   const priceInfo: GetPriceInfoType = getPriceInfo(product.PRICES);
-
-  const { dispatch } = useContext(GlobalContext);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const deleteProduct = () => {
-    const DELETE_URL: string = 'http://192.168.0.169:8090/?product_id='.concat(product.ID);
-
-    setIsDeleting(true);
-
-    axios.delete(DELETE_URL)
-      .then((response: AxiosResponse) => {
-        if (response.data.status === 'SUCCESS') {
-          dispatch({ type: 'DELETE_PRODUCT', value: product.ID });
-        } else {
-          throw new Error('not successful');
-        }
-      })
-      .catch((err: any) => {
-        console.log('error', err);
-      })
-      .then(() => {
-        setIsDeleting(false);
-      });
-  };
-
-  if (isDeleting) {
-    return (
-      <ProductTileStyle>
-        <div className="throbber-container">
-          <Throbber />
-        </div>
-      </ProductTileStyle>
-    );
-  }
-
-  // TODO - get url from API
-  const productURL = 'https://amazon.com/dp/'.concat(product.ID);
+  const { mutate, isLoading } = useDeleteProduct();
 
   return (
     <ProductTileStyle>
-      <ProductDeleteButtonStyle onClick={deleteProduct}><FiTrash /></ProductDeleteButtonStyle>
+      <ProductDeleteButtonStyle onClick={() => mutate(product.ID)}>
+        {isLoading ? '...' : <FiTrash />}
+      </ProductDeleteButtonStyle>
 
       <a href={productURL} target="__blank">
         <img src={product.IMAGE_URL} alt={product.TITLE} />
