@@ -1,50 +1,27 @@
-import {
-  GlobalActions, FilterBy, SortBy, ThemeMode,
-} from '@/types/enums';
+import React from 'react';
+
+export enum GlobalActionsEnum {
+  TOGGLE_THEME = 'TOGGLE_THEME',
+}
+
+export enum ThemeModeEnum {
+  LIGHT = 'LIGHT',
+  DARK = 'DARK'
+}
+
+export enum LocalStorageEnum {
+  THEME = 'THEME'
+}
+
+export type ComponentChildrenProps = {
+  children: React.ReactNode
+}
 
 export type GlobalStateType = {
-  theme: ThemeMode,
-  productList: ProductType[],
-  insertProductNew: boolean,
-  filter: FilterType,
-  sortBy: SortBy
+  theme: ThemeModeEnum,
 }
 
 export type GlobalActionType = {
-  type: GlobalActions,
-  subType?: FilterBy,
+  type: GlobalActionsEnum,
   value?: any
-}
-
-export type PricesType = {
-  TIMESTAMP: string,
-  PRICE: number
-}
-
-export type ProductType = {
-  ID: string,
-  TITLE: string,
-  IMAGE_URL: string,
-  PRICES: PricesType[]
-}
-
-export type FilterType = {
-  search: string[],
-  availability: boolean,
-  price: {
-    min: number,
-    max: number
-  }
-}
-
-export type ProductGridPropsType = {
-  productItems: ProductType[],
-  filter: FilterType,
-  sortBy: any,
-  error: string | null,
-  loading: boolean
-}
-
-export type ProductTilePropsType = {
-  product: ProductType
 }
