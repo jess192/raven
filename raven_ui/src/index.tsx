@@ -1,6 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
+import WebFont from 'webfontloader';
 import App from './App';
+
+WebFont.load({
+  google: {
+    families: ['Nunito'],
+  },
+});
 
 render(
   <React.StrictMode>
