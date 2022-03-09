@@ -1,6 +1,6 @@
 import requests
-import random
 from urllib.parse import urlparse, ParseResult
+from pyuseragents import random as random_useragent
 from bs4 import BeautifulSoup
 from datetime import datetime
 from typing import Optional
@@ -13,16 +13,8 @@ class AmazonProvider:
 
     @staticmethod
     def _generate_headers() -> dict:
-        ff_version_list: list = [*range(70, 96)]
-        linux_distro_list: list = ['Fedora', 'Ubuntu']
-
-        ff_version: float = float(random.choice(ff_version_list))
-        linux_distro: str = random.choice(linux_distro_list)
-
-        user_agent = f'Mozilla/5.0 (X11; {linux_distro}; Linux x86_64; rv:{ff_version}) Gecko/20100101 Firefox/{ff_version}'
-
         return {
-            'user-agent': user_agent,
+            'user-agent': random_useragent(),
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-dest': 'document',

@@ -157,6 +157,14 @@ checkqa-mypy = ["mypy (==v0.761)"]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "requests", "xmlschema"]
 
 [[package]]
+name = "pyuseragents"
+version = "1.0.5"
+description = "A Python module which does one thing: giving you a random User-Agent Header"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "raven-core"
 version = "0.1.0"
 description = ""
@@ -243,7 +251,7 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "901043780c17fa775350fd4e9c8424ed576fc3f77146a83412b4da84e444fc4e"
+content-hash = "a367203c436f9d85985849b29bf1199eb3506f0aa040f4bcb4a54e102ad007c9"
 
 [metadata.files]
 atomicwrites = [
@@ -301,6 +309,10 @@ pyparsing = [
 pytest = [
     {file = "pytest-5.4.3-py3-none-any.whl", hash = "sha256:5c0db86b698e8f170ba4582a492248919255fcd4c79b1ee64ace34301fb589a1"},
     {file = "pytest-5.4.3.tar.gz", hash = "sha256:7979331bfcba207414f5e1263b5a0f8f521d0f457318836a7355531ed1a4c7d8"},
+]
+pyuseragents = [
+    {file = "pyuseragents-1.0.5-py3-none-any.whl", hash = "sha256:c63d66f5d80fc08fd31027be754824292c795e2161c2ccce989d2ce2f23ae19b"},
+    {file = "pyuseragents-1.0.5.tar.gz", hash = "sha256:7300024dcc04ed9ed4072d9aef7fbc18a832686b93acfb75e8835bbe0eb6aae6"},
 ]
 raven-core = []
 requests = [
