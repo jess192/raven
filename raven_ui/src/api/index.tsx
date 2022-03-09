@@ -1,25 +1,18 @@
-import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { QueryClient, useMutation, useQuery, useQueryClient } from 'react-query';
 import axios from 'axios';
 
 const API_URL: string = 'http://192.168.0.169:8090';
 
 export const useProducts = () => useQuery('products', async () => {
-  const getURL = API_URL.concat('/prices');
-  const { data } = await axios.get(getURL);
-
-  if (data.status === 'error') {
-    throw new Error('something went wrong...');
-  }
+  const { data } = await axios.get(`${API_URL}/products`);
 
   // TODO - API should return list reversed
-  data.product_prices = data.product_prices.reverse();
-  return data;
+  return data.reverse();
 });
 
 export const useInsertProduct = () => {
-  const queryClient = useQueryClient();
-  const insertURL = API_URL.concat('/insert?url=');
-  const insertProduct = (url: string) => axios.post(insertURL.concat(url));
+  const queryClient: QueryClient = useQueryClient();
+  const insertProduct = (url: string) => axios.post(`${API_URL}/products?url=${url}`);
 
   return useMutation(insertProduct, {
     onSuccess: () => {
@@ -29,9 +22,8 @@ export const useInsertProduct = () => {
 };
 
 export const useDeleteProduct = () => {
-  const queryClient = useQueryClient();
-  const deleteURL = API_URL.concat('?product_id=');
-  const deleteProduct = (id: string) => axios.delete(deleteURL.concat(id));
+  const queryClient: QueryClient = useQueryClient();
+  const deleteProduct = (id: string) => axios.delete(`${API_URL}/products?product_id=${id}`);
 
   return useMutation(deleteProduct, {
     onSuccess: () => {

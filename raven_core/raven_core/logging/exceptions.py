@@ -4,12 +4,28 @@ class BotException(Exception):
         self.url: str = url
 
     def __str__(self):
-        return f'BotException: {self.provider} thinks you are a bot trying to access {self.url}'
+        return f'{self.provider} thinks you are a bot trying to access {self.url}'
 
 
-class NotValidURL(Exception):
+class InvalidURLException(Exception):
     def __init__(self, url: str):
         self.url: str = url
 
     def __str__(self):
-        return f'NotValidURL: {self.url}  is not valid.'
+        return f'{self.url}  is not a valid URL.'
+
+
+class UniqueProductException(Exception):
+    def __init__(self, url: str):
+        self.url: str = url
+
+    def __str__(self):
+        return f'{self.url} is already being tracked.'
+
+
+class DoesNotExistException(Exception):
+    def __init__(self, url: str):
+        self.url: str = url
+
+    def __str__(self):
+        return f'{self.url} does not exist.'

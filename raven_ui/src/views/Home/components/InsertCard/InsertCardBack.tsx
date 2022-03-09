@@ -3,14 +3,20 @@ import { useInsertProduct } from '@/api';
 import Throbber from '@/components/Throbber';
 import Button from '@/components/Button';
 import InputBox from '@/components/InputBox';
+import { QueryErrorType } from '@/views/Home/types';
 import { InsertCardBackPropsType } from './types';
-import { InsertCardBackStyle, InsertCardBackStatusStyle, InsertCardBackFormStyle,
-  InsertCardBackTextStyle, InsertCardBackButtonsStyle } from './style';
+import {
+  InsertCardBackButtonsStyle,
+  InsertCardBackFormStyle,
+  InsertCardBackStatusStyle,
+  InsertCardBackStyle,
+  InsertCardBackTextStyle,
+} from './style';
 
 export default function InsertCardBack(props: InsertCardBackPropsType) {
   const { setExpand } = props;
   const [url, setUrl] = useState('');
-  const { mutate, isLoading, isError, isSuccess } = useInsertProduct();
+  const { mutate, isLoading, isError, error, isSuccess } = useInsertProduct();
 
   const handleChange = (event: { target: { value: string; }; }): void => {
     setUrl(() => (event.target.value));
@@ -38,7 +44,7 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
   if (isError) {
     return (
       <InsertCardBackStatusStyle>
-        Error
+        {(error as QueryErrorType).response.data.detail}
         <Button type="button" onClick={closeExpand}>Ok</Button>
       </InsertCardBackStatusStyle>
     );

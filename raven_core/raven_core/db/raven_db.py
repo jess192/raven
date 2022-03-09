@@ -2,6 +2,8 @@ import os
 import time
 import sqlite3
 from sqlite3 import Connection, Cursor
+
+from raven_core.logging.exceptions import UniqueProductException
 from raven_core.logging.logger import logger
 from raven_scraper.providers.amazon_provider import AmazonProvider
 
@@ -87,19 +89,22 @@ class RavenDb:
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement_items: str = '''INSERT INTO ITEMS (ID, TIMESTAMP , SOURCE, TITLE, IMAGE_URL) 
-                VALUES (?, ?, ?, ?, ?)
-                '''
-            curr.execute(
-                statement_items,
-                (product['id'], product['timestamp'], product['source'], product['title'], product['image_url'])
-            )
+            try:
+                statement_items: str = '''INSERT INTO ITEMS (ID, TIMESTAMP , SOURCE, TITLE, IMAGE_URL) 
+                    VALUES (?, ?, ?, ?, ?)
+                    '''
+                curr.execute(
+                    statement_items,
+                    (product['id'], product['timestamp'], product['source'], product['title'], product['image_url'])
+                )
 
-            statement_prices: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
-            curr.execute(
-                statement_prices,
-                (product['id'], product['timestamp'], product['price'])
-            )
+                statement_prices: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
+                curr.execute(
+                    statement_prices,
+                    (product['id'], product['timestamp'], product['price'])
+                )
+            except sqlite3.IntegrityError as e:
+                raise UniqueProductException(url)
 
     def select_products_prices(self) -> list[dict]:
         conn: Connection = self._create_connection()

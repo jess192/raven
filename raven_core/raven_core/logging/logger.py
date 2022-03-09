@@ -11,13 +11,13 @@ logging_config = {
             'level': 'INFO'
         },
         {
-            'sink': log_location + '/logs/info_{time:MM_DD_YYYY_ddd}.log',
+            'sink': log_location + '/logs/info_{time:MM_DD_YYYY}.log',
             'level': 'INFO',
             'rotation': '00:00',
             'retention': '30 days'
         },
         {
-            'sink': log_location + '/logs/error_{time:MM_DD_YYYY_ddd}.log',
+            'sink': log_location + '/logs/error_{time:MM_DD_YYYY}.log',
             'level': 'ERROR',
             'rotation': '00:00',
             'retention': '30 days'

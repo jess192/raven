@@ -27,12 +27,12 @@ export default function HomeView() {
       sort: state.sort,
     };
 
-    setProductsFiltered(filterProducts(data.product_prices, filter));
+    setProductsFiltered(filterProducts(data, filter));
 
     // TODO - API should return this
     let min: number = 0;
     let max: number = 0;
-    data.product_prices.forEach((product: ProductType) => {
+    data.forEach((product: ProductType) => {
       const curr: number = product.PRICES.at(-1).PRICE;
       if (curr < min) {
         min = curr;
@@ -72,7 +72,7 @@ export default function HomeView() {
         price={state.price}
         setPrice={(val: number[]) => dispatch({ type: HomeActionsEnum.SET_PRICE, value: val })}
         resetFilters={() => dispatch({ type: HomeActionsEnum.RESET_FILTERS })}
-        numProducts={data.product_prices.length}
+        numProducts={data.length}
         numProductsFiltered={productsFiltered.length}
         sort={state.sort}
         sortOptions={[

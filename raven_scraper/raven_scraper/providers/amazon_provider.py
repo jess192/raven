@@ -4,7 +4,7 @@ from urllib.parse import urlparse, ParseResult
 from bs4 import BeautifulSoup
 from datetime import datetime
 from typing import Optional
-from raven_core.logging.exceptions import BotException, NotValidURL
+from raven_core.logging.exceptions import BotException, InvalidURLException, DoesNotExistException
 
 
 class AmazonProvider:
@@ -41,7 +41,7 @@ class AmazonProvider:
             elif part == 'dp':
                 next_part = True
 
-        raise NotValidURL(url)
+        raise InvalidURLException(url)
 
     @staticmethod
     def _check_if_bot(bs: BeautifulSoup, url: str) -> None:
@@ -57,6 +57,10 @@ class AmazonProvider:
 
     def _get_beautiful_soup_response(self, url: str) -> BeautifulSoup:
         page = requests.get(url, headers=self._amazon_headers)
+
+        if page.status_code == 404:
+            raise DoesNotExistException(url)
+
         bs: BeautifulSoup = BeautifulSoup(page.text, 'html.parser')
         self._check_if_bot(bs, url)
 
@@ -84,6 +88,7 @@ class AmazonProvider:
     def get_product_prices(self, amazon_id: str) -> dict:
         url: str = self._create_url(amazon_id)
         bs: BeautifulSoup = self._get_beautiful_soup_response(url)
+
         return {
             'id': amazon_id,
             'timestamp': datetime.now().strftime('%m/%d/%Y %H:%M:%S'),
@@ -92,7 +97,8 @@ class AmazonProvider:
 
     def get_product_info(self, url: str) -> dict:
         product_id: str = self._get_amazon_id(url)
-        bs: BeautifulSoup = self._get_beautiful_soup_response(url)
+        formatted_url: str = self._create_url(product_id)
+        bs: BeautifulSoup = self._get_beautiful_soup_response(formatted_url)
 
         return {
             'id': product_id,

@@ -43,3 +43,11 @@ export type ProductType = {
 }
 
 export type ProductListType = ProductType[]
+
+export type QueryErrorType = {
+  response: {
+    data: {
+      detail: string
+    }
+  }
+}
