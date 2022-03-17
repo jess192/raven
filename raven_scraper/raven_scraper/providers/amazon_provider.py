@@ -83,7 +83,7 @@ class AmazonProvider:
 
         return {
             'id': amazon_id,
-            'timestamp': datetime.now().strftime('%m/%d/%Y %H:%M:%S'),
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'price': self._get_item_price(bs)
         }
 
@@ -94,7 +94,7 @@ class AmazonProvider:
 
         return {
             'id': product_id,
-            'timestamp': datetime.now().strftime('%m/%d/%Y %H:%M:%S'),
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'source': 'amazon',
             'title': self._get_item_title(bs),
             'image_url': self._get_item_image_url(bs),

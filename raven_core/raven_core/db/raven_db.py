@@ -120,7 +120,7 @@ class RavenDb:
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement_items: str = '''SELECT ID, TITLE, IMAGE_URL FROM ITEMS'''
+            statement_items: str = '''SELECT ID, TITLE, IMAGE_URL FROM ITEMS ORDER BY TIMESTAMP DESC'''
             curr.execute(statement_items)
 
             rows: list = curr.fetchall()
