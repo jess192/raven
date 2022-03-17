@@ -13,18 +13,17 @@ class RavenScraper:
     def run_job(self) -> None:
         try:
             self._raven_db.scrape_for_product_prices()
-        except BotException as e:
-            logger.error(e)
         except KeyboardInterrupt:
             logger.warning('KeyboardInterrupt: Stopped scraping for product prices')
         except Exception as e:
             logger.error(e)
         else:
-            logger.success('Scraping for product prices finished')
+            logger.info('Scraping for product prices finished')
             logger.info(schedule.jobs)
 
     def run_scraper(self) -> None:
         logger.info('Running Raven Scraper')
+        self.run_job()
         schedule.every(3).hours.at(':00').do(self.run_job)
         logger.info(schedule.jobs)
 

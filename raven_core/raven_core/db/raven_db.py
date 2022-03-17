@@ -2,8 +2,7 @@ import os
 import time
 import sqlite3
 from sqlite3 import Connection, Cursor
-
-from raven_core.logging.exceptions import UniqueProductException
+from raven_core.logging.exceptions import UniqueProductException, DoesNotExistException, BotException
 from raven_core.logging.logger import logger
 from raven_scraper.providers.amazon_provider import AmazonProvider
 
@@ -61,11 +60,19 @@ class RavenDb:
             source: str = product[1]
 
             if source == 'amazon':
-                price_info = AmazonProvider().get_product_prices(product_id)
+                try:
+                    price_info = AmazonProvider().get_product_prices(product_id)
+                except DoesNotExistException as e:
+                    logger.error(e)
+                except BotException as e:
+                    logger.error(e)
+                except Exception as e:
+                    logger.error(e)
+                finally:
+                    self.insert_price(price_info)
             else:
-                raise Exception('Source does not exist')
+                logger.error(f'Source does not exist: {source}')
 
-            self.insert_price(price_info)
             time.sleep(5)
 
     def insert_price(self, price_info: dict) -> None:
