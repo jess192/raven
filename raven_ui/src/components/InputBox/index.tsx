@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { InputWrapperStyle, InputStyle } from './style';
 import { InputBoxPropsType } from './types';
 

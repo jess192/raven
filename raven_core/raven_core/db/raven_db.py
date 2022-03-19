@@ -99,7 +99,7 @@ class RavenDb:
             try:
                 statement_items: str = '''INSERT INTO ITEMS (ID, TIMESTAMP , SOURCE, TITLE, IMAGE_URL) 
                     VALUES (?, ?, ?, ?, ?)
-                    '''
+                '''
                 curr.execute(
                     statement_items,
                     (product['id'], product['timestamp'], product['source'], product['title'], product['image_url'])
@@ -113,14 +113,14 @@ class RavenDb:
             except sqlite3.IntegrityError as e:
                 raise UniqueProductException(url)
 
-    def select_products_prices(self) -> list[dict]:
+    def select_products_prices(self) -> dict:
         conn: Connection = self._create_connection()
         conn.row_factory = sqlite3.Row
 
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement_items: str = '''SELECT ID, TITLE, IMAGE_URL FROM ITEMS ORDER BY TIMESTAMP DESC'''
+            statement_items: str = '''SELECT ID, SOURCE, TITLE, IMAGE_URL FROM ITEMS ORDER BY TIMESTAMP DESC'''
             curr.execute(statement_items)
 
             rows: list = curr.fetchall()
@@ -128,17 +128,45 @@ class RavenDb:
 
             for row in rows:
                 row_id: str = row['ID']
-                statement_prices: str = """SELECT TIMESTAMP, PRICE FROM PRICES WHERE ID = ?"""
-                curr.execute(statement_prices, [row_id])
+
+                statement_current_prices: str = '''SELECT TIMESTAMP, PRICE FROM PRICES 
+                    WHERE ID = ? ORDER BY TIMESTAMP DESC LIMIT 1'''
+                curr.execute(statement_current_prices, [row_id])
+                current_prices: dict = curr.fetchone()
+
+                statement_first_prices: str = '''SELECT TIMESTAMP, PRICE FROM PRICES 
+                    WHERE ID = ? ORDER BY TIMESTAMP ASC LIMIT 1'''
+                curr.execute(statement_first_prices, [row_id])
+                first_prices: dict = curr.fetchone()
+
+                percent_change: int = 0 if not current_prices['PRICE'] or not first_prices['PRICE'] else round(
+                    (current_prices['PRICE'] - first_prices['PRICE']) / first_prices['PRICE'] * 100, 2)
 
                 product_prices.append({
-                    'ID': row['ID'],
-                    'TITLE': row['TITLE'],
-                    'IMAGE_URL': row['IMAGE_URL'],
-                    'PRICES': curr.fetchall()
+                    'id': row_id,
+                    'title': row['TITLE'],
+                    'imageURL': row['IMAGE_URL'],
+                    'provider': row['SOURCE'],
+                    'providerURL': AmazonProvider.create_url(row_id) if row['SOURCE'] == 'amazon' else None,
+                    'currentPrice': {
+                        'price': current_prices['PRICE'],
+                        'timestamp': current_prices['TIMESTAMP'],
+                    },
+                    'firstPrice': {
+                        'price': first_prices['PRICE'],
+                        'timestamp': first_prices['TIMESTAMP'],
+                    },
+                    'percentChange': percent_change
                 })
 
-            return product_prices
+            current_prices_filtered: list = [product['currentPrice']['price'] for product in product_prices if
+                                             product['currentPrice']['price'] is not None]
+
+            return {
+                'products': product_prices,
+                'minPrice': min(current_prices_filtered) if current_prices_filtered else 0,
+                'maxPrice': max(current_prices_filtered) if current_prices_filtered else 0
+            }
 
     def delete_product(self, product_id: str) -> None:
         logger.info(f'Deleting product: {product_id}')

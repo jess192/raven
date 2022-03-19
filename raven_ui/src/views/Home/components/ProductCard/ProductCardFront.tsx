@@ -12,14 +12,14 @@ import {
 } from './style';
 
 export default function ProductCardFront(props: ProductCardFrontPropsType) {
-  const { img, productID, title, price, timestamp, percentageChange,
-    firstPrice, firstTimestamp, setFlip } = props;
+  const { img, productID, title, provider, providerURL, price,
+    timestamp, percentChange, firstPrice, firstTimestamp, setFlip } = props;
   const fromNow = useFromNow(firstTimestamp);
 
   const perChange = () => {
-    if (percentageChange === 0) return '~';
-    if (percentageChange > 0) return (<><AiOutlineArrowUp /> {percentageChange} %</>);
-    return (<><AiOutlineArrowDown /> {percentageChange} %</>);
+    if (percentChange === 0) return '~';
+    if (percentChange > 0) return (<><AiOutlineArrowUp /> {percentChange} %</>);
+    return (<><AiOutlineArrowDown /> {percentChange} %</>);
   };
 
   return (
@@ -32,8 +32,8 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
 
         <ProductCardHeadRightStyle>
           <ProviderLink
-            provider={ProvidersEnum.AMAZON} // TODO - have API return this
-            url={'https://amazon.com/dp/'.concat(productID)} // TODO - have API return this
+            provider={provider}
+            url={providerURL}
           />
 
           <ProductCardDeleteButtonStyle

@@ -2,9 +2,11 @@ export type ProductCardPropsType = {
   img: string,
   productID: string,
   title: string,
+  provider: ProvidersEnum,
+  providerURL: string,
   price: number,
   timestamp: string,
-  percentageChange: number,
+  percentChange: number,
   firstPrice: number,
   firstTimestamp: string
 }
@@ -19,7 +21,7 @@ export type ProductCardBackPropsType = {
 }
 
 export enum ProvidersEnum {
-  AMAZON = 'AMAZON'
+  AMAZON = 'amazon'
 }
 
 export type ProviderLinkPropsType = {

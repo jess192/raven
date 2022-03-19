@@ -44,7 +44,7 @@ class AmazonProvider:
             raise BotException('Amazon', url)
 
     @staticmethod
-    def _create_url(amazon_id: str) -> str:
+    def create_url(amazon_id: str) -> str:
         return f'https://amazon.com/dp/{amazon_id}'
 
     def _get_beautiful_soup_response(self, url: str) -> BeautifulSoup:
@@ -78,7 +78,7 @@ class AmazonProvider:
         return price.get('value') if price else None
 
     def get_product_prices(self, amazon_id: str) -> dict:
-        url: str = self._create_url(amazon_id)
+        url: str = self.create_url(amazon_id)
         bs: BeautifulSoup = self._get_beautiful_soup_response(url)
 
         return {
@@ -89,7 +89,7 @@ class AmazonProvider:
 
     def get_product_info(self, url: str) -> dict:
         product_id: str = self._get_amazon_id(url)
-        formatted_url: str = self._create_url(product_id)
+        formatted_url: str = self.create_url(product_id)
         bs: BeautifulSoup = self._get_beautiful_soup_response(formatted_url)
 
         return {

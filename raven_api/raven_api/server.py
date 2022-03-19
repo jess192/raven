@@ -20,7 +20,7 @@ configure_logging()
 @app.get('/products', status_code=status.HTTP_200_OK)
 def get_prices():
     try:
-        product_prices: list[dict] = RavenDb().select_products_prices()
+        product_prices: dict = RavenDb().select_products_prices()
     except Exception as e:
         exception_msg = f'Unable to list of products. {e}'
         logger.error(exception_msg)

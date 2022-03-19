@@ -5,8 +5,8 @@ import ProductCardFront from './ProductCardFront';
 import ProductCardBack from './ProductCardBack';
 
 export default function ProductCard(props: ProductCardPropsType) {
-  const { img, productID, title, price, timestamp, percentageChange,
-    firstPrice, firstTimestamp } = props;
+  const { img, productID, title, provider, providerURL, price,
+    timestamp, percentChange, firstPrice, firstTimestamp } = props;
   const [flip, setFlip] = useState(false);
 
   return (
@@ -15,9 +15,11 @@ export default function ProductCard(props: ProductCardPropsType) {
         img={img}
         productID={productID}
         title={title}
+        provider={provider}
+        providerURL={providerURL}
         price={price}
         timestamp={timestamp}
-        percentageChange={percentageChange}
+        percentChange={percentChange}
         firstPrice={firstPrice}
         firstTimestamp={firstTimestamp}
         setFlip={setFlip}

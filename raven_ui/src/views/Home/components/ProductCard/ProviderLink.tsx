@@ -1,4 +1,4 @@
-import React, { ReactSVG } from 'react';
+import React from 'react';
 import { AiFillAmazonCircle } from 'react-icons/ai';
 import { RiShoppingCartLine } from 'react-icons/ri';
 import { ProviderLinkPropsType, ProvidersEnum } from './types';

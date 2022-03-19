@@ -9,8 +9,12 @@ import {
 
 export default function PriceSlider(props: PriceSliderPropsType) {
   const { priceRange, price, setPrice } = props;
-  const min:number = price.min || priceRange.min;
-  const max:number = price.max || priceRange.max;
+
+  const defaultMin:number = 0;
+  const defaultMax:number = 500;
+
+  const min:number = price.min || priceRange.min || defaultMin;
+  const max:number = price.max || priceRange.max || defaultMax;
 
   const onChange = (value: [number, number]) => {
     setPrice(value);
@@ -20,7 +24,8 @@ export default function PriceSlider(props: PriceSliderPropsType) {
     <SliderRootStyle
       aria-label="Price Range"
       value={[min, max]}
-      max={priceRange.max}
+      min={Math.floor(priceRange.min) || defaultMin}
+      max={Math.ceil(priceRange.max) || defaultMax}
       step={0.5}
       minStepsBetweenThumbs={0.5}
       onValueChange={onChange}

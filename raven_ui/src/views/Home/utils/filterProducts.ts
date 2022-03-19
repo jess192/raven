@@ -1,4 +1,5 @@
-import { FilterType, ProductListType, ProductType, SortByEnum } from '../types';
+import { ProductListType, ProductType } from '@/api/types';
+import { FilterType, SortByEnum } from '../types';
 
 const filterBySearch = (title: string, search: string): boolean => (
   new RegExp(search.replace(/ /g, '|'), 'i').test(title)
@@ -22,22 +23,22 @@ const sortNotRecentlyAdded = (filtered: ProductListType): ProductListType => (
 
 const sortLowToHigh = (filtered: ProductListType): ProductListType => (
   filtered.sort((a: ProductType, b: ProductType) => (
-    a.PRICES.at(-1).PRICE - b.PRICES.at(-1).PRICE
+    a.currentPrice.price - b.currentPrice.price
   ))
 );
 
 const sortHighToLow = (filtered: ProductListType): ProductListType => (
   filtered.sort((a: ProductType, b: ProductType) => (
-    a.PRICES.at(-1).PRICE - b.PRICES.at(-1).PRICE
+    a.currentPrice.price - b.currentPrice.price
   ))
 );
 
 // eslint-disable-next-line max-len
 export const filterProducts = (productList: ProductListType, filter: FilterType): ProductListType => {
   const filtered: ProductListType = productList.filter((product: ProductType) => {
-    const currentPrice: number = product.PRICES.at(-1).PRICE; // API should return this
+    const currentPrice: number = product.currentPrice.price;
 
-    const searchFilter: boolean = filterBySearch(product.TITLE, filter.search);
+    const searchFilter: boolean = filterBySearch(product.title, filter.search);
     const availabilityFilter: boolean = filterByAvailability(currentPrice, filter.availability);
     const minPriceFilter: boolean = filterByMinPrice(currentPrice, filter.price.min);
     const maxPriceFilter:boolean = filterByMaxPrice(currentPrice, filter.price.max);
