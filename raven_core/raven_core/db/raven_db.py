@@ -59,6 +59,8 @@ class RavenDb:
             product_id: str = product[0]
             source: str = product[1]
 
+            logger.info(f'Getting price for: {product_id} @ {source}')
+
             if source == 'amazon':
                 try:
                     price_info = AmazonProvider().get_product_prices(product_id)
@@ -68,7 +70,7 @@ class RavenDb:
                     logger.error(e)
                 except Exception as e:
                     logger.error(e)
-                finally:
+                else:
                     self.insert_price(price_info)
             else:
                 logger.error(f'Source does not exist: {source}')
@@ -76,13 +78,17 @@ class RavenDb:
             time.sleep(5)
 
     def insert_price(self, price_info: dict) -> None:
-        logger.info(f'Inserting price: {price_info}')
+        id: str = price_info['id']
+        timestamp: str = price_info['timestamp']
+        price: str = price_info['price']
+
+        logger.info(f'Inserting price: {id} -> {price}')
         conn: Connection = self._create_connection()
 
         with conn:
             curr: Cursor = conn.cursor()
             statement: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
-            curr.execute(statement, (price_info['id'], price_info['timestamp'], price_info['price']))
+            curr.execute(statement, (id, timestamp, price))
 
     def insert_product(self, url: str) -> None:
         logger.info(f'Inserting product: {url}')
