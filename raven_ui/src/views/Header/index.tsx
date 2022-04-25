@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import ToggleTheme from './components/ToggleTheme';
 import {
   HeaderStyle,
@@ -6,19 +7,26 @@ import {
   HeaderCenterStyle,
   HeaderTitleStyle,
   HeaderRightStyle,
-  HeaderSubtitleStyle,
   NavStyle,
   NavItemStyle,
+  DotStyle,
 } from './style';
 
 export default function Header() {
+  const navigate = useNavigate();
+  const path = useLocation().pathname;
+
+  const nav = {
+    home: '/',
+    about: '/about',
+  };
+
   return (
     <>
       <HeaderStyle>
         <HeaderLeftStyle />
         <HeaderCenterStyle>
-          <HeaderTitleStyle>Raven</HeaderTitleStyle>
-          <HeaderSubtitleStyle>some subtitle..</HeaderSubtitleStyle>
+          <HeaderTitleStyle>Raven<DotStyle>.</DotStyle></HeaderTitleStyle>
         </HeaderCenterStyle>
         <HeaderRightStyle>
           <ToggleTheme />
@@ -26,9 +34,15 @@ export default function Header() {
       </HeaderStyle>
 
       <NavStyle>
-        <NavItemStyle>Home</NavItemStyle>
-        <NavItemStyle>About</NavItemStyle>
-        <NavItemStyle>Github</NavItemStyle>
+        <NavItemStyle active={path === nav.home} onClick={() => navigate(nav.home)}>
+          Home
+        </NavItemStyle>
+        <NavItemStyle active={path === nav.about} onClick={() => navigate(nav.about)}>
+          About
+        </NavItemStyle>
+        <NavItemStyle as="a" href="https://github.com/jess192" target="_blank">
+          Github
+        </NavItemStyle>
       </NavStyle>
     </>
   );

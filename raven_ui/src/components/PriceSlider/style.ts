@@ -11,10 +11,11 @@ export const SliderRootStyle = styled(Slider.Root)`
 `;
 
 export const SliderTrackStyle = styled(Slider.Track)`
-  background-color: #bdbdbd;
+  cursor: pointer;
+  background-color: ${(props) => props.theme.secondaryColor};
   position: relative;
   flex-grow: 1;
-  height: 4px;
+  height: 6px;
 `;
 
 export const SliderRangeStyle = styled(Slider.Range)`
@@ -33,14 +34,14 @@ export const SliderThumbStyle = styled(Slider.Thumb)`
   background-color: #fff;
   border: 1px solid #0e0e0e;
   border-radius: 10px;
+  transition: .4s;
 
-  &:hover {
+  :hover {
     background-color: #f3f3f3;
   }
 
-  &:focus {
-    border: 1px solid #543e3e;
-    box-shadow: rgba(0, 0, 0, 0.12) 0 0 0 5px;
+  :focus {
+    box-shadow: ${(props) => props.theme.primaryColor}95 0 0 0 5px;
   }
 `;
 

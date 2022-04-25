@@ -16,21 +16,26 @@ export const FilterItemStyle = styled.div`
   margin-right: 20px;
   display: flex;
   align-items: center;
-
+  
   li {
-    all: unset; //tmp
+    all: unset;
     margin-right: 10px;
   }
 `;
 
 export const FilterResetButtonStyle = styled.button`
   all: unset;
-  cursor: pointer;
-  border: 1px solid black;
+  cursor: default;
   padding: 5px;
+  transition: .4s;
+
+  :disabled {
+    background-color: #cccccc;
+  }
   
-  &:hover {
-    background-color: #ffd198;
+  :hover :not(:disabled), :focus :not(:disabled) {
+    cursor: pointer;
+    background-color: ${(props) => props.theme.primaryColor};
   }
 `;
 

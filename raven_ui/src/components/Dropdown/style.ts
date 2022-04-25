@@ -17,8 +17,8 @@ export const DropdownTriggerStyle = styled(DropdownMenu.Trigger)<DropdownStylePr
   justify-content: space-between;
   align-items: center;
 
-  &:hover {
-    background-color: #f3f3f3;
+  :hover, :focus {
+    background-color: ${(props) => props.theme.primaryColor};
   }
 `;
 
@@ -74,7 +74,7 @@ export const DropdownItemStyle = styled(DropdownMenu.Item)`
   align-items: center;
   padding: 10px;
 
-  &:focus, &:hover {
+  :focus, :hover {
     background-color: #ffd198;
     outline: none;
   }

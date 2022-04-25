@@ -5,7 +5,7 @@ import App from './App';
 
 WebFont.load({
   google: {
-    families: ['Nunito'],
+    families: ['Nunito', 'Shadows Into Light', 'Bangers'],
   },
 });
 

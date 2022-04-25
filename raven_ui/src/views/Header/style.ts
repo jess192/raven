@@ -1,7 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { GlobalThemeType } from '@/styles/theme';
+
+type NavItemStyleProps = {
+  active?: boolean
+}
 
 export const HeaderStyle = styled.div`
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid ${(props) => props.theme.header.borderBottomColor};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -19,12 +24,13 @@ export const HeaderCenterStyle = styled.div`
 `;
 
 export const HeaderTitleStyle = styled.div`
-  font-size: 35px;
-  font-style: italic;
+  font-family: 'Shadows Into Light';
+  font-size: 70px;
+  cursor: default;
 `;
 
-export const HeaderSubtitleStyle = styled.div`
-  font-size: 12px;
+export const DotStyle = styled.span`
+  color: ${(props: GlobalThemeType) => props.theme.primaryColor} 
 `;
 
 export const HeaderRightStyle = styled.div`
@@ -35,14 +41,33 @@ export const HeaderRightStyle = styled.div`
 `;
 
 export const NavStyle = styled.div`
+  font-family: 'Bangers';
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding: 3px;
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid ${(props: GlobalThemeType) => props.theme.header.borderBottomColor};
   align-items: center;
-  height: 50px;
-  font-size: 17px;
 `;
 
-export const NavItemStyle = styled.div`
-  margin: 0 10px;
+export const NavItemStyle = styled.button<NavItemStyleProps>`
+  all: unset;
+  cursor: pointer;
+  padding: 10px 12px;
+  
+
+  ${(props) => props.active && css`
+     text-decoration: underline ${props.theme.primaryColor} 4px;
+  `}
+  
+  :hover, :focus {
+    ${(props) => (!props.active ? css`
+      transition: 0.4s;
+      color: ${props.theme.header.textHoverColor};
+      background-color: ${props.theme.primaryColor};
+    ` : css`
+      cursor: default;
+    `)}
+  }
 `;

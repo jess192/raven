@@ -50,7 +50,7 @@ export default function Filter(props: FilterSortPropsType) {
           </li>
         </FilterItemStyle>
 
-        {/* TODO - make into own component, use icon? */}
+        {/* TODO - add disabled functionality */}
         <FilterResetButtonStyle onClick={() => resetFilters()}>
           Reset Filters
         </FilterResetButtonStyle>

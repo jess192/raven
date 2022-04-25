@@ -4,30 +4,31 @@ import * as Switch from '@radix-ui/react-switch';
 export const ToggleSwitchStyle = styled(Switch.Root)`
   all: unset;
   cursor: pointer;
-  width: 45px;
-  height: 25px;
-  background-color: #FFF;
-  border: 1px solid #000;
+  width: 55px;
+  height: 30px;
+  background-color: ${(props) => props.theme.bgColor};
+  border: 2px solid ${(props) => props.theme.secondaryColor};
   position: relative;
   border-radius: 20px;
-  
-  &:focus {
-    border: 1px solid #543e3e;
+
+  :focus {
+    transition: .4s;
+    border-color: ${(props) => props.theme.primaryColor};
   }
 `;
 
 export const ToggleSwitchThumbStyle = styled(Switch.Thumb)`
   display: block;
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   background-color: #bdbdbd;
   border-radius: 9999px;
   transition: transform 100ms;
   transform: translateX(6px);
   will-change: transform;
-
+  
   &[data-state='checked'] {
     transform: translateX(24px);
-    background-color: #5d968b;
+    background-color: ${(props) => props.theme.primaryColor};
   }
 `;

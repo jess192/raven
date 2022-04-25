@@ -1,12 +1,14 @@
 import styled from 'styled-components';
+import { GlobalThemeType } from '@/styles/theme';
 
-export const ToggleThemeStyle = styled.div`
+export const ToggleThemeStyle = styled.button`
+  all: unset;
   cursor: pointer;
-  padding: 5px 8px;
-  
-  &:hover {
-    background: #F4BD54;
-    color: #FFF;
-    border-radius: 50%;
+  padding: 7px 8px 4px 8px;
+  border-radius: 50%;
+
+  :hover, :focus {
+    color: ${(props: GlobalThemeType) => props.theme.header.toggleHoverColor};
+    background: ${(props: GlobalThemeType) => props.theme.primaryColor};
   }
 `;
