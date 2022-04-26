@@ -3,12 +3,14 @@ import { BiSearch } from 'react-icons/bi';
 
 export const SearchStyle = styled.div`
   border: 2px solid ${(props) => props.theme.secondaryColor};
+  background-color: ${(props) => props.theme.bgSecondaryColor};
   display: flex;
   padding: 3px;
   height: 25px;
   font-size: 18px;
 
-  :focus-within {
+  :focus-within, :hover {
+    transition: .4s;
     border-color: ${(props) => props.theme.primaryColor}
   }
 `;

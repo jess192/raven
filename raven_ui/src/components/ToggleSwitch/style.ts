@@ -6,12 +6,12 @@ export const ToggleSwitchStyle = styled(Switch.Root)`
   cursor: pointer;
   width: 55px;
   height: 30px;
-  background-color: ${(props) => props.theme.bgColor};
+  background-color: ${(props) => props.theme.bgSecondaryColor};
   border: 2px solid ${(props) => props.theme.secondaryColor};
   position: relative;
   border-radius: 20px;
 
-  :focus {
+  :focus, :hover {
     transition: .4s;
     border-color: ${(props) => props.theme.primaryColor};
   }

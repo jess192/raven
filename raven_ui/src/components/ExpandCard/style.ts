@@ -17,6 +17,7 @@ export const ExpandCardStyle = styled.div<ExpandCardStylePropsType>`
   border: 1px solid #bebebe;
   margin: 0 38px 28px 0;
   padding: 10px;
+  background-color: ${(props) => props.theme.bgSecondaryColor};
   
   width: ${(props: ExpandCardStylePropsType) => (props.expanded ? toPixels(props.endWidth) : toPixels(props.startWidth))};
   transition-timing-function: ease-in-out;

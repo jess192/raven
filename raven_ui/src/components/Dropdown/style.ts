@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { toPixels } from '@/utils/formatting';
 
@@ -6,36 +6,44 @@ type DropdownStyleProps = {
   width: number
 }
 
+const slideUpAndFade = keyframes({
+  '0%': { opacity: 0, transform: 'translateY(5px)' },
+  '100%': { opacity: 1, transform: 'translateY(0px)' },
+});
+
 export const DropdownMenuStyle = styled(DropdownMenu.Root)``;
 
 export const DropdownTriggerStyle = styled(DropdownMenu.Trigger)<DropdownStyleProps>`
   all: unset;
   cursor: pointer;
+  border: 2px solid ${(props) => props.theme.secondaryColor};
+  background-color: ${(props) => props.theme.bgSecondaryColor};
   width: ${(props) => toPixels(props.width)};
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   :hover, :focus {
-    background-color: ${(props) => props.theme.primaryColor};
+    transition: .4s;
+    border-color: ${(props) => props.theme.primaryColor};
   }
 `;
 
 export const DropdownTriggerTitleStyle = styled.div`
-  padding: 10px;
+  padding: 7px;
 `;
 
 export const DropdownTriggerIconStyle = styled.div`
   display: flex;
-  padding: 10px;
+  padding: 7px;
 `;
 
 export const DropdownContentStyle = styled(DropdownMenu.Content)<DropdownStyleProps>`
   width: ${(props) => toPixels(props.width)};
-  background-color: #fff;
-  border-left: 1px solid #000;
-  border-right: 1px solid #000;
+  background-color: ${(props) => props.theme.bgSecondaryColor};
+  border-left: 2px solid ${(props) => props.theme.secondaryColor};
+  border-right: 2px solid ${(props) => props.theme.secondaryColor};
+  border-bottom: 1px solid ${(props) => props.theme.secondaryColor};
   cursor: pointer;
   
   @media (prefers-reduced-motion: no-preference) {
@@ -44,38 +52,24 @@ export const DropdownContentStyle = styled(DropdownMenu.Content)<DropdownStylePr
     will-change: transform, opacity;
     
     &[data-state=open] {
-      &[data-side="top"] {
-        animation-name: slideDownAndFade
-      }
-      &[data-side="right"] {
-        animation-name: slideLeftAndFade
-      }
-      &[data-side="bottom"] {
-        animation-name: slideUpAndFade
-      }
-      &[data-side="left"] {
-        animation-name: slideRightAndFade
+      &[data-side='bottom'] {
+        animation-name: ${slideUpAndFade}
       }
     }
   }
 `;
 
-export const DropdownLabelStyle = styled(DropdownMenu.Label)`
-  padding-left: 25px;
-  font-size: 12px;
-  line-height: 25px;
-`;
-
-export const DropdownItemStyle = styled(DropdownMenu.Item)`
+export const DropdownItemStyle = styled(DropdownMenu.Item)<{active: boolean}>`
   cursor: pointer;
-  height: 28px;
-  border-bottom: 1px solid #000;
+  height: 25px;
+  padding: 4px 7px;
+  border-bottom: 1px solid ${(props) => props.theme.secondaryColor};
   display: flex;
   align-items: center;
-  padding: 10px;
+  background-color: ${(props) => (props.active ? props.theme.primaryColor : 'none')};
 
   :focus, :hover {
-    background-color: #ffd198;
+    background-color: ${(props) => props.theme.primaryColor}90;
     outline: none;
   }
 `;

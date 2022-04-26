@@ -28,6 +28,8 @@ export const FilterResetButtonStyle = styled.button`
   cursor: default;
   padding: 5px;
   transition: .4s;
+  border: 2px solid ${(props) => props.theme.secondaryColor};
+  background-color: ${(props) => props.theme.bgSecondaryColor};
 
   :disabled {
     background-color: #cccccc;
@@ -35,7 +37,7 @@ export const FilterResetButtonStyle = styled.button`
   
   :hover :not(:disabled), :focus :not(:disabled) {
     cursor: pointer;
-    background-color: ${(props) => props.theme.primaryColor};
+    border: 2px solid ${(props) => props.theme.primaryColor};
   }
 `;
 
@@ -43,7 +45,7 @@ export const ShowingItemsStyle = styled.div`
   margin-left: 20px;  
   display: flex;
   align-items: center;
-  background-color: #efefef;
+  font-style: italic;
   padding: 10px;
 `;
 

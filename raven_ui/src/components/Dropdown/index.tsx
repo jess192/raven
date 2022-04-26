@@ -1,31 +1,30 @@
-import React from 'react';
-import { BsCaretDown } from 'react-icons/bs';
+import React, { useState } from 'react';
+import { BiChevronUp, BiChevronDown } from 'react-icons/bi';
 import { DropdownOptionType, DropdownPropsType } from './types';
 import {
   DropdownMenuStyle, DropdownTriggerStyle, DropdownTriggerTitleStyle, DropdownTriggerIconStyle,
-  DropdownContentStyle, DropdownLabelStyle, DropdownItemStyle,
+  DropdownContentStyle, DropdownItemStyle,
 } from './style';
 
 export default function Dropdown(props: DropdownPropsType) {
   const { options, value, onSelect, width } = props;
+  const [open, setOpen] = useState(false);
 
   return (
-    <DropdownMenuStyle>
+    <DropdownMenuStyle onOpenChange={() => setOpen(!open)} open={open}>
       <DropdownTriggerStyle width={width}>
         <DropdownTriggerTitleStyle>
           Sort by: {value}
         </DropdownTriggerTitleStyle>
 
         <DropdownTriggerIconStyle>
-          <BsCaretDown />
+          {open ? <BiChevronUp /> : <BiChevronDown />}
         </DropdownTriggerIconStyle>
       </DropdownTriggerStyle>
 
       <DropdownContentStyle width={width}>
-        <DropdownLabelStyle />
-
         {options.map((option: DropdownOptionType) => (
-          <DropdownItemStyle onClick={() => onSelect(option)}>
+          <DropdownItemStyle onClick={() => onSelect(option)} active={option === value}>
             {option}
           </DropdownItemStyle>
         ))}

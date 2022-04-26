@@ -6,6 +6,7 @@ export type GlobalThemeType = {
 
 export type ThemeObjectType = {
   bgColor: string,
+  bgSecondaryColor: string,
   textColor: string,
   linkColor: string,
   primaryColor: string,
@@ -22,6 +23,7 @@ export type ThemeObjectType = {
   },
 
   productTile: {
+    textColor: string,
     bgColor: string,
     imageFilter: string,
     shadow: string,
@@ -44,6 +46,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const DarkTheme: ThemeObjectType = {
   bgColor: '#141515',
+  bgSecondaryColor: '#3d3d3d',
   textColor: '#FFF',
   linkColor: '#61dafb',
   primaryColor: '#F4BD54',
@@ -60,6 +63,7 @@ export const DarkTheme: ThemeObjectType = {
   },
 
   productTile: {
+    textColor: '#FFF',
     bgColor: '#000',
     imageFilter: 'grayscale(50%) opacity(90%)',
     shadow: 'drop-shadow(4px 4px 4px #272626)',
@@ -67,7 +71,8 @@ export const DarkTheme: ThemeObjectType = {
 };
 
 export const LightTheme: ThemeObjectType = {
-  bgColor: '#FFF',
+  bgColor: '#f7f7f7',
+  bgSecondaryColor: '#FFF',
   textColor: '#001c38',
   linkColor: '#5dd2f2',
   primaryColor: '#F4BD54',
@@ -84,6 +89,7 @@ export const LightTheme: ThemeObjectType = {
   },
 
   productTile: {
+    textColor: '#474747',
     bgColor: '#fff',
     imageFilter: 'grayscale(0%) opacity(100%)',
     shadow: 'drop-shadow(4px 4px 4px #c0c0c0)',

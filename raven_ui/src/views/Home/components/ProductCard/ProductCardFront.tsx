@@ -17,7 +17,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
   const fromNow = useFromNow(firstTimestamp);
 
   const perChange = () => {
-    if (percentChange === 0) return '~';
+    if (percentChange === 0) return '';
     if (percentChange > 0) return (<><AiOutlineArrowUp /> {percentChange} %</>);
     return (<><AiOutlineArrowDown /> {percentChange} %</>);
   };

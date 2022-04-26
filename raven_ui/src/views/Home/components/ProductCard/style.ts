@@ -9,6 +9,7 @@ export const ProductCardStyle = styled.div`
   border: 1px solid #bebebe;
   margin: 0 38px 28px 0;
   padding: 10px;
+  background-color: ${(props) => props.theme.bgSecondaryColor};
 `;
 
 export const ProductCardHeadStyle = styled.div`
@@ -70,7 +71,7 @@ export const ProductCardPriceStyle = styled.div`
   display: flex;
   align-items: center;
   font-size: 40px;
-  color: #474747;
+  color: ${(props) => props.theme.productTile.textColor};
 `;
 
 export const ProductCardPercentStyle = styled.div`
