@@ -8,7 +8,7 @@
     "dev": "webpack-dev-server --config webpack/webpack.dev.config.js --progress --color",
     "build": "webpack --config webpack/webpack.prod.config.js",
     "profile": "webpack --config webpack/webpack.profile.config.js",
-    "run-server": "http-server --proxy http://localhost:8080? ./dist",
+    "run-server": "http-server --proxy http://localhost:8081? ./dist",
     "build-run": "npm run build && npm run run-server"
   },
   "author": "",
