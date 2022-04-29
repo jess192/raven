@@ -5,7 +5,7 @@ import App from './App';
 
 WebFont.load({
   google: {
-    families: ['Nunito', 'Shadows Into Light', 'Roboto'],
+    families: ['Nunito', 'Shadows Into Light', 'Roboto', 'Yanone Kaffeesatz'],
   },
 });
 

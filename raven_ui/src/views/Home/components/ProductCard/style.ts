@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 340px;
+  height: 350px;
   width: 250px;
   border: 1px solid ${(props) => props.theme.productTile.borderColor};
   border-radius: 8px;
@@ -17,6 +17,7 @@ export const ProductCardHeadStyle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  border-bottom: 1px solid ${(props) => props.theme.productTile.borderColor};
 `;
 
 export const ProductCardTimeStyle = styled.div`
@@ -26,14 +27,12 @@ export const ProductCardTimeStyle = styled.div`
 export const ProductCardHeadRightStyle = styled.div`
   display: flex;
   flex-direction: row;
-  font-size: 30px;
-  color: #3d3d3d;
+  font-size: 25px;
 `;
 
 export const ProductCardDeleteButtonStyle = styled.button`
   all: unset;
   cursor: pointer;
-  color: ${(props) => props.theme.textColor};
 
   &:hover {
     color: ${(props) => props.theme.primaryColor};
@@ -52,39 +51,60 @@ export const ProductCardImgStyle = styled.div`
 `;
 
 export const ProductCardTitleStyle = styled.div`
+  font-family: 'Yanone Kaffeesatz';
+  font-size: 23px;
+  color: #000;
+  text-align: center;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
   margin-top: 13px;
-  height: 38px;
+  height: 46px;
 `;
 
 export const ProductCardPriceWrapperStyle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-top: 20px;
-  height: 20px;
+  padding-top: 10px;
+  margin-top: 9px;
+  border-top: 1px solid ${(props) => props.theme.productTile.borderColor};
 `;
 
-export const ProductCardPriceStyle = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 28px;
+export const ProductCardPriceStyle = styled.div<{oos: boolean}>`
   color: ${(props) => props.theme.productTile.textColor};
+
+  ${(props) => (props.oos ? css`
+    font-size: 22px;
+    color: #797979;
+    font-style: italic;
+  ` : css`
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+  `)}
+  
 `;
 
-export const ProductCardPercentStyle = styled.div`
+export const ProductCardPercentStyle = styled.div<{change: number}>`
+  align-self: center;
   display: flex;
   align-items: center;
+  border: 1px solid ${(props) => (props.change > 0 ? '#c28b63' : '#97c123')};
+  background-color: ${(props) => (props.change > 0 ? '#ffe0af' : '#cae59b')};
+  border-radius: 20px;
+  padding: 6px;
+  
+  svg {
+    margin-right: 4px;
+    font-size: 15px;
+  }
 `;
 
 export const ProviderLinkStyle = styled.a`
   all: unset;
   cursor: pointer;
-  color: ${(props) => props.theme.textColor};
-
   margin-right: 7px;
 
   &:hover {
