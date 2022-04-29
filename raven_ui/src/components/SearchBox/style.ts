@@ -7,7 +7,6 @@ export const SearchStyle = styled.div`
   display: flex;
   padding: 3px;
   height: 25px;
-  font-size: 18px;
 
   :focus-within, :hover {
     transition: .4s;
@@ -16,8 +15,8 @@ export const SearchStyle = styled.div`
 `;
 
 export const SearchIconStyle = styled(BiSearch)`
-  margin: -1px 5px 0 0;
-  font-size: 27px;
+  margin: 2px 5px 0 0;
+  font-size: 20px;
   color: ${(props) => props.theme.secondaryColor}
 `;
 

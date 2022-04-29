@@ -11,7 +11,6 @@ export const HeaderStyle = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
 `;
 
 export const HeaderLeftStyle = styled.div`
@@ -25,7 +24,7 @@ export const HeaderCenterStyle = styled.div`
 
 export const HeaderTitleStyle = styled.div`
   font-family: 'Shadows Into Light';
-  font-size: 70px;
+  font-size: 55px;
   cursor: default;
 `;
 
@@ -41,9 +40,8 @@ export const HeaderRightStyle = styled.div`
 `;
 
 export const NavStyle = styled.div`
-  font-family: 'Bangers';
-  font-size: 22px;
-  letter-spacing: 1px;
+  font-family: 'Roboto';
+  font-size: 15px;
   padding: 3px;
   display: flex;
   justify-content: center;
@@ -54,11 +52,11 @@ export const NavStyle = styled.div`
 export const NavItemStyle = styled.button<NavItemStyleProps>`
   all: unset;
   cursor: pointer;
-  padding: 10px 12px;
+  padding: 8px;
   
 
   ${(props) => props.active && css`
-     text-decoration: underline ${props.theme.primaryColor} 4px;
+     text-decoration: underline ${props.theme.primaryColor} 3px;
   `}
   
   :hover, :focus {

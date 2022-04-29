@@ -25,6 +25,7 @@ export type ThemeObjectType = {
   productTile: {
     textColor: string,
     bgColor: string,
+    borderColor: string,
     imageFilter: string,
     shadow: string,
   }
@@ -32,7 +33,7 @@ export type ThemeObjectType = {
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    font-size: 15px;
+    font-size: 14px;
     font-family: 'Nunito';
     color: ${(props: GlobalThemeType) => props.theme.textColor};
     background: ${(props: GlobalThemeType) => props.theme.bgColor};
@@ -45,12 +46,12 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const DarkTheme: ThemeObjectType = {
-  bgColor: '#141515',
-  bgSecondaryColor: '#3d3d3d',
+  bgColor: '#1d1f1f',
+  bgSecondaryColor: '#242424',
   textColor: '#FFF',
   linkColor: '#61dafb',
   primaryColor: '#F4BD54',
-  secondaryColor: '#9f9f9f',
+  secondaryColor: '#707070',
 
   header: {
     toggleHoverColor: '#000',
@@ -65,6 +66,7 @@ export const DarkTheme: ThemeObjectType = {
   productTile: {
     textColor: '#FFF',
     bgColor: '#000',
+    borderColor: '#494848',
     imageFilter: 'grayscale(50%) opacity(90%)',
     shadow: 'drop-shadow(4px 4px 4px #272626)',
   },
@@ -91,6 +93,7 @@ export const LightTheme: ThemeObjectType = {
   productTile: {
     textColor: '#474747',
     bgColor: '#fff',
+    borderColor: '#e7e7e7',
     imageFilter: 'grayscale(0%) opacity(100%)',
     shadow: 'drop-shadow(4px 4px 4px #c0c0c0)',
   },

@@ -71,9 +71,9 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
           placeholder="https://amazon.com/"
           value={url}
           onChange={handleChange}
-          width={550}
-          height={50}
-          fontSize={22}
+          width={450}
+          height={25}
+          fontSize={16}
         />
 
         <InsertCardBackButtonsStyle>

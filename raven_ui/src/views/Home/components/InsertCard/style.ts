@@ -39,11 +39,11 @@ export const InsertCardBackFormStyle = styled.form`
   height: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 45px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const InsertCardBackTextStyle = styled.div`
-  font-size: 18px;
   margin-bottom: 10px;
   text-align: center;
 `;

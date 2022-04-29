@@ -4,10 +4,11 @@ export const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 332px;
+  height: 340px;
   width: 250px;
-  border: 1px solid #bebebe;
-  margin: 0 38px 28px 0;
+  border: 1px solid ${(props) => props.theme.productTile.borderColor};
+  border-radius: 8px;
+  margin: 0 20px 20px 0;
   padding: 10px;
   background-color: ${(props) => props.theme.bgSecondaryColor};
 `;
@@ -19,7 +20,7 @@ export const ProductCardHeadStyle = styled.div`
 `;
 
 export const ProductCardTimeStyle = styled.div`
-  font-size: 28px;
+  font-size: 20px;
 `;
 
 export const ProductCardHeadRightStyle = styled.div`
@@ -32,15 +33,16 @@ export const ProductCardHeadRightStyle = styled.div`
 export const ProductCardDeleteButtonStyle = styled.button`
   all: unset;
   cursor: pointer;
-  
+  color: ${(props) => props.theme.textColor};
+
   &:hover {
-    color: #e5621e;
+    color: ${(props) => props.theme.primaryColor};
   }
 `;
 
 export const ProductCardImgStyle = styled.div`
-  height: 180px;
-  width: 180px;
+  height: 200px;
+  width: 200px;
   
   img {
     height: inherit;
@@ -54,40 +56,39 @@ export const ProductCardTitleStyle = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  font-size: 15px;
   margin-top: 13px;
+  height: 38px;
 `;
 
 export const ProductCardPriceWrapperStyle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  font-size: 27px;
-  margin-top: 8px;
-  height: 50px;
+  margin-top: 20px;
+  height: 20px;
 `;
 
 export const ProductCardPriceStyle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 40px;
+  font-size: 28px;
   color: ${(props) => props.theme.productTile.textColor};
 `;
 
 export const ProductCardPercentStyle = styled.div`
   display: flex;
   align-items: center;
-  font-size: 20px;
 `;
 
 export const ProviderLinkStyle = styled.a`
   all: unset;
   cursor: pointer;
+  color: ${(props) => props.theme.textColor};
 
   margin-right: 7px;
 
   &:hover {
-    color: #e5621e;
+    color: ${(props) => props.theme.primaryColor};
   }
 `;
 
