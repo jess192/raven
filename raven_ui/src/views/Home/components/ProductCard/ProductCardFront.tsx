@@ -3,6 +3,7 @@ import { VscClose } from 'react-icons/vsc';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { formatPrice } from '@/utils/formatting';
 import { useFromNow } from '@/hooks/useFromNow';
+import Image from '@/components/Image';
 import ProviderLink from './ProviderLink';
 import { ProductCardFrontPropsType } from './types';
 import {
@@ -61,7 +62,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
       </ProductCardHeadStyle>
 
       <ProductCardImgStyle>
-        <img src={img} alt={title} />
+        <Image src={img} alt={title} />
       </ProductCardImgStyle>
 
       <ProductCardTitleStyle>

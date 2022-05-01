@@ -17,7 +17,7 @@ export const ExpandCardStyle = styled.div<ExpandCardStylePropsType>`
   margin: 0 20px 20px 0;
   padding: 10px;
   background-color: ${(props) => props.theme.bgSecondaryColor};
-  height: 350px;
+  height: 365px;
   border: 1px solid ${(props) => props.theme.productTile.borderColor};
   border-radius: 8px;
 

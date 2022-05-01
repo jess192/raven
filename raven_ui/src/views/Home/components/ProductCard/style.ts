@@ -4,7 +4,7 @@ export const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 350px;
+  height: 365px;
   width: 250px;
   border: 1px solid ${(props) => props.theme.productTile.borderColor};
   border-radius: 8px;
@@ -42,12 +42,7 @@ export const ProductCardDeleteButtonStyle = styled.button`
 export const ProductCardImgStyle = styled.div`
   height: 200px;
   width: 200px;
-  
-  img {
-    height: inherit;
-    width: inherit;
-    object-fit: contain;
-  }
+  margin-top: 10px;
 `;
 
 export const ProductCardTitleStyle = styled.div`
@@ -60,7 +55,7 @@ export const ProductCardTitleStyle = styled.div`
   -webkit-line-clamp: 2;
   overflow: hidden;
   margin-top: 13px;
-  height: 46px;
+  height: 44px;
 `;
 
 export const ProductCardPriceWrapperStyle = styled.div`
