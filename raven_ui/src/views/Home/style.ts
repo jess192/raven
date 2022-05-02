@@ -5,6 +5,7 @@ export const ProductsWrapperStyle = styled.div`
   flex-wrap: wrap;
   width: 100%;
   margin-top: 30px;
+  gap: 20px;
 `;
 
 export const HomeThrobberWrapperStyle = styled.div`

@@ -8,7 +8,6 @@ export const ProductCardStyle = styled.div`
   width: 250px;
   border: 1px solid ${(props) => props.theme.productTile.borderColor};
   border-radius: 8px;
-  margin: 0 20px 20px 0;
   padding: 10px;
   background-color: ${(props) => props.theme.bgSecondaryColor};
 `;
