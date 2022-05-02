@@ -29,7 +29,19 @@ const sortLowToHigh = (filtered: ProductListType): ProductListType => (
 
 const sortHighToLow = (filtered: ProductListType): ProductListType => (
   filtered.sort((a: ProductType, b: ProductType) => (
-    a.currentPrice.price - b.currentPrice.price
+    b.currentPrice.price - a.currentPrice.price
+  ))
+);
+
+const sortHighestDecrease = (filtered: ProductListType) => (
+  filtered.sort((a: ProductType, b: ProductType) => (
+    a.percentChange - b.percentChange
+  ))
+);
+
+const sortHighestIncrease = (filtered: ProductListType) => (
+  filtered.sort((a: ProductType, b: ProductType) => (
+    b.percentChange - a.percentChange
   ))
 );
 
@@ -47,14 +59,18 @@ export const filterProducts = (productList: ProductListType, filter: FilterType)
   });
 
   switch (filter.sort) {
-    case SortByEnum.RECENTLY_ADDED:
+    case SortByEnum.MOST_RECENT:
       return filtered;
-    case SortByEnum.NOT_RECENTLY_ADDED:
+    case SortByEnum.LEAST_RECENT:
       return sortNotRecentlyAdded(filtered);
     case SortByEnum.LOW_TO_HIGH:
       return sortLowToHigh(filtered);
     case SortByEnum.HIGH_TO_LOW:
       return sortHighToLow(filtered);
+    case SortByEnum.HIGHEST_DECREASE:
+      return sortHighestDecrease(filtered);
+    case SortByEnum.HIGHEST_INCREASE:
+      return sortHighestIncrease(filtered);
     default:
       return filtered;
   }

@@ -7,10 +7,12 @@ export enum HomeActionsEnum {
 }
 
 export enum SortByEnum {
-  RECENTLY_ADDED = 'Recently Added',
-  NOT_RECENTLY_ADDED = 'Not Recently Added', // TODO - rename
+  MOST_RECENT = 'Most Recent',
+  LEAST_RECENT = 'Least Recent',
   LOW_TO_HIGH = 'Low to High',
-  HIGH_TO_LOW = 'High to Low'
+  HIGH_TO_LOW = 'High to Low',
+  HIGHEST_DECREASE = 'Highest Decrease',
+  HIGHEST_INCREASE = 'Highest Increase',
 }
 
 export type FilterType = {

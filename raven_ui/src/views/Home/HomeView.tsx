@@ -5,7 +5,7 @@ import { ProductType } from '@/api/types';
 import { HomeContext } from './context';
 import { filterProducts } from './utils/filterProducts';
 import { HomeThrobberWrapperStyle, ProductsWrapperStyle } from './style';
-import { HomeActionsEnum, FilterType, SortByEnum } from './types';
+import { FilterType, HomeActionsEnum, SortByEnum } from './types';
 import Filter from './components/Filter';
 import InsertCard from './components/InsertCard';
 import ProductCard from './components/ProductCard';
@@ -61,12 +61,19 @@ export default function HomeView() {
         numProducts={data.products.length}
         numProductsFiltered={productsFiltered.length}
         sort={state.sort}
-        sortOptions={[
-          SortByEnum.RECENTLY_ADDED,
-          SortByEnum.NOT_RECENTLY_ADDED,
-          SortByEnum.LOW_TO_HIGH,
-          SortByEnum.HIGH_TO_LOW,
-        ]}
+        sortOptions={
+          [
+            {
+              title: 'Time',
+              items: [SortByEnum.MOST_RECENT, SortByEnum.LEAST_RECENT],
+            },
+            {
+              title: 'Price',
+              items: [SortByEnum.LOW_TO_HIGH, SortByEnum.HIGH_TO_LOW,
+                SortByEnum.HIGHEST_DECREASE, SortByEnum.HIGHEST_INCREASE],
+            },
+          ]
+        }
         setSort={(val: SortByEnum) => dispatch({ type: HomeActionsEnum.SET_SORT, value: val })}
       />
 

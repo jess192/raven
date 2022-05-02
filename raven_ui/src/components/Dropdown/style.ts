@@ -39,12 +39,15 @@ export const DropdownTriggerIconStyle = styled.div`
 `;
 
 export const DropdownContentStyle = styled(DropdownMenu.Content)<DropdownStyleProps>`
-  width: ${(props) => toPixels(props.width)};
+  width: ${(props) => toPixels(props.width - 11)};
   background-color: ${(props) => props.theme.bgSecondaryColor};
   border-left: 2px solid ${(props) => props.theme.secondaryColor};
   border-right: 2px solid ${(props) => props.theme.secondaryColor};
   border-bottom: 1px solid ${(props) => props.theme.secondaryColor};
   cursor: pointer;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 5px;
   
   @media (prefers-reduced-motion: no-preference) {
     animation-duration: 400ms;
@@ -59,17 +62,30 @@ export const DropdownContentStyle = styled(DropdownMenu.Content)<DropdownStylePr
   }
 `;
 
-export const DropdownItemStyle = styled(DropdownMenu.Item)<{active: boolean}>`
+export const DropdownItemStyle = styled(DropdownMenu.Item)`
   cursor: pointer;
   height: 25px;
-  padding: 4px 7px;
-  border-bottom: 1px solid ${(props) => props.theme.secondaryColor};
+  padding: 4px 14px;
   display: flex;
   align-items: center;
-  background-color: ${(props) => (props.active ? props.theme.primaryColor : 'none')};
 
   :focus, :hover {
     background-color: ${(props) => props.theme.primaryColor}90;
+    border-radius: 10px;
     outline: none;
   }
+`;
+
+export const DropDownMenuLabelStyle = styled(DropdownMenu.Label)`
+  cursor: default;
+  padding-left: 14px;
+  padding-top: 3px;
+  color: #858585;
+`;
+
+export const DropDownMenuSeparatorStyle = styled(DropdownMenu.Separator)`
+  cursor: default;
+  height: 1px;
+  background-color: #d4e5ff;
+  margin: 5px;
 `;
