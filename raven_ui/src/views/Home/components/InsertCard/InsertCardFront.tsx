@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoAddCircleOutline } from 'react-icons/io5';
+import { RiShoppingCartLine } from 'react-icons/ri';
 import { InsertCardFrontPropsType } from './types';
 import { InsertCardFrontStyle, InsertCardFrontImgStyle, InsertCardFrontTextStyle } from './style';
 
@@ -9,11 +10,11 @@ export default function InsertCardFront(props: InsertCardFrontPropsType) {
   return (
     <InsertCardFrontStyle onClick={() => { setExpand(true); }}>
       <InsertCardFrontImgStyle>
-        <IoAddCircleOutline />
+        <RiShoppingCartLine />
       </InsertCardFrontImgStyle>
 
       <InsertCardFrontTextStyle>
-        Insert a Product
+        Add a Product
       </InsertCardFrontTextStyle>
     </InsertCardFrontStyle>
   );

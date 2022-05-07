@@ -23,25 +23,6 @@ export const FilterItemStyle = styled.div`
   }
 `;
 
-export const FilterResetButtonStyle = styled.button`
-  all: unset;
-  cursor: default;
-  padding: 5px;
-  transition: .4s;
-  border: 2px solid ${(props) => props.theme.secondaryColor};
-  border-radius: 8px;
-  background-color: ${(props) => props.theme.bgSecondaryColor};
-
-  :disabled {
-    background-color: #cccccc;
-  }
-
-  //:hover :not(:disabled), :focus :not(:disabled) {
-  :hover :not(:disabled) {
-    cursor: pointer;
-    border: 2px solid ${(props) => props.theme.primaryColor};
-  }
-`;
 
 export const ShowingItemsStyle = styled.div`
   margin-left: 20px;  

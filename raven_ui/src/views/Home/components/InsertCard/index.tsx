@@ -11,8 +11,8 @@ export default function InsertCard() {
       expand={expand}
       setExpand={setExpand}
       speedMs={500}
-      startWidth={250}
-      endWidth={542}
+      startWidth={270}
+      endWidth={562}
     >
       <InsertCardFront
         setExpand={setExpand}

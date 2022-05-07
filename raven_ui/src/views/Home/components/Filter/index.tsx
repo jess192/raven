@@ -1,12 +1,13 @@
-import React from 'react';
-import SearchBox from '@/components/SearchBox';
+import React, { ChangeEvent } from 'react';
 import ToggleSwitch from '@/components/ToggleSwitch';
 import PriceSlider from '@/components/PriceSlider';
 import Dropdown from '@/components/Dropdown';
+import { BiSearch } from 'react-icons/bi';
+import InputBox from '@/components/InputBox';
+import Button from '@/components/Button';
 import { FilterSortPropsType } from './types';
 import {
-  FilterSortStyle, FilterStyle, FilterItemStyle,
-  FilterResetButtonStyle, ShowingItemsStyle, SortStyle,
+  FilterSortStyle, FilterStyle, FilterItemStyle, ShowingItemsStyle, SortStyle,
 } from './style';
 
 export default function Filter(props: FilterSortPropsType) {
@@ -21,11 +22,14 @@ export default function Filter(props: FilterSortPropsType) {
       <FilterStyle>
 
         <FilterItemStyle>
-          <SearchBox
+          <InputBox
             type="text"
+            icon={<BiSearch />}
             placeholder="Search"
-            search={search}
-            setSearch={setSearch}
+            value={search}
+            onChange={(event: ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)}
+            width={230}
+            height={25}
           />
         </FilterItemStyle>
 
@@ -51,9 +55,9 @@ export default function Filter(props: FilterSortPropsType) {
         </FilterItemStyle>
 
         {/* TODO - add disabled functionality */}
-        <FilterResetButtonStyle onClick={() => resetFilters()}>
+        <Button type="button" onClick={() => resetFilters()}>
           Reset Filters
-        </FilterResetButtonStyle>
+        </Button>
 
         <ShowingItemsStyle>
           Showing {numProductsFiltered} of {numProducts}

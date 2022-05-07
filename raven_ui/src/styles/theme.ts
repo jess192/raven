@@ -11,6 +11,9 @@ export type ThemeObjectType = {
   linkColor: string,
   primaryColor: string,
   secondaryColor: string,
+  secondaryFont: string,
+  successColor: string,
+  errorColor: string,
 
   header: {
     toggleHoverColor: string,
@@ -45,6 +48,10 @@ export const GlobalStyle = createGlobalStyle`
   }*/
 `;
 
+const AllTheme = {
+  secondaryFont: 'Yanone Kaffeesatz',
+};
+
 export const DarkTheme: ThemeObjectType = {
   bgColor: '#1d1f1f',
   bgSecondaryColor: '#242424',
@@ -52,6 +59,9 @@ export const DarkTheme: ThemeObjectType = {
   linkColor: '#61dafb',
   primaryColor: '#F4BD54',
   secondaryColor: '#707070',
+  secondaryFont: AllTheme.secondaryFont,
+  successColor: '#b5bd68',
+  errorColor: '#cc6666',
 
   header: {
     toggleHoverColor: '#000',
@@ -79,6 +89,9 @@ export const LightTheme: ThemeObjectType = {
   linkColor: '#5dd2f2',
   primaryColor: '#F4BD54',
   secondaryColor: '#9f9f9f',
+  secondaryFont: AllTheme.secondaryFont,
+  successColor: '#718c00',
+  errorColor: '#c82829',
 
   header: {
     toggleHoverColor: '#FFF',

@@ -45,7 +45,7 @@ export const ProductCardImgStyle = styled.div`
 `;
 
 export const ProductCardTitleStyle = styled.div`
-  font-family: 'Yanone Kaffeesatz';
+  font-family: ${(props) => props.theme.secondaryFont};
   font-size: 23px;
   color: #000;
   text-align: center;
