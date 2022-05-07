@@ -32,6 +32,7 @@ export const ProductCardHeadRightStyle = styled.div`
 export const ProductCardDeleteButtonStyle = styled.button`
   all: unset;
   cursor: pointer;
+  transition: .4s;
 
   &:hover {
     color: ${(props) => props.theme.primaryColor};
@@ -100,6 +101,7 @@ export const ProviderLinkStyle = styled.a`
   all: unset;
   cursor: pointer;
   margin-right: 7px;
+  transition: .4s;
 
   &:hover {
     color: ${(props) => props.theme.primaryColor};
