@@ -5,7 +5,7 @@ import Throbber from '@/components/Throbber';
 import { ProductCardBackPropsType } from './types';
 import {
   ProductDeleteCardStyle, ProductDeleteLoadingStyle, ProductDeletePromptStyle,
-  DeleteCardTextStyle, DeleteCardButtonsStyle,
+  DeleteCardTextStyle, DeleteCardButtonsStyle, DeleteCardHeadTextStyle,
 } from './style';
 
 export default function ProductCardBack(props: ProductCardBackPropsType) {
@@ -42,13 +42,16 @@ export default function ProductCardBack(props: ProductCardBackPropsType) {
       </ProductDeleteLoadingStyle>
 
       <ProductDeletePromptStyle isLoading={isLoading || isSuccess}>
+        <DeleteCardHeadTextStyle>
+          Deleting...
+        </DeleteCardHeadTextStyle>
         <DeleteCardTextStyle>
           Are you sure you want to stop tracking this product?
         </DeleteCardTextStyle>
 
         <DeleteCardButtonsStyle>
           <Button type="button" onClick={closeCard}>Cancel</Button>
-          <Button type="button" onClick={deleteProduct}>Delete</Button>
+          <Button type="button" onClick={deleteProduct}>Yes, Delete</Button>
         </DeleteCardButtonsStyle>
       </ProductDeletePromptStyle>
     </ProductDeleteCardStyle>

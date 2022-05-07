@@ -120,10 +120,17 @@ export const ProductDeletePromptStyle = styled.div<{isLoading: boolean}>`
   display: ${(props) => (props.isLoading ? 'none' : 'block')};
 `;
 
-export const DeleteCardTextStyle = styled.div`
-  font-size: 18px;
+export const DeleteCardHeadTextStyle = styled.div`
+  font-family: ${(props) => props.theme.secondaryFont};
+  font-size: 27px;
   margin-bottom: 10px;
   text-align: center;
+`;
+
+export const DeleteCardTextStyle = styled.div`
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding: 10px 30px;
 `;
 
 export const DeleteCardButtonsStyle = styled.div`
