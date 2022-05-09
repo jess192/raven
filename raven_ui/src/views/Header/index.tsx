@@ -1,20 +1,15 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { BsInfo } from 'react-icons/bs';
+import { RiGithubLine } from 'react-icons/ri';
+import { IconButton } from '@/components/IconButton';
 import ToggleTheme from './components/ToggleTheme';
 import {
-  HeaderStyle,
-  HeaderLeftStyle,
-  HeaderCenterStyle,
-  HeaderTitleStyle,
-  HeaderRightStyle,
-  NavStyle,
-  NavItemStyle,
-  DotStyle,
+  HeaderStyle, HeaderLeftStyle, HeaderCenterStyle, HeaderTitleStyle, HeaderRightStyle,
 } from './style';
 
 export default function Header() {
   const navigate = useNavigate();
-  const path = useLocation().pathname;
 
   const nav = {
     home: '/',
@@ -22,28 +17,26 @@ export default function Header() {
   };
 
   return (
-    <>
-      <HeaderStyle>
-        <HeaderLeftStyle />
-        <HeaderCenterStyle>
-          <HeaderTitleStyle>Raven<DotStyle>.</DotStyle></HeaderTitleStyle>
-        </HeaderCenterStyle>
-        <HeaderRightStyle>
-          <ToggleTheme />
-        </HeaderRightStyle>
-      </HeaderStyle>
+    <HeaderStyle>
+      <HeaderLeftStyle />
 
-      <NavStyle>
-        <NavItemStyle active={path === nav.home} onClick={() => navigate(nav.home)}>
-          Home
-        </NavItemStyle>
-        <NavItemStyle active={path === nav.about} onClick={() => navigate(nav.about)}>
-          About
-        </NavItemStyle>
-        <NavItemStyle as="a" href="https://github.com/jess192" target="_blank">
-          Github
-        </NavItemStyle>
-      </NavStyle>
-    </>
+      <HeaderCenterStyle>
+        <HeaderTitleStyle onClick={() => navigate(nav.home)}>Raven</HeaderTitleStyle>
+      </HeaderCenterStyle>
+
+      <HeaderRightStyle>
+
+        <IconButton title="About" onClick={() => navigate(nav.about)}>
+          <BsInfo />
+        </IconButton>
+
+        <IconButton title="Github" as="a" href="https://github.com/jess192" target="_blank">
+          <RiGithubLine />
+        </IconButton>
+
+        <ToggleTheme />
+
+      </HeaderRightStyle>
+    </HeaderStyle>
   );
 }

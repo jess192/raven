@@ -7,11 +7,11 @@ export const InsertCardFrontStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  &:hover {
-    transition: .4s;
+  transition: .4s;
+
+  :hover {
     cursor: pointer;
-    color: ${(props) => props.theme.secondaryColor};
+    color: ${(props) => props.theme.color.tertiary};
   }
 `;
 
@@ -39,14 +39,14 @@ export const InsertCardBackFormStyle = styled.form`
 export const InsertCardBackTextStyle = styled.div`
   margin-top: 40px;
   margin-bottom: 6px;
-  font-family: ${(props) => props.theme.secondaryFont};
+  font-family: ${(props) => props.theme.fonts.secondary};
   font-size: 27px;
 `;
 
 export const SubTextStyle = styled.div`
-  font-family: ${(props) => props.theme.secondaryFont};
+  font-family: ${(props) => props.theme.fonts.secondary};
   font-size: 18px;
-  color:  ${(props) => props.theme.secondaryColor};;
+  color:  ${(props) => props.theme.color.tertiary};
   margin-bottom: 30px;
 `;
 
@@ -61,9 +61,9 @@ export const InsertCardBackStatusStyle = styled.div<{type: string}>`
   color: ${(props): string => {
     switch (props.type) {
       case 'error':
-        return props.theme.errorColor;
+        return props.theme.codes.error;
       case 'success':
-        return props.theme.successColor;
+        return props.theme.codes.success;
       default:
         return '';
     }

@@ -6,14 +6,14 @@ export const ToggleSwitchStyle = styled(Switch.Root)`
   cursor: pointer;
   width: 55px;
   height: 30px;
-  background-color: ${(props) => props.theme.bgSecondaryColor};
-  border: 2px solid ${(props) => props.theme.secondaryColor};
+  background-color: ${(props) => props.theme.bgColor.secondary};
+  border: 2px solid ${(props) => props.theme.color.tertiary};
   position: relative;
   border-radius: 20px;
 
   :focus, :hover {
     transition: .4s;
-    border-color: ${(props) => props.theme.primaryColor};
+    border-color: ${(props) => props.theme.color.primary};
   }
 `;
 
@@ -29,6 +29,6 @@ export const ToggleSwitchThumbStyle = styled(Switch.Thumb)`
   
   &[data-state='checked'] {
     transform: translateX(24px);
-    background-color: ${(props) => props.theme.primaryColor};
+    background-color: ${(props) => props.theme.color.primary};
   }
 `;

@@ -14,9 +14,9 @@ type ExpandCardViewStylePropsType = {
 
 export const ExpandCardStyle = styled.div<ExpandCardStylePropsType>`
   // TODO - this info should be defined on the component, like flipCard
-  background-color: ${(props) => props.theme.bgSecondaryColor};
+  background-color: ${(props) => props.theme.bgColor.secondary};
   height: 385px;
-  border: 1px solid ${(props) => props.theme.productTile.borderColor};
+  border: 1px solid ${(props) => props.theme.border.primary};
   border-radius: 8px;
 
   width: ${(props: ExpandCardStylePropsType) => (props.expanded ? toPixels(props.endWidth) : toPixels(props.startWidth))};

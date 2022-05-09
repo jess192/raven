@@ -6,17 +6,18 @@ export const ProductCardStyle = styled.div`
   align-items: center;
   height: 365px;
   width: 250px;
-  border: 1px solid ${(props) => props.theme.productTile.borderColor};
+  border: 1px solid ${(props) => props.theme.border.primary};
   border-radius: 8px;
   padding: 10px;
-  background-color: ${(props) => props.theme.bgSecondaryColor};
+  background-color: ${(props) => props.theme.bgColor.secondary};
+  transition: .4s;
 `;
 
 export const ProductCardHeadStyle = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 1px solid ${(props) => props.theme.productTile.borderColor};
+  border-bottom: 1px solid ${(props) => props.theme.border.primary};
 `;
 
 export const ProductCardTimeStyle = styled.div`
@@ -34,8 +35,8 @@ export const ProductCardDeleteButtonStyle = styled.button`
   cursor: pointer;
   transition: .4s;
 
-  &:hover {
-    color: ${(props) => props.theme.primaryColor};
+  :hover {
+    color: ${(props) => props.theme.color.primary};
   }
 `;
 
@@ -46,9 +47,9 @@ export const ProductCardImgStyle = styled.div`
 `;
 
 export const ProductCardTitleStyle = styled.div`
-  font-family: ${(props) => props.theme.secondaryFont};
+  font-family: ${(props) => props.theme.fonts.secondary};
+  color: ${(props) => props.theme.color.quaternary};
   font-size: 23px;
-  color: #000;
   text-align: center;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -64,30 +65,26 @@ export const ProductCardPriceWrapperStyle = styled.div`
   width: 100%;
   padding-top: 10px;
   margin-top: 9px;
-  border-top: 1px solid ${(props) => props.theme.productTile.borderColor};
+  border-top: 1px solid ${(props) => props.theme.border.primary};
 `;
 
 export const ProductCardPriceStyle = styled.div<{oos: boolean}>`
-  color: ${(props) => props.theme.productTile.textColor};
-
+  font-size: 28px;
+  
   ${(props) => (props.oos ? css`
-    font-size: 22px;
-    color: #797979;
-    font-style: italic;
+    color: ${props.theme.color.secondary};
   ` : css`
     display: flex;
     align-items: center;
-    font-size: 28px;
   `)}
-  
 `;
 
 export const ProductCardPercentStyle = styled.div<{change: number}>`
   align-self: center;
   display: flex;
   align-items: center;
-  border: 1px solid ${(props) => (props.change > 0 ? '#c28b63' : '#97c123')};
-  background-color: ${(props) => (props.change > 0 ? '#ffe0af' : '#cae59b')};
+  border: 1px solid ${(props) => (props.change > 0 ? props.theme.codes.warning : props.theme.codes.success)};
+  background-color: ${(props) => (props.change > 0 ? props.theme.codes.warning.concat('80') : props.theme.codes.success.concat('80'))};
   border-radius: 20px;
   padding: 6px;
   
@@ -103,8 +100,8 @@ export const ProviderLinkStyle = styled.a`
   margin-right: 7px;
   transition: .4s;
 
-  &:hover {
-    color: ${(props) => props.theme.primaryColor};
+  :hover {
+    color: ${(props) => props.theme.color.primary};
   }
 `;
 
@@ -121,7 +118,7 @@ export const ProductDeletePromptStyle = styled.div<{isLoading: boolean}>`
 `;
 
 export const DeleteCardHeadTextStyle = styled.div`
-  font-family: ${(props) => props.theme.secondaryFont};
+  font-family: ${(props) => props.theme.fonts.secondary};
   font-size: 27px;
   margin-bottom: 10px;
   text-align: center;

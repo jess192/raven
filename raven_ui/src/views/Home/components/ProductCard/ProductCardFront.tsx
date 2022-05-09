@@ -40,7 +40,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
     <ProductCardStyle>
       <ProductCardHeadStyle>
 
-        <ProductCardTimeStyle>
+        <ProductCardTimeStyle title="Time passed since product was added">
           {fromNow.value.toFixed().concat(fromNow.unit)}
         </ProductCardTimeStyle>
 

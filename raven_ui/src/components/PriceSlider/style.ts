@@ -12,7 +12,7 @@ export const SliderRootStyle = styled(Slider.Root)`
 
 export const SliderTrackStyle = styled(Slider.Track)`
   cursor: pointer;
-  background-color: ${(props) => props.theme.secondaryColor};
+  background-color: ${(props) => props.theme.color.tertiary};
   position: relative;
   flex-grow: 1;
   height: 6px;
@@ -41,7 +41,7 @@ export const SliderThumbStyle = styled(Slider.Thumb)`
   }
 
   :focus {
-    box-shadow: ${(props) => props.theme.primaryColor}95 0 0 0 5px;
+    box-shadow: ${(props) => props.theme.color.primary}95 0 0 0 5px;
   }
 `;
 

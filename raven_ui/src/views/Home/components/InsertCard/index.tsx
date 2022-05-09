@@ -10,7 +10,7 @@ export default function InsertCard() {
     <ExpandCard
       expand={expand}
       setExpand={setExpand}
-      speedMs={500}
+      speedMs={400}
       startWidth={270}
       endWidth={562}
     >

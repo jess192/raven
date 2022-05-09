@@ -1,12 +1,7 @@
-import styled, { css } from 'styled-components';
-import { GlobalThemeType } from '@/styles/theme';
-
-type NavItemStyleProps = {
-  active?: boolean
-}
+import styled from 'styled-components';
 
 export const HeaderStyle = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.header.borderBottomColor};
+  border-bottom: 1px solid ${(props) => props.theme.border.primary};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,18 +13,18 @@ export const HeaderLeftStyle = styled.div`
 `;
 
 export const HeaderCenterStyle = styled.div`
-  flex: 3;
   text-align: center;
 `;
 
 export const HeaderTitleStyle = styled.div`
-  font-family: 'Shadows Into Light';
-  font-size: 55px;
-  cursor: default;
-`;
-
-export const DotStyle = styled.span`
-  color: ${(props: GlobalThemeType) => props.theme.primaryColor} 
+  cursor: pointer;
+  font-family: ${(props) => props.theme.fonts.header};
+  font-size: 50px;
+  transition: .4s;
+  
+  :hover {
+    color: ${(props) => props.theme.color.primary}
+  }
 `;
 
 export const HeaderRightStyle = styled.div`
@@ -37,35 +32,5 @@ export const HeaderRightStyle = styled.div`
   text-align: right;
   display: flex;
   justify-content: end;
-`;
-
-export const NavStyle = styled.div`
-  font-family: 'Roboto';
-  font-size: 15px;
-  padding: 3px;
-  display: flex;
-  justify-content: center;
-  border-bottom: 1px solid ${(props: GlobalThemeType) => props.theme.header.borderBottomColor};
-  align-items: center;
-`;
-
-export const NavItemStyle = styled.button<NavItemStyleProps>`
-  all: unset;
-  cursor: pointer;
-  padding: 8px;
-  
-
-  ${(props) => props.active && css`
-     text-decoration: underline ${props.theme.primaryColor} 3px;
-  `}
-  
-  :hover, :focus {
-    ${(props) => (!props.active ? css`
-      transition: 0.4s;
-      color: ${props.theme.header.textHoverColor};
-      background-color: ${props.theme.primaryColor};
-    ` : css`
-      cursor: default;
-    `)}
-  }
+  gap: 10px;
 `;

@@ -4,110 +4,99 @@ export type GlobalThemeType = {
   theme: ThemeObjectType
 }
 
+type FontsType = {
+  header: string,
+  primary: string,
+  secondary: string,
+}
+
 export type ThemeObjectType = {
-  bgColor: string,
-  bgSecondaryColor: string,
-  textColor: string,
-  linkColor: string,
-  primaryColor: string,
-  secondaryColor: string,
-  secondaryFont: string,
-  successColor: string,
-  errorColor: string,
-
-  header: {
-    toggleHoverColor: string,
-    textHoverColor: string,
-    borderBottomColor: string,
+  fonts: FontsType,
+  bgColor: {
+    primary: string,
+    secondary: string,
   },
-
-  home: {
-    bgColor: string,
+  color: {
+    primary: string,
+    secondary: string,
+    tertiary: string,
+    quaternary: string,
+    button: string,
   },
-
-  productTile: {
-    textColor: string,
-    bgColor: string,
-    borderColor: string,
-    imageFilter: string,
-    shadow: string,
-  }
+  codes: {
+    error: string,
+    warning: string,
+    success: string,
+    disabled: string,
+  },
+  border: {
+    primary: string,
+  },
 }
 
 export const GlobalStyle = createGlobalStyle`
   body {
     font-size: 14px;
-    font-family: 'Nunito';
-    color: ${(props: GlobalThemeType) => props.theme.textColor};
-    background: ${(props: GlobalThemeType) => props.theme.bgColor};
-    margin: 0 20px;
+    font-family: ${(props: GlobalThemeType) => props.theme.fonts.primary};
+    color: ${(props: GlobalThemeType) => props.theme.color.secondary};
+    background: ${(props: GlobalThemeType) => props.theme.bgColor.primary};
+    margin: 5px 20px 20px 20px;
   }
-  /*::selection {
-    background: ${(props: GlobalThemeType) => props.theme.primaryColor};
-    color: #FFF;
-  }*/
 `;
 
-const AllTheme = {
-  secondaryFont: 'Yanone Kaffeesatz',
+const shared = {
+  fonts: {
+    header: 'Caveat',
+    primary: 'Nunito',
+    secondary: 'Yanone Kaffeesatz',
+  },
 };
 
 export const DarkTheme: ThemeObjectType = {
-  bgColor: '#1d1f1f',
-  bgSecondaryColor: '#242424',
-  textColor: '#FFF',
-  linkColor: '#61dafb',
-  primaryColor: '#F4BD54',
-  secondaryColor: '#707070',
-  secondaryFont: AllTheme.secondaryFont,
-  successColor: '#b5bd68',
-  errorColor: '#cc6666',
-
-  header: {
-    toggleHoverColor: '#000',
-    textHoverColor: '#000',
-    borderBottomColor: '#2c2a2a',
+  fonts: shared.fonts,
+  bgColor: {
+    primary: '#1d1f1f',
+    secondary: '#303030',
+  },
+  color: {
+    primary: '#86a0a7',
+    secondary: '#fff',
+    tertiary: '#707070',
+    quaternary: '#c0c0c0',
+    button: '#565656',
+  },
+  codes: {
+    error: '#cc6666',
+    warning: '#f0c674',
+    success: '#b5bd68',
+    disabled: '#2f2f2f',
   },
 
-  home: {
-    bgColor: '#494949',
-  },
-
-  productTile: {
-    textColor: '#FFF',
-    bgColor: '#000',
-    borderColor: '#494848',
-    imageFilter: 'grayscale(50%) opacity(90%)',
-    shadow: 'drop-shadow(4px 4px 4px #272626)',
+  border: {
+    primary: '#494848',
   },
 };
 
 export const LightTheme: ThemeObjectType = {
-  bgColor: '#f7f7f7',
-  bgSecondaryColor: '#FFF',
-  textColor: '#001c38',
-  linkColor: '#5dd2f2',
-  primaryColor: '#F4BD54',
-  secondaryColor: '#9f9f9f',
-  secondaryFont: AllTheme.secondaryFont,
-  successColor: '#718c00',
-  errorColor: '#c82829',
-
-  header: {
-    toggleHoverColor: '#FFF',
-    textHoverColor: '#000',
-    borderBottomColor: '#e1e1e1',
+  fonts: shared.fonts,
+  bgColor: {
+    primary: '#f7f7f7',
+    secondary: '#FFF',
   },
-
-  home: {
-    bgColor: '#f6f6f6',
+  color: {
+    primary: '#55b2cb',
+    secondary: '#001c38',
+    tertiary: '#9f9f9f',
+    quaternary: '#2d2d2d',
+    button: '#f5fbfd',
   },
-
-  productTile: {
-    textColor: '#474747',
-    bgColor: '#fff',
-    borderColor: '#e7e7e7',
-    imageFilter: 'grayscale(0%) opacity(100%)',
-    shadow: 'drop-shadow(4px 4px 4px #c0c0c0)',
+  codes: {
+    error: '#c82829',
+    warning: '#eab700',
+    success: '#718c00',
+    disabled: '#f5f5f5',
+  },
+  border: {
+    primary: '#e7e7e7',
   },
 };

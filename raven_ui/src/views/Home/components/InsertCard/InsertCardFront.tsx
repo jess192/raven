@@ -1,5 +1,4 @@
 import React from 'react';
-import { IoAddCircleOutline } from 'react-icons/io5';
 import { RiShoppingCartLine } from 'react-icons/ri';
 import { InsertCardFrontPropsType } from './types';
 import { InsertCardFrontStyle, InsertCardFrontImgStyle, InsertCardFrontTextStyle } from './style';

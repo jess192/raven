@@ -5,19 +5,18 @@ export const ButtonStyle = styled.button`
   cursor: default;
   padding: 7px 18px;
   transition: .4s;
-  border: 2px solid ${(props) => props.theme.secondaryColor};
+  border: 2px solid ${(props) => props.theme.color.tertiary};
   border-radius: 17px;
-  background-color: ${(props) => props.theme.bgSecondaryColor};
+  background-color: ${(props) => props.theme.bgColor.secondary};
 
   :disabled {
-    background-color: #f5f5f5;
-    color: ${(props) => props.theme.secondaryColor};
+    background-color: ${(props) => props.theme.codes.disabled};
+    color: ${(props) => props.theme.color.tertiary};
   }
-
-  //:hover :not(:disabled), :focus :not(:disabled) {
+  
   :hover :not(:disabled) {
     cursor: pointer;
-    border: 2px solid ${(props) => props.theme.primaryColor};
-    background-color: #f5fbfd;
+    border: 2px solid ${(props) => props.theme.color.primary};
+    background-color: ${(props) => props.theme.color.button};
   }
 `;
