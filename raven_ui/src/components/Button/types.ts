@@ -5,4 +5,5 @@ export type ButtonPropsType = {
   type: 'button' | 'submit' | 'reset',
   onClick?: MouseEventHandler,
   disabled?: boolean,
+  width?: number,
 }

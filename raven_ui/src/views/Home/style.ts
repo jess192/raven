@@ -8,7 +8,7 @@ export const ProductsWrapperStyle = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  gap: 20px;
+  gap: 14px;
 `;
 
 export const HomeThrobberWrapperStyle = styled.div`

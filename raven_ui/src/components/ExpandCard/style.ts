@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { toPixels, toMs } from '@/utils/formatting';
+import { device } from '@/styles/responsive';
 
 type ExpandCardStylePropsType = {
   expanded: boolean,
@@ -16,6 +17,10 @@ export const ExpandCardStyle = styled.div<ExpandCardStylePropsType>`
   width: ${(props: ExpandCardStylePropsType) => (props.expanded ? toPixels(props.endWidth) : toPixels(props.startWidth))};
   transition-timing-function: ease-in-out;
   transition-duration: ${(props: ExpandCardStylePropsType) => toMs(props.speedMs)};
+
+  @media screen and ${device.sizeXS} {
+    width: 100%
+  }
 `;
 
 export const ExpandCardViewStyle = styled.div<ExpandCardViewStylePropsType>`

@@ -5,7 +5,7 @@ export const ToggleSwitchStyle = styled(Switch.Root)`
   all: unset;
   cursor: pointer;
   width: 55px;
-  height: 30px;
+  height: 28px;
   background-color: ${(props) => props.theme.bgColor.secondary};
   border: 2px solid ${(props) => props.theme.color.tertiary};
   position: relative;
@@ -19,8 +19,8 @@ export const ToggleSwitchStyle = styled(Switch.Root)`
 
 export const ToggleSwitchThumbStyle = styled(Switch.Thumb)`
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   background-color: #bdbdbd;
   border-radius: 9999px;
   transition: transform 100ms;

@@ -7,7 +7,13 @@ import InputBox from '@/components/InputBox';
 import Button from '@/components/Button';
 import { FilterSortPropsType } from './types';
 import {
-  FilterSortStyle, FilterStyle, FilterItemStyle, ShowingItemsStyle, SortStyle,
+  FilterSortStyle,
+  FilterStyle,
+  FilterItemStyle,
+  ShowingItemsStyle,
+  SortStyle,
+  PriceFilterItemStyle,
+  SearchFilterItemStyle,
 } from './style';
 
 export default function Filter(props: FilterSortPropsType) {
@@ -21,7 +27,7 @@ export default function Filter(props: FilterSortPropsType) {
     <FilterSortStyle>
       <FilterStyle>
 
-        <FilterItemStyle>
+        <SearchFilterItemStyle>
           <InputBox
             type="text"
             icon={<BiSearch />}
@@ -31,7 +37,7 @@ export default function Filter(props: FilterSortPropsType) {
             width={230}
             height={25}
           />
-        </FilterItemStyle>
+        </SearchFilterItemStyle>
 
         <FilterItemStyle>
           <li>In stock:</li>
@@ -43,7 +49,7 @@ export default function Filter(props: FilterSortPropsType) {
           </li>
         </FilterItemStyle>
 
-        <FilterItemStyle>
+        <PriceFilterItemStyle>
           <li>Price:</li>
           <li>
             <PriceSlider
@@ -52,10 +58,10 @@ export default function Filter(props: FilterSortPropsType) {
               setPrice={setPrice}
             />
           </li>
-        </FilterItemStyle>
+        </PriceFilterItemStyle>
 
         {/* TODO - add disabled functionality */}
-        <Button type="button" onClick={() => resetFilters()}>
+        <Button type="button" onClick={() => resetFilters()} width={79}>
           Reset Filters
         </Button>
 

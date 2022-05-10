@@ -46,8 +46,8 @@ export const SliderThumbStyle = styled(Slider.Thumb)`
 `;
 
 export const ValueLabelStyle = styled.div`
-  margin-top: -18px;
+  margin-top: -20px;
   display: flex;
   justify-content: center;
-  font-size: 10px;
+  font-size: 11px;
 `;

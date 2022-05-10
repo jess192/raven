@@ -15,6 +15,7 @@ export type ThemeObjectType = {
   bgColor: {
     primary: string,
     secondary: string,
+    tertiary: string,
   },
   color: {
     primary: string,
@@ -57,6 +58,7 @@ export const DarkTheme: ThemeObjectType = {
   bgColor: {
     primary: '#1d1f1f',
     secondary: '#303030',
+    tertiary: '#1d1d1d',
   },
   color: {
     primary: '#86a0a7',
@@ -82,6 +84,7 @@ export const LightTheme: ThemeObjectType = {
   bgColor: {
     primary: '#f7f7f7',
     secondary: '#FFF',
+    tertiary: '#F6F6F6',
   },
   color: {
     primary: '#55b2cb',

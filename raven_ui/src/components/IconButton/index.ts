@@ -14,9 +14,10 @@ export const IconButton = styled.button`
   height: 25px;
   width: 25px;
   font-size: 30px;
-  transition: .4s;
+  transition: .2s;
 
   :hover {
     background: ${(props) => props.theme.color.primary};
+    color: ${(props) => props.theme.bgColor.secondary};
   }
 `;

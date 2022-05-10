@@ -1,42 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsInfo } from 'react-icons/bs';
 import { RiGithubLine } from 'react-icons/ri';
 import { IconButton } from '@/components/IconButton';
+import { CgMenu } from 'react-icons/cg';
+import { VscClose } from 'react-icons/vsc';
 import ToggleTheme from './components/ToggleTheme';
 import {
-  HeaderStyle, HeaderLeftStyle, HeaderCenterStyle, HeaderTitleStyle, HeaderRightStyle,
+  HeaderStyle, HeaderLeftStyle, HeaderCenterStyle, HeaderTitleStyle,
+  HeaderRightStyle, BigMenuStyle, SmallMenuStyle, SmallMenuSlidedownStyle,
 } from './style';
 
 export default function Header() {
   const navigate = useNavigate();
+  const [menu, setMenu] = useState(false);
 
   const nav = {
     home: '/',
     about: '/about',
   };
 
+  const navIcons: JSX.Element = (
+    <>
+      <IconButton title="About" onClick={() => navigate(nav.about)}>
+        <BsInfo />
+      </IconButton>
+
+      <IconButton title="Github" as="a" href="https://github.com/jess192" target="_blank">
+        <RiGithubLine />
+      </IconButton>
+
+      <ToggleTheme />
+    </>
+  );
+
   return (
-    <HeaderStyle>
-      <HeaderLeftStyle />
+    <>
+      <HeaderStyle>
+        <HeaderLeftStyle />
 
-      <HeaderCenterStyle>
-        <HeaderTitleStyle onClick={() => navigate(nav.home)}>Raven</HeaderTitleStyle>
-      </HeaderCenterStyle>
+        <HeaderCenterStyle>
+          <HeaderTitleStyle onClick={() => navigate(nav.home)}>Raven</HeaderTitleStyle>
+        </HeaderCenterStyle>
 
-      <HeaderRightStyle>
+        <HeaderRightStyle>
 
-        <IconButton title="About" onClick={() => navigate(nav.about)}>
-          <BsInfo />
-        </IconButton>
+          <BigMenuStyle>
+            {navIcons}
+          </BigMenuStyle>
 
-        <IconButton title="Github" as="a" href="https://github.com/jess192" target="_blank">
-          <RiGithubLine />
-        </IconButton>
+          <SmallMenuStyle>
+            {/* TODO - also close with useClickOutside hook */}
+            <IconButton title="Show Menu" onClick={() => setMenu(!menu)}>
+              {menu ? <VscClose /> : <CgMenu />}
+            </IconButton>
+          </SmallMenuStyle>
 
-        <ToggleTheme />
+        </HeaderRightStyle>
+      </HeaderStyle>
 
-      </HeaderRightStyle>
-    </HeaderStyle>
+      <SmallMenuSlidedownStyle show={menu}>
+        {navIcons}
+      </SmallMenuSlidedownStyle>
+    </>
   );
 }

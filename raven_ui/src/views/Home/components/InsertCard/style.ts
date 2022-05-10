@@ -3,12 +3,13 @@ import styled from 'styled-components';
 const InsertCardStyle = styled.div`
   background-color: ${(props) => props.theme.bgColor.secondary};
   width: inherit;
-  height: 385px;
+  height: 350px;
   border: 1px solid ${(props) => props.theme.border.primary};
   border-radius: 8px;
 `;
 
 export const InsertCardFrontStyle = styled(InsertCardStyle)`
+  color: ${(props) => props.theme.color.quaternary};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +18,7 @@ export const InsertCardFrontStyle = styled(InsertCardStyle)`
 
   :hover {
     cursor: pointer;
-    color: ${(props) => props.theme.color.tertiary};
+    color: ${(props) => props.theme.color.primary};
   }
 `;
 
@@ -27,24 +28,24 @@ export const InsertCardFrontImgStyle = styled.div`
 `;
 
 export const InsertCardFrontTextStyle = styled.div`
-  font-size: 20px;
+  font-family: ${(props) => props.theme.fonts.secondary};
+  font-size: 26px;
 `;
 
 export const InsertCardBackStyle = styled(InsertCardStyle)`
 `;
 
 export const InsertCardBackFormStyle = styled.form`
-  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 50px;
 `;
 
 export const InsertCardBackTextStyle = styled.div`
-  margin-top: 40px;
+  margin-top: 35px;
   margin-bottom: 6px;
   font-family: ${(props) => props.theme.fonts.secondary};
-  font-size: 27px;
+  font-size: 26px;
 `;
 
 export const SubTextStyle = styled.div`

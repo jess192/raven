@@ -65,12 +65,12 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
         <Image src={img} alt={title} />
       </ProductCardImgStyle>
 
-      <ProductCardTitleStyle>
+      <ProductCardTitleStyle title={title}>
         {title}
       </ProductCardTitleStyle>
 
       <ProductCardPriceWrapperStyle>
-        <ProductCardPriceStyle title={timestamp} oos={formattedPrice === 'Out of Stock'}>
+        <ProductCardPriceStyle title="Current Price" oos={formattedPrice === 'Out of Stock'}>
           {formattedPrice}
         </ProductCardPriceStyle>
 

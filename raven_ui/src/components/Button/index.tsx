@@ -3,10 +3,10 @@ import { ButtonPropsType } from './types';
 import { ButtonStyle } from './style';
 
 export default function Button(props: ButtonPropsType) {
-  const { children, type, onClick, disabled } = props;
+  const { children, type, onClick, disabled, width } = props;
 
   return (
-    <ButtonStyle type={type} onClick={onClick} disabled={disabled}>
+    <ButtonStyle type={type} onClick={onClick} disabled={disabled} width={width}>
       {children}
     </ButtonStyle>
   );

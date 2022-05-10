@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { toPixels } from '@/utils/formatting';
+import { device } from '@/styles/responsive';
 
 export const InputWrapperStyle = styled.div<{ width: number, height: number, fontSize: number }>`
   width: ${(props) => (props.width ? toPixels(props.width) : 'inherit')};
@@ -14,6 +15,10 @@ export const InputWrapperStyle = styled.div<{ width: number, height: number, fon
   :focus-within, :hover {
     transition: .4s;
     border-color: ${(props) => props.theme.color.primary}
+  }
+
+  @media screen and ${device.sizeM} {
+    width: 100%;
   }
 `;
 

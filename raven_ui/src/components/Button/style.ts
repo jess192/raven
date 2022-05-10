@@ -1,10 +1,12 @@
 import styled from 'styled-components';
+import { toPixels } from '@/utils/formatting';
 
-export const ButtonStyle = styled.button`
+export const ButtonStyle = styled.button<{width: number}>`
   all: unset;
   cursor: default;
-  padding: 7px 18px;
+  padding: 7px 15px;
   transition: .4s;
+  width: ${(props) => (props.width ? toPixels(props.width) : 'inherit')};
   border: 2px solid ${(props) => props.theme.color.tertiary};
   border-radius: 17px;
   background-color: ${(props) => props.theme.bgColor.secondary};

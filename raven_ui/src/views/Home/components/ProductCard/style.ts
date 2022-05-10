@@ -1,16 +1,21 @@
 import styled, { css } from 'styled-components';
+import { device } from '@/styles/responsive';
 
 export const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 365px;
-  width: 250px;
+  height: 330px;
+  width: 230px;
   border: 1px solid ${(props) => props.theme.border.primary};
   border-radius: 8px;
   padding: 10px;
   background-color: ${(props) => props.theme.bgColor.secondary};
   transition: .4s;
+
+  @media screen and ${device.sizeXS} {
+    width: calc(100% - 20px);
+  }
 `;
 
 export const ProductCardHeadStyle = styled.div`
@@ -21,13 +26,15 @@ export const ProductCardHeadStyle = styled.div`
 `;
 
 export const ProductCardTimeStyle = styled.div`
-  font-size: 20px;
+  font-family: ${(props) => props.theme.fonts.secondary};
+  color: ${(props) => props.theme.color.quaternary};
+  font-size: 24px;
 `;
 
 export const ProductCardHeadRightStyle = styled.div`
   display: flex;
   flex-direction: row;
-  font-size: 25px;
+  font-size: 22px;
 `;
 
 export const ProductCardDeleteButtonStyle = styled.button`
@@ -41,22 +48,22 @@ export const ProductCardDeleteButtonStyle = styled.button`
 `;
 
 export const ProductCardImgStyle = styled.div`
-  height: 200px;
-  width: 200px;
+  height: 180px;
+  width: 180px;
   margin-top: 10px;
 `;
 
 export const ProductCardTitleStyle = styled.div`
   font-family: ${(props) => props.theme.fonts.secondary};
   color: ${(props) => props.theme.color.quaternary};
-  font-size: 23px;
+  font-size: 20px;
   text-align: center;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  margin-top: 13px;
-  height: 44px;
+  margin-top: 10px;
+  height: 40px;
 `;
 
 export const ProductCardPriceWrapperStyle = styled.div`
@@ -70,9 +77,10 @@ export const ProductCardPriceWrapperStyle = styled.div`
 
 export const ProductCardPriceStyle = styled.div<{oos: boolean}>`
   font-size: 28px;
+  color: ${(props) => props.theme.color.quaternary};
   
   ${(props) => (props.oos ? css`
-    color: ${props.theme.color.secondary};
+    font-size: 26px;
   ` : css`
     display: flex;
     align-items: center;
@@ -119,13 +127,13 @@ export const ProductDeletePromptStyle = styled.div<{isLoading: boolean}>`
 
 export const DeleteCardHeadTextStyle = styled.div`
   font-family: ${(props) => props.theme.fonts.secondary};
-  font-size: 27px;
+  font-size: 24px;
   margin-bottom: 10px;
   text-align: center;
 `;
 
 export const DeleteCardTextStyle = styled.div`
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 10px;
   padding: 10px 30px;
 `;
