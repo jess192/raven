@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const HeaderStyle = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.border.primary};
+  background-color: ${(props) => props.theme.bgColor.secondary};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -33,4 +34,5 @@ export const HeaderRightStyle = styled.div`
   display: flex;
   justify-content: end;
   gap: 10px;
+  margin-right: 20px;
 `;

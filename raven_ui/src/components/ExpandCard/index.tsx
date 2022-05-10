@@ -1,24 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Throbber from '@/components/Throbber';
+import React from 'react';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { ExpandCardPropsType, ExpandCardEnum } from './types';
-import { ExpandCardStyle, ExpandCardThrobberStyle, ExpandCardViewStyle } from './style';
+import { ExpandCardStyle, ExpandCardViewStyle } from './style';
 
 export default function ExpandCard(props: ExpandCardPropsType) {
   const { children, expand, setExpand, speedMs, startWidth, endWidth } = props;
-  const [transition, setTransition] = useState(true);
   const { ref } = useClickOutside(() => setExpand(false));
-
-  useEffect(() => {
-    if (expand) {
-      setTransition(true);
-      setTimeout(() => {
-        setTransition(false);
-      }, speedMs);
-    } else {
-      setTransition(true);
-    }
-  }, [expand]);
 
   const getCard = (key: ExpandCardEnum) => {
     if (children.length !== 2) {
@@ -26,15 +13,6 @@ export default function ExpandCard(props: ExpandCardPropsType) {
     }
     return children[key];
   };
-
-  const showThrobber = (
-    <ExpandCardThrobberStyle>
-      <Throbber
-        squareSize={50}
-        thickness={8}
-      />
-    </ExpandCardThrobberStyle>
-  );
 
   return (
     <ExpandCardStyle
@@ -49,7 +27,7 @@ export default function ExpandCard(props: ExpandCardPropsType) {
       </ExpandCardViewStyle>
 
       <ExpandCardViewStyle show={!expand}>
-        {transition ? showThrobber : getCard(ExpandCardEnum.BACK_CARD)}
+        {getCard(ExpandCardEnum.BACK_CARD)}
       </ExpandCardViewStyle>
     </ExpandCardStyle>
   );

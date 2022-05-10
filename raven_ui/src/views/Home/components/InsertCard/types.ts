@@ -3,5 +3,6 @@ export type InsertCardFrontPropsType = {
 }
 
 export type InsertCardBackPropsType = {
+  expand: boolean,
   setExpand: Function
 }

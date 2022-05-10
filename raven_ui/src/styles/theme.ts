@@ -40,7 +40,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${(props: GlobalThemeType) => props.theme.fonts.primary};
     color: ${(props: GlobalThemeType) => props.theme.color.secondary};
     background: ${(props: GlobalThemeType) => props.theme.bgColor.primary};
-    margin: 5px 20px 20px 20px;
+    margin: 0;
   }
 `;
 

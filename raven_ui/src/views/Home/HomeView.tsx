@@ -4,7 +4,7 @@ import Throbber from '@/components/Throbber';
 import { ProductType } from '@/api/types';
 import { HomeContext } from './context';
 import { filterProducts } from './utils/filterProducts';
-import { HomeThrobberWrapperStyle, ProductsWrapperStyle } from './style';
+import { HomeThrobberWrapperStyle, ProductsWrapperStyle, HomeViewStyle } from './style';
 import { FilterType, HomeActionsEnum, SortByEnum } from './types';
 import Filter from './components/Filter';
 import InsertCard from './components/InsertCard';
@@ -32,23 +32,23 @@ export default function HomeView() {
 
   if (isLoading) {
     return (
-      <ProductsWrapperStyle>
+      <HomeViewStyle>
         <HomeThrobberWrapperStyle>
           <Throbber
             squareSize={120}
             thickness={16}
           />
         </HomeThrobberWrapperStyle>
-      </ProductsWrapperStyle>
+      </HomeViewStyle>
     );
   }
 
   if (isError) {
-    return (<ProductsWrapperStyle>Error: {error}</ProductsWrapperStyle>);
+    return (<HomeViewStyle>Error: {error}</HomeViewStyle>);
   }
 
   return (
-    <>
+    <HomeViewStyle>
       <Filter
         search={state.search}
         setSearch={(val: string) => dispatch({ type: HomeActionsEnum.SET_SEARCH, value: val })}
@@ -76,7 +76,6 @@ export default function HomeView() {
         }
         setSort={(val: SortByEnum) => dispatch({ type: HomeActionsEnum.SET_SORT, value: val })}
       />
-
       <ProductsWrapperStyle>
         <InsertCard />
 
@@ -96,6 +95,6 @@ export default function HomeView() {
           />
         ))}
       </ProductsWrapperStyle>
-    </>
+    </HomeViewStyle>
   );
 }

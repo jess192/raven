@@ -5,7 +5,7 @@ export const FilterSortStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 40px;
-  margin-top: 20px;
+  margin: 30px 0 30px 1px;
 `;
 
 export const FilterStyle = styled.div`

@@ -18,6 +18,7 @@ export default function InsertCard() {
         setExpand={setExpand}
       />
       <InsertCardBack
+        expand={expand}
         setExpand={setExpand}
       />
     </ExpandCard>

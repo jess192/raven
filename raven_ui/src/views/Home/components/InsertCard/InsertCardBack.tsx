@@ -12,10 +12,23 @@ import {
   InsertCardBackStyle,
   InsertCardBackTextStyle, SubTextStyle,
 } from './style';
+
 export default function InsertCardBack(props: InsertCardBackPropsType) {
-  const { setExpand } = props;
+  const { expand, setExpand } = props;
   const [url, setUrl] = useState('');
+  const [transition, setTransition] = useState(true);
   const { mutate, isLoading, isError, error, isSuccess } = useInsertProduct();
+
+  useEffect(() => {
+    if (expand) {
+      setTransition(true);
+      setTimeout(() => {
+        setTransition(false);
+      }, 400);
+    } else {
+      setTransition(true);
+    }
+  }, [expand]);
 
   useEffect(() => {
     if (isSuccess) {
@@ -54,7 +67,7 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
     );
   };
 
-  if (isLoading) {
+  if (isLoading || transition) {
     return (
       <InsertCardBackLoadingStyle>
         <Throbber

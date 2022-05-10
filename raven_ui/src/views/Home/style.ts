@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 
+export const HomeViewStyle = styled.div`
+  margin:20px;
+`;
+
 export const ProductsWrapperStyle = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  margin-top: 30px;
   gap: 20px;
 `;
 
 export const HomeThrobberWrapperStyle = styled.div`
-  margin: 100px auto auto auto;
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
 `;

@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
-export const InsertCardFrontStyle = styled.div`
-  width: 100%;
-  height: 100%;
+const InsertCardStyle = styled.div`
+  background-color: ${(props) => props.theme.bgColor.secondary};
+  width: inherit;
+  height: 385px;
+  border: 1px solid ${(props) => props.theme.border.primary};
+  border-radius: 8px;
+`;
+
+export const InsertCardFrontStyle = styled(InsertCardStyle)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,9 +30,7 @@ export const InsertCardFrontTextStyle = styled.div`
   font-size: 20px;
 `;
 
-export const InsertCardBackStyle = styled.div`
-  width: 100%;
-  height: 100%;
+export const InsertCardBackStyle = styled(InsertCardStyle)`
 `;
 
 export const InsertCardBackFormStyle = styled.form`
