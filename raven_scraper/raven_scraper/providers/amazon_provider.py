@@ -12,9 +12,15 @@ class AmazonProvider:
         self._amazon_headers: dict = self._generate_headers()
 
     @staticmethod
-    def _generate_headers() -> dict:
+    def _get_random_agent():
+        random_agent: str = random_useragent()
+        while 'Mobile' in random_agent:
+            random_agent: str = random_useragent()
+        return random_agent
+
+    def _generate_headers(self) -> dict:
         return {
-            'user-agent': random_useragent(),
+            'user-agent': self._get_random_agent(),
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-dest': 'document',
