@@ -28,18 +28,23 @@ class AmazonProvider:
         }
 
     @staticmethod
+    def _format_url(url: str) -> str:
+        if not url.startswith('http://') and not url.startswith('https://'):
+            url = 'https://' + url
+        return url
+
+    @staticmethod
     def _get_amazon_id(url: str) -> str:
         parse: ParseResult = urlparse(url)
+        if parse.netloc not in ['amazon.com', 'www.amazon.com']:
+            raise InvalidURLException(url)
+
         split: list[str] = parse.path.split('/')
-
-        next_part: bool = False
-        for part in split:
-            if next_part:
-                return part
-            elif part == 'dp':
-                next_part = True
-
-        raise InvalidURLException(url)
+        try:
+            loc: int = split.index('dp')
+            return split[loc+1]
+        except Exception:
+            raise InvalidURLException(url)
 
     @staticmethod
     def _check_if_bot(bs: BeautifulSoup, url: str) -> None:
@@ -48,10 +53,6 @@ class AmazonProvider:
 
         if is_bot:
             raise BotException('Amazon', url)
-
-    @staticmethod
-    def create_url(amazon_id: str) -> str:
-        return f'https://amazon.com/dp/{amazon_id}'
 
     def _get_beautiful_soup_response(self, url: str) -> BeautifulSoup:
         page = requests.get(url, headers=self._amazon_headers)
@@ -64,10 +65,12 @@ class AmazonProvider:
 
         return bs
 
-    @staticmethod
-    def _get_item_title(bs: BeautifulSoup) -> str:
-        title: str = bs.find(id='productTitle').get_text().strip()
-        return title
+    def _get_item_title(self, bs: BeautifulSoup) -> str:
+        if bs.find(id='productTitle'):
+            title: str = bs.find(id='productTitle').get_text().strip()
+            return title
+        else:
+            raise Exception('Unable to get title. ', self._amazon_headers['user_agent'])
 
     @staticmethod
     def _get_item_image_url(bs: BeautifulSoup) -> Optional[str]:
@@ -79,12 +82,11 @@ class AmazonProvider:
         return image_url
 
     @staticmethod
-    def _get_item_price(bs: BeautifulSoup) -> float:
+    def _get_item_price(bs: BeautifulSoup) -> float | None:
         price = bs.find('input', {'id': 'twister-plus-price-data-price'})
         return price.get('value') if price else None
 
-    def get_product_prices(self, amazon_id: str) -> dict:
-        url: str = self.create_url(amazon_id)
+    def get_product_prices(self, amazon_id: str, url: str) -> dict:
         bs: BeautifulSoup = self._get_beautiful_soup_response(url)
 
         return {
@@ -94,14 +96,15 @@ class AmazonProvider:
         }
 
     def get_product_info(self, url: str) -> dict:
-        product_id: str = self._get_amazon_id(url)
-        formatted_url: str = self.create_url(product_id)
+        formatted_url: str = self._format_url(url)
+        product_id: str = self._get_amazon_id(formatted_url)
         bs: BeautifulSoup = self._get_beautiful_soup_response(formatted_url)
 
         return {
             'id': product_id,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'source': 'amazon',
+            'url': formatted_url,
             'title': self._get_item_title(bs),
             'image_url': self._get_item_image_url(bs),
             'price': self._get_item_price(bs)

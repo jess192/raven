@@ -46,7 +46,7 @@ class RavenDb:
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement: str = '''SELECT ID, SOURCE FROM ITEMS'''
+            statement: str = '''SELECT ID, URL, SOURCE FROM ITEMS'''
             curr.execute(statement)
             return curr.fetchall()
 
@@ -57,13 +57,14 @@ class RavenDb:
 
         for product in products:
             product_id: str = product[0]
-            source: str = product[1]
+            url: str = product[1]
+            source: str = product[2]
 
             logger.info(f'Getting price for: {product_id} @ {source}')
 
             if source == 'amazon':
                 try:
-                    price_info = AmazonProvider().get_product_prices(product_id)
+                    price_info = AmazonProvider().get_product_prices(product_id, url)
                 except DoesNotExistException as e:
                     logger.error(e)
                 except BotException as e:
@@ -103,12 +104,13 @@ class RavenDb:
             curr: Cursor = conn.cursor()
 
             try:
-                statement_items: str = '''INSERT INTO ITEMS (ID, TIMESTAMP , SOURCE, TITLE, IMAGE_URL) 
-                    VALUES (?, ?, ?, ?, ?)
+                statement_items: str = '''INSERT INTO ITEMS (ID, TIMESTAMP, URL, SOURCE, TITLE, IMAGE_URL) 
+                    VALUES (?, ?, ?, ?, ?, ?)
                 '''
                 curr.execute(
                     statement_items,
-                    (product['id'], product['timestamp'], product['source'], product['title'], product['image_url'])
+                    (product['id'], product['timestamp'], product['url'],
+                     product['source'], product['title'], product['image_url'])
                 )
 
                 statement_prices: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
@@ -126,7 +128,7 @@ class RavenDb:
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement_items: str = '''SELECT ID, SOURCE, TITLE, IMAGE_URL FROM ITEMS ORDER BY TIMESTAMP DESC'''
+            statement_items: str = '''SELECT ID, SOURCE, URL, TITLE, IMAGE_URL FROM ITEMS ORDER BY TIMESTAMP DESC'''
             curr.execute(statement_items)
 
             rows: list = curr.fetchall()
@@ -153,7 +155,7 @@ class RavenDb:
                     'title': row['TITLE'],
                     'imageURL': row['IMAGE_URL'],
                     'provider': row['SOURCE'],
-                    'providerURL': AmazonProvider.create_url(row_id) if row['SOURCE'] == 'amazon' else None,
+                    'providerURL': row['URL'],
                     'currentPrice': {
                         'price': current_prices['PRICE'],
                         'timestamp': current_prices['TIMESTAMP'],
