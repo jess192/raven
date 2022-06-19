@@ -1,8 +1,7 @@
 import os
-import time
 import sqlite3
 from sqlite3 import Connection, Cursor
-from raven_core.logging.exceptions import UniqueProductException, DoesNotExistException, BotException
+from raven_core.logging.exceptions import UniqueProductException, NotBeingTrackedException
 from raven_core.logging.logger import logger
 from raven_scraper.providers.amazon_provider import AmazonProvider
 
@@ -39,57 +38,65 @@ class RavenDb:
             else:
                 logger.success('Database has been initialized')
 
-    def get_product_list(self) -> list:
-        logger.info('Getting list of products')
+    def get_product_id_list(self) -> list:
+        logger.info('Getting list of product IDs')
+        conn: Connection = self._create_connection()
+        conn.row_factory = lambda cursor, row: row[0]
+
+        with conn:
+            curr: Cursor = conn.cursor()
+
+            statement: str = '''SELECT ID FROM ITEMS'''
+            curr.execute(statement)
+            return curr.fetchall()
+
+    def get_product_url(self, product_id):
+        logger.info(f'Getting product info for {product_id}')
         conn: Connection = self._create_connection()
 
         with conn:
             curr: Cursor = conn.cursor()
 
-            statement: str = '''SELECT ID, URL, SOURCE FROM ITEMS'''
-            curr.execute(statement)
+            statement: str = '''SELECT SOURCE, URL FROM ITEMS WHERE ID = ?'''
+            curr.execute(statement, [product_id])
             return curr.fetchall()
 
-    def scrape_for_product_prices(self) -> None:
-        logger.info('Scraping for product prices')
+    def scrape_for_product_price(self, product_id) -> float:
+        logger.info(f'Scraping for product price for {product_id}')
+        product_info = self.get_product_url(product_id)
 
-        products: list = self.get_product_list()
+        if not product_info:
+            raise NotBeingTrackedException(product_id)
 
-        for product in products:
-            product_id: str = product[0]
-            url: str = product[1]
-            source: str = product[2]
-
-            logger.info(f'Getting price for: {product_id} @ {source}')
+        if product_info:
+            source: str = product_info[0][0]
+            url: str = product_info[0][1]
 
             if source == 'amazon':
+                logger.info(f'Getting price for: {product_id} @ {source}')
+
                 try:
                     price_info = AmazonProvider().get_product_prices(product_id, url)
-                except DoesNotExistException as e:
-                    logger.error(e)
-                except BotException as e:
-                    logger.error(e)
-                except Exception as e:
-                    logger.error(e)
+                except Exception:
+                    raise
                 else:
                     self.insert_price(price_info)
+                    return price_info['price']
             else:
                 logger.error(f'Source does not exist: {source}')
 
-            time.sleep(5)
-
     def insert_price(self, price_info: dict) -> None:
-        id: str = price_info['id']
+        product_id: str = price_info['id']
         timestamp: str = price_info['timestamp']
         price: str = price_info['price']
 
-        logger.info(f'Inserting price: {id} -> {price}')
+        logger.info(f'Inserting price: {product_id} -> {price}')
         conn: Connection = self._create_connection()
 
         with conn:
             curr: Cursor = conn.cursor()
             statement: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
-            curr.execute(statement, (id, timestamp, price))
+            curr.execute(statement, (product_id, timestamp, price))
 
     def insert_product(self, url: str) -> None:
         logger.info(f'Inserting product: {url}')
@@ -118,7 +125,7 @@ class RavenDb:
                     statement_prices,
                     (product['id'], product['timestamp'], product['price'])
                 )
-            except sqlite3.IntegrityError as e:
+            except sqlite3.IntegrityError:
                 raise UniqueProductException(url)
 
     def select_products_prices(self) -> dict:

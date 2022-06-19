@@ -29,3 +29,11 @@ class DoesNotExistException(Exception):
 
     def __str__(self):
         return f'{self.url} does not exist.'
+
+
+class NotBeingTrackedException(Exception):
+    def __init__(self, product_id: str):
+        self.product_id: str = product_id
+
+    def __str__(self):
+        return f'{self.product_id} is no longer being tracked.'
