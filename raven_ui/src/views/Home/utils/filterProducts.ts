@@ -61,9 +61,9 @@ export const filterProducts = (productList: ProductListType, filter: FilterType)
   });
 
   switch (filter.sort) {
-    case SortByEnum.MOST_RECENT:
+    case SortByEnum.NEWEST:
       return filtered;
-    case SortByEnum.LEAST_RECENT:
+    case SortByEnum.OLDEST:
       return sortNotRecentlyAdded(filtered);
     case SortByEnum.LOW_TO_HIGH:
       return sortLowToHigh(filtered);

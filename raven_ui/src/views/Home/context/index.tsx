@@ -3,7 +3,7 @@ import { ComponentChildrenProps } from '@/types';
 import { HomeActionsEnum, HomeActionType, HomeStateType, SortByEnum } from '../types';
 
 const initialHomeState = {
-  sort: SortByEnum.MOST_RECENT,
+  sort: SortByEnum.NEWEST,
   search: '',
   availability: false,
   price: {},

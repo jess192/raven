@@ -7,8 +7,8 @@ export enum HomeActionsEnum {
 }
 
 export enum SortByEnum {
-  MOST_RECENT = 'Most Recent',
-  LEAST_RECENT = 'Least Recent',
+  NEWEST = 'Newest',
+  OLDEST = 'Oldest',
   LOW_TO_HIGH = 'Low to High',
   HIGH_TO_LOW = 'High to Low',
   HIGHEST_DECREASE = 'Highest Decrease',

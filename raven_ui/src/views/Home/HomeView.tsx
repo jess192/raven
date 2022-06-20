@@ -65,7 +65,7 @@ export default function HomeView() {
           [
             {
               title: 'Time',
-              items: [SortByEnum.MOST_RECENT, SortByEnum.LEAST_RECENT],
+              items: [SortByEnum.NEWEST, SortByEnum.OLDEST],
             },
             {
               title: 'Price',
