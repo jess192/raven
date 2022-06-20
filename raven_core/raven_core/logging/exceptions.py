@@ -1,10 +1,12 @@
 class BotException(Exception):
-    def __init__(self, provider: str, url: str):
+    def __init__(self, provider: str, url: str, user_agent: str):
         self.provider: str = provider
         self.url: str = url
+        self.user_agent: str = user_agent
 
     def __str__(self):
-        return f'{self.provider} thinks you are a bot trying to access {self.url}'
+        return f'{self.provider} thinks you are a bot trying to access {self.url} ' \
+               f'with user_agent: {self.user_agent}'
 
 
 class InvalidURLException(Exception):

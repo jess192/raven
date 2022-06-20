@@ -46,13 +46,12 @@ class AmazonProvider:
         except Exception:
             raise InvalidURLException(url)
 
-    @staticmethod
-    def _check_if_bot(bs: BeautifulSoup, url: str) -> None:
+    def _check_if_bot(self, bs: BeautifulSoup, url: str) -> None:
         is_bot: bool = bool(bs.find_all(lambda tag: tag.name == 'p' and 'robot' in tag.text))
         is_bot: bool = is_bot or bs.find('title').get_text() == 'Sorry! Something went wrong!'
 
         if is_bot:
-            raise BotException('Amazon', url)
+            raise BotException('Amazon', url, self._amazon_headers['user_agent'])
 
     def _get_beautiful_soup_response(self, url: str) -> BeautifulSoup:
         page = requests.get(url, headers=self._amazon_headers)
