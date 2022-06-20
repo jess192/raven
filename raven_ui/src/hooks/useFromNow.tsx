@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 enum FromNowEnum {
-  SECONDS = 's',
-  MINUTES = 'm',
-  HOURS = 'h',
-  DAYS = 'd'
+  SECONDS = 'seconds',
+  MINUTES = 'minutes',
+  HOURS = 'hours',
+  DAYS = 'days'
 }
 
 enum TimeEnum {

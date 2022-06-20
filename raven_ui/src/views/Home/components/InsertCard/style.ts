@@ -28,7 +28,7 @@ export const InsertCardFrontImgStyle = styled.div`
 `;
 
 export const InsertCardFrontTextStyle = styled.div`
-  font-family: ${(props) => props.theme.fonts.secondary};
+  font-family: ${(props) => props.theme.fonts.tertiary};
   font-size: 26px;
 `;
 
@@ -44,12 +44,12 @@ export const InsertCardBackFormStyle = styled.form`
 export const InsertCardBackTextStyle = styled.div`
   margin-top: 35px;
   margin-bottom: 6px;
-  font-family: ${(props) => props.theme.fonts.secondary};
+  font-family: ${(props) => props.theme.fonts.tertiary};
   font-size: 26px;
 `;
 
 export const SubTextStyle = styled.div`
-  font-family: ${(props) => props.theme.fonts.secondary};
+  font-family: ${(props) => props.theme.fonts.tertiary};
   font-size: 18px;
   color:  ${(props) => props.theme.color.tertiary};
   margin-bottom: 30px;

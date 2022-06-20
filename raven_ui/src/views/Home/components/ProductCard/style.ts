@@ -26,9 +26,9 @@ export const ProductCardHeadStyle = styled.div`
 `;
 
 export const ProductCardTimeStyle = styled.div`
-  font-family: ${(props) => props.theme.fonts.secondary};
+  font-family: ${(props) => props.theme.fonts.primary};
   color: ${(props) => props.theme.color.quaternary};
-  font-size: 24px;
+  font-size: 17px;
 `;
 
 export const ProductCardHeadRightStyle = styled.div`
@@ -56,7 +56,7 @@ export const ProductCardImgStyle = styled.div`
 export const ProductCardTitleStyle = styled.div`
   font-family: ${(props) => props.theme.fonts.secondary};
   color: ${(props) => props.theme.color.quaternary};
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -78,11 +78,14 @@ export const ProductCardPriceWrapperStyle = styled.div`
 export const ProductCardPriceStyle = styled.div<{oos: boolean}>`
   font-size: 28px;
   color: ${(props) => props.theme.color.quaternary};
-  
+  font-family: ${(props) => props.theme.fonts.primary};
+  display: flex;
+
   ${(props) => (props.oos ? css`
     font-size: 26px;
+    justify-content: center;
+    width: 100%;
   ` : css`
-    display: flex;
     align-items: center;
   `)}
 `;
@@ -94,8 +97,11 @@ export const ProductCardPercentStyle = styled.div<{change: number}>`
   border: 1px solid ${(props) => (props.change > 0 ? props.theme.codes.warning : props.theme.codes.success)};
   background-color: ${(props) => (props.change > 0 ? props.theme.codes.warning.concat('80') : props.theme.codes.success.concat('80'))};
   border-radius: 20px;
-  padding: 6px;
-  
+  padding: 2px 9px;
+  font-family: ${(props) => props.theme.fonts.primary};
+  font-size: 18px;
+
+
   svg {
     margin-right: 4px;
     font-size: 15px;
@@ -126,7 +132,7 @@ export const ProductDeletePromptStyle = styled.div<{isLoading: boolean}>`
 `;
 
 export const DeleteCardHeadTextStyle = styled.div`
-  font-family: ${(props) => props.theme.fonts.secondary};
+  font-family: ${(props) => props.theme.fonts.tertiary};
   font-size: 24px;
   margin-bottom: 10px;
   text-align: center;

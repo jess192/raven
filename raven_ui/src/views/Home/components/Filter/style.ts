@@ -53,7 +53,6 @@ export const ShowingItemsStyle = styled.div`
   margin-left: 20px;  
   display: flex;
   align-items: center;
-  font-style: italic;
   padding: 10px;
 
   @media screen and ${device.sizeL} {

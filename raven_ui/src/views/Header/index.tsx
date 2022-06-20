@@ -8,7 +8,7 @@ import { VscClose } from 'react-icons/vsc';
 import ToggleTheme from './components/ToggleTheme';
 import {
   HeaderStyle, HeaderLeftStyle, HeaderCenterStyle, HeaderTitleStyle,
-  HeaderRightStyle, BigMenuStyle, SmallMenuStyle, SmallMenuSlidedownStyle,
+  HeaderRightStyle, BigMenuStyle, SmallMenuStyle, SmallMenuSlidedownStyle, HeaderSubtitleStyle,
 } from './style';
 
 export default function Header() {
@@ -41,6 +41,7 @@ export default function Header() {
 
         <HeaderCenterStyle>
           <HeaderTitleStyle onClick={() => navigate(nav.home)}>Raven</HeaderTitleStyle>
+          <HeaderSubtitleStyle>product price tracker</HeaderSubtitleStyle>
         </HeaderCenterStyle>
 
         <HeaderRightStyle>

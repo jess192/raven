@@ -20,13 +20,17 @@ export const HeaderCenterStyle = styled.div`
 
 export const HeaderTitleStyle = styled.div`
   cursor: pointer;
-  font-family: ${(props) => props.theme.fonts.header};
+  font-family: ${(props) => props.theme.fonts.primary};
   font-size: 58px;
-  transition: .4s;
-  
-  :hover {
-    color: ${(props) => props.theme.color.primary}
-  }
+  margin-top: -10px;
+`;
+
+export const HeaderSubtitleStyle = styled.div`
+  margin-top: -14px;
+  padding-bottom: 7px;
+  font-size: 14px;
+  font-family: ${(props) => props.theme.fonts.primary};
+  color: ${(props) => props.theme.color.quaternary};
 `;
 
 export const HeaderRightStyle = styled.div`

@@ -5,9 +5,9 @@ export type GlobalThemeType = {
 }
 
 type FontsType = {
-  header: string,
   primary: string,
   secondary: string,
+  tertiary: string,
 }
 
 export type ThemeObjectType = {
@@ -38,7 +38,7 @@ export type ThemeObjectType = {
 export const GlobalStyle = createGlobalStyle`
   body {
     font-size: 14px;
-    font-family: ${(props: GlobalThemeType) => props.theme.fonts.primary};
+    font-family: ${(props: GlobalThemeType) => props.theme.fonts.secondary};
     color: ${(props: GlobalThemeType) => props.theme.color.secondary};
     background: ${(props: GlobalThemeType) => props.theme.bgColor.primary};
     margin: 0;
@@ -47,9 +47,9 @@ export const GlobalStyle = createGlobalStyle`
 
 const shared = {
   fonts: {
-    header: 'Caveat',
-    primary: 'Nunito',
-    secondary: 'Yanone Kaffeesatz',
+    primary: 'Gentium Plus',
+    secondary: 'Nunito',
+    tertiary: 'Yanone Kaffeesatz',
   },
 };
 
