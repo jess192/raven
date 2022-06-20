@@ -2,8 +2,8 @@ import { ProductListType, ProductType } from '@/api/types';
 import { FilterType, SortByEnum } from '../types';
 
 const filterBySearch = (title: string, search: string): boolean => {
-  const searchSanitize: string = search.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
-  const searchOr: string = searchSanitize.replace(/ /g, '|');
+  const searchSanitize: string = search.trim().replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
+  const searchOr: string = searchSanitize.replace(/ +/g, '|');
   return new RegExp(searchOr, 'i').test(title);
 };
 
