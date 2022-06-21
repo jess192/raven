@@ -39,11 +39,11 @@ export const DropdownTriggerIconStyle = styled.div`
 `;
 
 export const DropdownContentStyle = styled(DropdownMenu.Content)<DropdownStyleProps>`
-  width: ${(props) => toPixels(props.width - 11)};
+  width: ${(props) => toPixels(props.width - 10)};
   background-color: ${(props) => props.theme.bgColor.secondary};
   border-left: 2px solid ${(props) => props.theme.color.tertiary};
   border-right: 2px solid ${(props) => props.theme.color.tertiary};
-  border-bottom: 1px solid ${(props) => props.theme.color.tertiary};
+  border-bottom: 2px solid ${(props) => props.theme.color.tertiary};
   cursor: pointer;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

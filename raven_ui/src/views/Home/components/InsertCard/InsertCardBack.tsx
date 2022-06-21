@@ -17,7 +17,7 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
   const { expand, setExpand } = props;
   const [url, setUrl] = useState('');
   const [transition, setTransition] = useState(true);
-  const { mutate, isLoading, isError, error, isSuccess } = useInsertProduct();
+  const { mutate, reset, isLoading, isError, error, isSuccess } = useInsertProduct();
 
   useEffect(() => {
     if (expand) {
@@ -27,6 +27,8 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
       }, 400);
     } else {
       setTransition(true);
+      reset();
+      setUrl('');
     }
   }, [expand]);
 
