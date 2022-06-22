@@ -1,7 +1,7 @@
 import React from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
-import { formatPrice } from '@/utils/formatting';
+import { formatDate, formatPrice } from '@/utils/formatting';
 import { useFromNow } from '@/hooks/useFromNow';
 import Image from '@/components/Image';
 import ProviderLink from './ProviderLink';
@@ -16,6 +16,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
   const { img, productID, title, provider, providerURL, price,
     timestamp, percentChange, firstPrice, firstTimestamp, setFlip } = props;
   const fromNow = useFromNow(firstTimestamp);
+  const fromNowString: string = fromNow.value.toString().concat(' ', fromNow.unit);
   const formattedPrice: string = formatPrice(price);
 
   const showPerChange = () => {
@@ -30,7 +31,10 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
 
     // eslint-disable-next-line consistent-return
     return (
-      <ProductCardPercentStyle title={`Added price: ${formatPrice(firstPrice)}`} change={percentChange}>
+      <ProductCardPercentStyle
+        title={`Percent change: ${percentChange}%\nOriginal added price: ${formatPrice(firstPrice)}`}
+        change={percentChange}
+      >
         {perChange}
       </ProductCardPercentStyle>
     );
@@ -40,8 +44,9 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
     <ProductCardStyle>
       <ProductCardHeadStyle>
 
-        <ProductCardTimeStyle title="Time passed since product was added">
-          {fromNow.value.toFixed().concat(' ', fromNow.unit)}
+        <ProductCardTimeStyle
+          title={`${fromNowString} passed since product was added on ${formatDate(firstTimestamp)}`}>
+          {fromNowString}
         </ProductCardTimeStyle>
 
         <ProductCardHeadRightStyle>
@@ -61,7 +66,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
 
       </ProductCardHeadStyle>
 
-      <ProductCardImgStyle>
+      <ProductCardImgStyle title={title}>
         <Image src={img} alt={title} />
       </ProductCardImgStyle>
 
@@ -70,7 +75,10 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
       </ProductCardTitleStyle>
 
       <ProductCardPriceWrapperStyle>
-        <ProductCardPriceStyle title="Current Price" oos={formattedPrice === 'Out of Stock'}>
+        <ProductCardPriceStyle
+          title={`Current price: ${formattedPrice}\nLast updated: ${formatDate(timestamp)}`}
+          oos={formattedPrice === 'Out of Stock'}
+        >
           {formattedPrice}
         </ProductCardPriceStyle>
 

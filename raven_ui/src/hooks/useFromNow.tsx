@@ -1,22 +1,32 @@
 import React, { useState, useEffect } from 'react';
 
 enum FromNowEnum {
-  SECONDS = 'seconds',
-  MINUTES = 'minutes',
-  HOURS = 'hours',
-  DAYS = 'days'
+  SECONDS = 'second',
+  MINUTES = 'minute',
+  HOURS = 'hour',
+  DAYS = 'day',
+  WEEKS = 'week',
+  MONTHS = 'month',
+  YEARS = 'year'
 }
 
 enum TimeEnum {
   MILLISECONDS_IN_SECOND = 1000,
   SECONDS_IN_MINUTE = 60,
   MINUTES_IN_HOUR = 60,
-  HOURS_IN_DAY = 24
+  HOURS_IN_DAY = 24,
+  DAYS_IN_WEEK = 7,
+  WEEKS_IN_MONTH = 4,
+  MONTHS_IN_YEAR = 12
 }
 
 type FromNowType = {
   value: number,
-  unit: FromNowEnum
+  unit: string
+}
+
+function formatFromNow(value: number, unit: FromNowEnum|string): FromNowType {
+  return { value: Math.floor(value), unit: Math.floor(value) > 1 ? unit.concat('s') : unit };
 }
 
 function getTimeFromNow(timestamp: string): FromNowType {
@@ -26,21 +36,36 @@ function getTimeFromNow(timestamp: string): FromNowType {
 
   const seconds: number = milliseconds / TimeEnum.MILLISECONDS_IN_SECOND;
   if (seconds < TimeEnum.SECONDS_IN_MINUTE) {
-    return { value: seconds, unit: FromNowEnum.SECONDS };
+    return formatFromNow(seconds, FromNowEnum.SECONDS);
   }
 
   const minutes: number = seconds / TimeEnum.SECONDS_IN_MINUTE;
   if (minutes < TimeEnum.MINUTES_IN_HOUR) {
-    return { value: minutes, unit: FromNowEnum.MINUTES };
+    return formatFromNow(minutes, FromNowEnum.MINUTES);
   }
 
   const hours: number = minutes / TimeEnum.MINUTES_IN_HOUR;
   if (hours < TimeEnum.HOURS_IN_DAY) {
-    return { value: hours, unit: FromNowEnum.HOURS };
+    return formatFromNow(hours, FromNowEnum.HOURS);
   }
 
   const days: number = hours / TimeEnum.HOURS_IN_DAY;
-  return { value: days, unit: FromNowEnum.DAYS };
+  if (days < TimeEnum.DAYS_IN_WEEK) {
+    return formatFromNow(days, FromNowEnum.DAYS);
+  }
+
+  const weeks: number = days / TimeEnum.DAYS_IN_WEEK;
+  if (weeks < TimeEnum.WEEKS_IN_MONTH) {
+    return formatFromNow(weeks, FromNowEnum.WEEKS);
+  }
+
+  const months: number = weeks / TimeEnum.WEEKS_IN_MONTH;
+  if (months < TimeEnum.MONTHS_IN_YEAR) {
+    return formatFromNow(months, FromNowEnum.MONTHS);
+  }
+
+  const years : number = months / TimeEnum.MONTHS_IN_YEAR;
+  return formatFromNow(years, FromNowEnum.YEARS);
 }
 
 export const useFromNow = (timestamp: string) => {
