@@ -51,7 +51,7 @@ class AmazonProvider:
         is_bot: bool = is_bot or bs.find('title').get_text() == 'Sorry! Something went wrong!'
 
         if is_bot:
-            raise BotException('Amazon', url, self._amazon_headers['user_agent'])
+            raise BotException('Amazon', url, self._amazon_headers['user-agent'])
 
     def _get_beautiful_soup_response(self, url: str) -> BeautifulSoup:
         page = requests.get(url, headers=self._amazon_headers)
@@ -69,7 +69,7 @@ class AmazonProvider:
             title: str = bs.find(id='productTitle').get_text().strip()
             return title
         else:
-            raise Exception('Unable to get title. ', self._amazon_headers['user_agent'])
+            raise Exception('Unable to get title. ', self._amazon_headers['user-agent'])
 
     @staticmethod
     def _get_item_image_url(bs: BeautifulSoup) -> Optional[str]:
