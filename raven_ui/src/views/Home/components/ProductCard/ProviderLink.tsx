@@ -7,9 +7,9 @@ import { ProviderLinkStyle } from './style';
 const getProviderDetails = (provider: ProvidersEnum) => {
   switch (provider) {
     case ProvidersEnum.AMAZON:
-      return { title: 'Goto Amazon Product Page', icon: <AiFillAmazonCircle /> };
+      return { title: 'goto amazon product page', icon: <AiFillAmazonCircle /> };
     default:
-      return { title: 'Goto Product Page', icon: <RiShoppingCartLine /> };
+      return { title: 'goto product page', icon: <RiShoppingCartLine /> };
   }
 };
 

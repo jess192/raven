@@ -64,11 +64,11 @@ export default function HomeView() {
         sortOptions={
           [
             {
-              title: 'Time',
+              title: 'time',
               items: [SortByEnum.NEWEST, SortByEnum.OLDEST],
             },
             {
-              title: 'Price',
+              title: 'price',
               items: [SortByEnum.LOW_TO_HIGH, SortByEnum.HIGH_TO_LOW,
                 SortByEnum.HIGHEST_DECREASE, SortByEnum.HIGHEST_INCREASE],
             },

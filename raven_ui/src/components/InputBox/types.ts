@@ -8,5 +8,6 @@ export type InputBoxPropsType = {
   onChange: React.ChangeEventHandler<HTMLInputElement>,
   width?: number,
   height?: number,
-  fontSize?: number
+  fontSize?: number,
+  title?: string,
 }

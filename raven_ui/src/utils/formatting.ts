@@ -1,6 +1,6 @@
 export function formatPrice(price: number): string {
   if (price == null) {
-    return 'Out of Stock';
+    return 'out of stock';
   }
   return '$'.concat(price.toFixed(2).toString());
 }

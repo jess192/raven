@@ -31,10 +31,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
 
     // eslint-disable-next-line consistent-return
     return (
-      <ProductCardPercentStyle
-        title={`Percent change: ${percentChange}%\nOriginal added price: ${formatPrice(firstPrice)}`}
-        change={percentChange}
-      >
+      <ProductCardPercentStyle change={percentChange}>
         {perChange}
       </ProductCardPercentStyle>
     );
@@ -44,8 +41,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
     <ProductCardStyle>
       <ProductCardHeadStyle>
 
-        <ProductCardTimeStyle
-          title={`${fromNowString} passed since product was added on ${formatDate(firstTimestamp)}`}>
+        <ProductCardTimeStyle title={`${fromNowString} since product was added on ${formatDate(firstTimestamp)}`}>
           {fromNowString}
         </ProductCardTimeStyle>
 
@@ -58,7 +54,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
           <ProductCardDeleteButtonStyle
             type="button"
             onClick={() => { setFlip(true); }}
-            title="Remove Product"
+            title="remove product"
           >
             <VscClose />
           </ProductCardDeleteButtonStyle>
@@ -74,11 +70,10 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
         {title}
       </ProductCardTitleStyle>
 
-      <ProductCardPriceWrapperStyle>
-        <ProductCardPriceStyle
-          title={`Current price: ${formattedPrice}\nLast updated: ${formatDate(timestamp)}`}
-          oos={formattedPrice === 'Out of Stock'}
-        >
+      <ProductCardPriceWrapperStyle
+        title={`current:\t${formattedPrice}\t${formatDate(timestamp)}\noriginal:\t${formatPrice(firstPrice)}\t${formatDate(firstTimestamp)}\nchange:\t${percentChange}%`}
+      >
+        <ProductCardPriceStyle oos={formattedPrice === 'out of stock'}>
           {formattedPrice}
         </ProductCardPriceStyle>
 

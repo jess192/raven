@@ -27,11 +27,11 @@ export default function Filter(props: FilterSortPropsType) {
     <FilterSortStyle>
       <FilterStyle>
 
-        <SearchFilterItemStyle>
+        <SearchFilterItemStyle title="search for a tracked product">
           <InputBox
             type="text"
             icon={<BiSearch />}
-            placeholder="Search"
+            placeholder="search"
             value={search}
             onChange={(event: ChangeEvent<HTMLInputElement>) => setSearch(event.target.value)}
             width={230}
@@ -39,8 +39,8 @@ export default function Filter(props: FilterSortPropsType) {
           />
         </SearchFilterItemStyle>
 
-        <FilterItemStyle>
-          <li>In stock:</li>
+        <FilterItemStyle title="show only products in stock">
+          <li>in stock:</li>
           <li>
             <ToggleSwitch
               toggle={availability}
@@ -49,8 +49,8 @@ export default function Filter(props: FilterSortPropsType) {
           </li>
         </FilterItemStyle>
 
-        <PriceFilterItemStyle>
-          <li>Price:</li>
+        <PriceFilterItemStyle title="price range">
+          <li>price:</li>
           <li>
             <PriceSlider
               priceRange={priceRange}
@@ -61,17 +61,21 @@ export default function Filter(props: FilterSortPropsType) {
         </PriceFilterItemStyle>
 
         {/* TODO - add disabled functionality */}
-        <Button type="button" onClick={() => resetFilters()} width={79}>
-          Reset Filters
+        <Button
+          type="button"
+          onClick={() => resetFilters()}
+          title="reset search filters"
+        >
+          reset filters
         </Button>
 
-        <ShowingItemsStyle>
-          Showing {numProductsFiltered} of {numProducts}
+        <ShowingItemsStyle title="number of products displayed">
+          showing {numProductsFiltered} of {numProducts}
         </ShowingItemsStyle>
 
       </FilterStyle>
 
-      <SortStyle>
+      <SortStyle title="sort by">
         <Dropdown
           options={sortOptions}
           value={sort}

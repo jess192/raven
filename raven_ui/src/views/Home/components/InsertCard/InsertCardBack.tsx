@@ -84,9 +84,9 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
     <InsertCardBackStyle>
       <InsertCardBackFormStyle onSubmit={handleSubmit}>
         <InsertCardBackTextStyle>
-          Enter an Amazon URL to start tracking prices
+          enter an amazon url to start tracking prices
         </InsertCardBackTextStyle>
-        <SubTextStyle>Raven will support other providers in the future</SubTextStyle>
+        <SubTextStyle>raven will support other providers in the future</SubTextStyle>
 
         <InputBox
           type="text"
@@ -95,13 +95,14 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
           onChange={handleChange}
           height={25}
           fontSize={16}
+          title="enter an amazon product url"
         />
 
         {showStatus()}
 
         <InsertCardBackButtonsStyle>
-          <Button type="button" onClick={closeExpand}>Cancel</Button>
-          <Button type="submit" disabled={isLoading || url === ''}>Add Product</Button>
+          <Button type="button" onClick={closeExpand} title="cancel">cancel</Button>
+          <Button type="submit" disabled={isLoading || url === ''} title="add product">add product</Button>
         </InsertCardBackButtonsStyle>
 
       </InsertCardBackFormStyle>

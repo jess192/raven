@@ -9,7 +9,7 @@ export default function ToggleTheme() {
 
   return (
     <IconButton
-      title="Toggle Theme"
+      title="toggle theme"
       onClick={() => dispatch({ type: GlobalActionsEnum.TOGGLE_THEME })}
     >
       {state.theme === 'LIGHT' ? <MdOutlineDarkMode /> : <MdOutlineLightMode />}

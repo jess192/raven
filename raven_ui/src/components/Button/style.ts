@@ -4,7 +4,7 @@ import { toPixels } from '@/utils/formatting';
 export const ButtonStyle = styled.button<{width: number}>`
   all: unset;
   cursor: default;
-  padding: 7px 15px;
+  padding: 6px 15px 7px 15px;
   transition: .4s;
   width: ${(props) => (props.width ? toPixels(props.width) : 'inherit')};
   border: 2px solid ${(props) => props.theme.color.tertiary};

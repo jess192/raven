@@ -7,12 +7,12 @@ export enum HomeActionsEnum {
 }
 
 export enum SortByEnum {
-  NEWEST = 'Newest',
-  OLDEST = 'Oldest',
-  LOW_TO_HIGH = 'Low to High',
-  HIGH_TO_LOW = 'High to Low',
-  HIGHEST_DECREASE = 'Highest Decrease',
-  HIGHEST_INCREASE = 'Highest Increase',
+  NEWEST = 'newest',
+  OLDEST = 'oldest',
+  LOW_TO_HIGH = 'low to high',
+  HIGH_TO_LOW = 'high to low',
+  HIGHEST_DECREASE = 'highest decrease',
+  HIGHEST_INCREASE = 'highest increase',
 }
 
 export type FilterType = {

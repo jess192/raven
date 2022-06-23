@@ -44,7 +44,7 @@ export default function Dropdown(props: DropdownPropsType) {
     <DropdownMenuStyle onOpenChange={() => setOpen(!open)} open={open}>
       <DropdownTriggerStyle width={width}>
         <DropdownTriggerTitleStyle>
-          Sort by: {value}
+          sort by: {value}
         </DropdownTriggerTitleStyle>
 
         <DropdownTriggerIconStyle>

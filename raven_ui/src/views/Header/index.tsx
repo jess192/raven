@@ -22,11 +22,11 @@ export default function Header() {
 
   const navIcons: JSX.Element = (
     <>
-      <IconButton title="About" onClick={() => navigate(nav.about)}>
+      <IconButton title="about" onClick={() => navigate(nav.about)}>
         <BsInfo />
       </IconButton>
 
-      <IconButton title="Github" as="a" href="https://github.com/jess192" target="_blank">
+      <IconButton title="github" as="a" href="https://github.com/jess192" target="_blank">
         <RiGithubLine />
       </IconButton>
 
@@ -39,8 +39,8 @@ export default function Header() {
       <HeaderStyle>
         <HeaderLeftStyle />
 
-        <HeaderCenterStyle>
-          <HeaderTitleStyle onClick={() => navigate(nav.home)}>Raven</HeaderTitleStyle>
+        <HeaderCenterStyle title="raven - product price tracker">
+          <HeaderTitleStyle onClick={() => navigate(nav.home)}>raven</HeaderTitleStyle>
           <HeaderSubtitleStyle>product price tracker</HeaderSubtitleStyle>
         </HeaderCenterStyle>
 

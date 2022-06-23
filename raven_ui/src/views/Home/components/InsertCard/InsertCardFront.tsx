@@ -7,13 +7,16 @@ export default function InsertCardFront(props: InsertCardFrontPropsType) {
   const { setExpand } = props;
 
   return (
-    <InsertCardFrontStyle onClick={() => { setExpand(true); }}>
+    <InsertCardFrontStyle
+      onClick={() => { setExpand(true); }}
+      title="add a product to start tracking prices"
+    >
       <InsertCardFrontImgStyle>
         <RiShoppingCartLine />
       </InsertCardFrontImgStyle>
 
       <InsertCardFrontTextStyle>
-        Add a Product
+        add a product
       </InsertCardFrontTextStyle>
     </InsertCardFrontStyle>
   );

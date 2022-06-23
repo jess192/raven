@@ -43,15 +43,15 @@ export default function ProductCardBack(props: ProductCardBackPropsType) {
 
       <ProductDeletePromptStyle isLoading={isLoading || isSuccess}>
         <DeleteCardHeadTextStyle>
-          Deleting...
+          deleting...
         </DeleteCardHeadTextStyle>
         <DeleteCardTextStyle>
-          Are you sure you want to stop tracking this product?
+          are you sure you want to stop tracking this product?
         </DeleteCardTextStyle>
 
         <DeleteCardButtonsStyle>
-          <Button type="button" onClick={closeCard}>Cancel</Button>
-          <Button type="button" onClick={deleteProduct}>Yes, Delete</Button>
+          <Button type="button" onClick={closeCard} title="cancel">cancel</Button>
+          <Button type="button" onClick={deleteProduct} title="delete">yes, delete</Button>
         </DeleteCardButtonsStyle>
       </ProductDeletePromptStyle>
     </ProductDeleteCardStyle>
