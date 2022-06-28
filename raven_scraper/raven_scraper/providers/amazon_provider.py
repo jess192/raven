@@ -40,10 +40,11 @@ class AmazonProvider:
             raise InvalidURLException(url)
 
         split: list[str] = parse.path.split('/')
-        try:
-            loc: int = split.index('dp')
-            return split[loc+1]
-        except Exception:
+        if 'dp' in split:
+            return split[split.index('dp')+1]
+        elif 'gp' in split and split[split.index('gp')+1] == 'product':
+            return split[split.index('gp')+2]
+        else:
             raise InvalidURLException(url)
 
     def _check_if_bot(self, bs: BeautifulSoup, url: str) -> None:
