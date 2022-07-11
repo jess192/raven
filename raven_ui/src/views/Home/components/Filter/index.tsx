@@ -43,6 +43,7 @@ export default function Filter(props: FilterSortPropsType) {
           <li>in stock:</li>
           <li>
             <ToggleSwitch
+              label="toggle availability"
               toggle={availability}
               setToggle={setAvailability}
             />
