@@ -71,11 +71,12 @@ class RavenScraper:
     def run_scraper(self) -> None:
         logger.info('Running Raven Scraper')
 
-        schedule_period_sec: int = 24*60*60
+        schedule_period_sec: int = 12*60*60
         interval_buffer_sec: int = 10
 
-        schedule.every().day.do(self._create_schedule, schedule_period_sec, interval_buffer_sec)
-        self._create_schedule(schedule_period_sec, interval_buffer_sec)
+        # create a randomized 12-hour schedule every day at midnight and noon
+        schedule.every().day.at('00:00').do(self._create_schedule, schedule_period_sec, interval_buffer_sec)
+        schedule.every().day.at('12:00').do(self._create_schedule, schedule_period_sec, interval_buffer_sec)
 
         try:
             while True:
