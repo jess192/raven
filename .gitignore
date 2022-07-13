@@ -4,3 +4,4 @@ __pycache__
 
 raven.db
 logs
+.env

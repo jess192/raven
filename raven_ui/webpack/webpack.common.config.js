@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -30,5 +31,11 @@ module.exports = {
       favicon: './src/assets/favicon.ico',
     }),
     new CompressionPlugin(),
+    new Dotenv({
+      path: '../.env',
+      systemvars: true,
+      expand: true,
+      defaults: true
+    }),
   ],
 };
