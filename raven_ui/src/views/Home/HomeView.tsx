@@ -1,10 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { FaEarlybirds } from 'react-icons/fa';
 import { useProducts } from '@/api';
 import Throbber from '@/components/Throbber';
 import { ProductType } from '@/api/types';
 import { HomeContext } from './context';
 import { filterProducts } from './utils/filterProducts';
-import { HomeThrobberWrapperStyle, ProductsWrapperStyle, HomeViewStyle } from './style';
+import {
+  HomeThrobberWrapperStyle,
+  ProductsWrapperStyle,
+  HomeViewStyle,
+  HomeViewErrorStyle,
+  HomeViewErrorTextStyle,
+} from './style';
 import { FilterType, HomeActionsEnum, SortByEnum } from './types';
 import Filter from './components/Filter';
 import InsertCard from './components/InsertCard';
@@ -44,7 +51,14 @@ export default function HomeView() {
   }
 
   if (isError) {
-    return (<HomeViewStyle>Error: {error}</HomeViewStyle>);
+    return (
+      <HomeViewErrorStyle>
+        <FaEarlybirds />
+        <HomeViewErrorTextStyle>
+          Oops there is an error loading the API
+        </HomeViewErrorTextStyle>
+      </HomeViewErrorStyle>
+    );
   }
 
   return (
