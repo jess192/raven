@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.tsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --config webpack/webpack.dev.config.js --progress --color",
+    "prebuild": "rimraf dist",
     "build": "webpack --config webpack/webpack.prod.config.js",
     "profile": "webpack --config webpack/webpack.profile.config.js",
-    "run-server": "env-cmd -f '../.env' --use-shell \"http-server -p \\$RAVEN_UI_PORT --proxy \\$RAVEN_UI_HOST:\\$RAVEN_UI_PORT? ./dist -c 31536000 --gzip --log-ip\"",
-    "build-run": "npm run build && npm run run-server"
+    "server": "env-cmd -f '../.env' --use-shell \"http-server -p \\$RAVEN_UI_PORT --proxy \\$RAVEN_UI_HOST:\\$RAVEN_UI_PORT? ./dist -c 31536000 --gzip --log-ip\"",
+    "start": "npm run build && npm run server"
   },
   "author": "",
   "license": "ISC",
@@ -29,6 +29,7 @@
     "react-icons": "^4.3.1",
     "react-query": "^3.34.15",
     "react-router-dom": "^6.2.1",
+    "rimraf": "^3.0.2",
     "styled-components": "^5.3.3",
     "terser-webpack-plugin": "^5.3.1",
     "typescript": "^4.5.5",

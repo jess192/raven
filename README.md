@@ -53,7 +53,7 @@ $ poetry run python raven_scraper
 
 ### Frontend
 ```shell
-$ npm run build-run --prefix raven_ui
+$ npm run start --prefix raven_ui
 ```
 
 
