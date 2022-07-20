@@ -32,7 +32,11 @@ export type ThemeObjectType = {
   },
   border: {
     primary: string,
+    secondary: string,
   },
+  image: {
+    filter: string
+  }
 }
 
 export const GlobalStyle = createGlobalStyle`
@@ -56,13 +60,13 @@ const shared = {
 export const DarkTheme: ThemeObjectType = {
   fonts: shared.fonts,
   bgColor: {
-    primary: '#1d1f1f',
-    secondary: '#303030',
-    tertiary: '#1d1d1d',
+    primary: '#2a2b30',
+    secondary: '#3c3c3c',
+    tertiary: '#28292e',
   },
   color: {
     primary: '#86a0a7',
-    secondary: '#fff',
+    secondary: '#ffffff',
     tertiary: '#707070',
     quaternary: '#c0c0c0',
     button: '#565656',
@@ -75,16 +79,20 @@ export const DarkTheme: ThemeObjectType = {
   },
 
   border: {
-    primary: '#494848',
+    primary: '#4c4c4c',
+    secondary: '#393838',
+  },
+  image: {
+    filter: 'brightness(85%)',
   },
 };
 
 export const LightTheme: ThemeObjectType = {
   fonts: shared.fonts,
   bgColor: {
-    primary: '#f7f7f7',
+    primary: '#f1efef',
     secondary: '#FFF',
-    tertiary: '#F6F6F6',
+    tertiary: '#f1f1f1',
   },
   color: {
     primary: '#55b2cb',
@@ -101,5 +109,9 @@ export const LightTheme: ThemeObjectType = {
   },
   border: {
     primary: '#e7e7e7',
+    secondary: '#ddd',
+  },
+  image: {
+    filter: 'none',
   },
 };

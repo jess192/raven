@@ -5,7 +5,7 @@ export const ProductCardStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 330px;
+  height: 342px;
   width: 230px;
   border: 1px solid ${(props) => props.theme.border.primary};
   border-radius: 8px;
@@ -62,7 +62,7 @@ export const ProductCardTitleStyle = styled.div`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  margin-top: 10px;
+  margin-top: 20px;
   height: 40px;
 `;
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const InsertCardStyle = styled.div`
   background-color: ${(props) => props.theme.bgColor.secondary};
   width: inherit;
-  height: 350px;
+  height: 362px;
   border: 1px solid ${(props) => props.theme.border.primary};
   border-radius: 8px;
 `;

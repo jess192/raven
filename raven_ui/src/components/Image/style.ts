@@ -16,4 +16,9 @@ export const ImageStyle = styled.img`
   height: inherit;
   width: inherit;
   object-fit: contain;
+  background-color: #FFF;
+  padding: 3px;
+  
+  filter: ${(props) => props.theme.image.filter};
+  border-radius: 16px;
 `;

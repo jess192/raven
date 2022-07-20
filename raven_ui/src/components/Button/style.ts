@@ -19,6 +19,5 @@ export const ButtonStyle = styled.button<{width: number}>`
   :hover :not(:disabled) {
     cursor: pointer;
     border: 2px solid ${(props) => props.theme.color.primary};
-    background-color: ${(props) => props.theme.color.button};
   }
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from '@/styles/responsive';
 
 export const HeaderStyle = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.border.primary};
+  border-bottom: 1px solid ${(props) => props.theme.border.secondary};
   background-color: ${(props) => props.theme.bgColor.tertiary};
   display: flex;
   flex-direction: row;
@@ -23,11 +23,12 @@ export const HeaderTitleStyle = styled.div`
   font-family: ${(props) => props.theme.fonts.primary};
   font-size: 58px;
   margin-top: -10px;
+  color: ${(props) => props.theme.color.primary};
 `;
 
 export const HeaderSubtitleStyle = styled.div`
   margin-top: -14px;
-  padding-bottom: 7px;
+  padding-bottom: 10px;
   font-size: 14px;
   font-family: ${(props) => props.theme.fonts.primary};
   color: ${(props) => props.theme.color.quaternary};
