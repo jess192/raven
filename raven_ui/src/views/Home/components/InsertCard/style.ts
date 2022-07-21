@@ -46,6 +46,7 @@ export const InsertCardBackTextStyle = styled.div`
   margin-bottom: 6px;
   font-family: ${(props) => props.theme.fonts.tertiary};
   font-size: 26px;
+  color: ${(props) => props.theme.color.primary};
 `;
 
 export const SubTextStyle = styled.div`

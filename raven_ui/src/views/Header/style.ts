@@ -24,6 +24,7 @@ export const HeaderTitleStyle = styled.div`
   font-size: 58px;
   margin-top: -10px;
   color: ${(props) => props.theme.color.primary};
+  filter: brightness(90%);
 `;
 
 export const HeaderSubtitleStyle = styled.div`

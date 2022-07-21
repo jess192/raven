@@ -95,7 +95,7 @@ export const ProductCardPercentStyle = styled.div<{change: number}>`
   display: flex;
   align-items: center;
   border: 1px solid ${(props) => (props.change > 0 ? props.theme.codes.warning : props.theme.codes.success)};
-  background-color: ${(props) => (props.change > 0 ? props.theme.codes.warning.concat('80') : props.theme.codes.success.concat('80'))};
+  background-color: ${(props) => (props.change > 0 ? props.theme.codes.warning.concat('90') : props.theme.codes.success.concat('90'))};
   border-radius: 20px;
   padding: 2px 9px;
   font-family: ${(props) => props.theme.fonts.primary};
@@ -133,9 +133,10 @@ export const ProductDeletePromptStyle = styled.div<{isLoading: boolean}>`
 
 export const DeleteCardHeadTextStyle = styled.div`
   font-family: ${(props) => props.theme.fonts.tertiary};
-  font-size: 24px;
+  font-size: 30px;
   margin-bottom: 10px;
   text-align: center;
+  color: ${(props) => props.theme.color.primary};
 `;
 
 export const DeleteCardTextStyle = styled.div`

@@ -4,7 +4,7 @@ import * as Switch from '@radix-ui/react-switch';
 export const ToggleSwitchStyle = styled(Switch.Root)`
   all: unset;
   cursor: pointer;
-  width: 55px;
+  width: 48px;
   height: 28px;
   background-color: ${(props) => props.theme.bgColor.secondary};
   border: 2px solid ${(props) => props.theme.color.tertiary};

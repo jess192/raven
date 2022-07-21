@@ -65,7 +65,7 @@ export const DarkTheme: ThemeObjectType = {
     tertiary: '#28292e',
   },
   color: {
-    primary: '#86a0a7',
+    primary: '#a5c7d0',
     secondary: '#ffffff',
     tertiary: '#707070',
     quaternary: '#c0c0c0',
@@ -73,8 +73,8 @@ export const DarkTheme: ThemeObjectType = {
   },
   codes: {
     error: '#cc6666',
-    warning: '#f0c674',
-    success: '#b5bd68',
+    warning: '#fdb936',
+    success: '#8fbd68',
     disabled: '#2f2f2f',
   },
 
@@ -103,8 +103,8 @@ export const LightTheme: ThemeObjectType = {
   },
   codes: {
     error: '#c82829',
-    warning: '#eab700',
-    success: '#718c00',
+    warning: '#ffd43b',
+    success: '#9fc114',
     disabled: '#f5f5f5',
   },
   border: {

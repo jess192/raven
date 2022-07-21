@@ -9,7 +9,7 @@ type ThrobberStylePropsType = {
 export const ThrobberStyle = styled.div<ThrobberStylePropsType>`
   border-width: ${(props: ThrobberStylePropsType) => toPixels(props.thickness)};
   border-style: solid;
-  border-color: #f3f3f3;
+  border-color: ${(props) => props.theme.color.primary}10;
   border-top-color: ${(props) => props.theme.color.primary};
   border-radius: 50%;
   width: ${(props: ThrobberStylePropsType) => toPixels(props.squareSize)};
