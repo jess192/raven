@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const HomeViewStyle = styled.div`
+export const HomeViewStyle = styled.main`
   margin:20px;
 `;
 
-export const ProductsWrapperStyle = styled.div`
+export const ProductsWrapperStyle = styled.section`
   display: flex;
   flex-wrap: wrap;
   width: 100%;

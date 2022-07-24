@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { device } from '@/styles/responsive';
 
-export const FilterSortStyle = styled.div`
+export const FilterSortStyle = styled.menu`
+  all: unset;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -14,7 +15,7 @@ export const FilterSortStyle = styled.div`
   }
 `;
 
-export const FilterStyle = styled.div`
+export const FilterStyle = styled.section`
   display: flex;
   flex-wrap: wrap;
   
@@ -26,14 +27,20 @@ export const FilterStyle = styled.div`
   }
 `;
 
-export const FilterItemStyle = styled.div`
+export const FilterItemStyle = styled.li`
   margin-right: 20px;
   display: flex;
   align-items: center;
   
-  li {
+  ul {
     all: unset;
-    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    
+    li {
+      list-style: none;
+      margin-right: 10px;
+    }
   }
 `;
 
@@ -49,7 +56,7 @@ export const PriceFilterItemStyle = styled(FilterItemStyle)`
   }
 `;
 
-export const ShowingItemsStyle = styled.div`
+export const ShowingItemsStyle = styled.li`
   margin-left: 20px;  
   display: flex;
   align-items: center;
@@ -60,7 +67,7 @@ export const ShowingItemsStyle = styled.div`
   }
 `;
 
-export const SortStyle = styled.div`
+export const SortStyle = styled.section`
   @media screen and ${device.sizeXS} {
     display: none;
   }

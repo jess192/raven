@@ -7,7 +7,8 @@ type FlipCardStylePropsType = {
   speedMs: number
 }
 
-export const FlipCardStyle = styled.div<FlipCardStylePropsType>`
+export const FlipCardStyle = styled.li<FlipCardStylePropsType>`
+  list-style: none;
   position: relative;
   transform: ${(props: FlipCardStylePropsType) => (props.flipped ? 'rotateY(-180deg)' : '')};
   transition-duration: ${(props: FlipCardStylePropsType) => toMs(props.speedMs)};

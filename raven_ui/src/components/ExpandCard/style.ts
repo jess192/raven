@@ -13,7 +13,8 @@ type ExpandCardViewStylePropsType = {
   show: boolean
 }
 
-export const ExpandCardStyle = styled.div<ExpandCardStylePropsType>`
+export const ExpandCardStyle = styled.li<ExpandCardStylePropsType>`
+  list-style: none;
   width: ${(props: ExpandCardStylePropsType) => (props.expanded ? toPixels(props.endWidth) : toPixels(props.startWidth))};
   transition-timing-function: ease-in-out;
   transition-duration: ${(props: ExpandCardStylePropsType) => toMs(props.speedMs)};

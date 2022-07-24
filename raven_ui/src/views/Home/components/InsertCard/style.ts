@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const InsertCardStyle = styled.div`
+const InsertCardStyle = styled.section`
   background-color: ${(props) => props.theme.bgColor.secondary};
   width: inherit;
   height: 362px;

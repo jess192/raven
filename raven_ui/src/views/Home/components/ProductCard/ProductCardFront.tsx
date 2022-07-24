@@ -41,7 +41,10 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
     <ProductCardStyle>
       <ProductCardHeadStyle>
 
-        <ProductCardTimeStyle title={`${fromNowString} since product was added on ${formatDate(firstTimestamp)}`}>
+        <ProductCardTimeStyle
+          title={`${fromNowString} since product was added on ${formatDate(firstTimestamp)}`}
+          dateTime={firstTimestamp}
+        >
           {fromNowString}
         </ProductCardTimeStyle>
 
@@ -73,7 +76,10 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
       <ProductCardPriceWrapperStyle
         title={`current:\t${formattedPrice}\t${formatDate(timestamp)}\noriginal:\t${formatPrice(firstPrice)}\t${formatDate(firstTimestamp)}\nchange:\t${percentChange}%`}
       >
-        <ProductCardPriceStyle oos={formattedPrice === 'out of stock'}>
+        <ProductCardPriceStyle
+          oos={formattedPrice === 'out of stock'}
+          value={formattedPrice}
+        >
           {formattedPrice}
         </ProductCardPriceStyle>
 

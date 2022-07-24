@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import { device } from '@/styles/responsive';
 
-export const ProductCardStyle = styled.div`
+export const ProductCardStyle = styled.dl`
+  all: unset;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,20 +19,21 @@ export const ProductCardStyle = styled.div`
   }
 `;
 
-export const ProductCardHeadStyle = styled.div`
+export const ProductCardHeadStyle = styled.section`
+  all: unset;
   display: flex;
   justify-content: space-between;
   width: 100%;
   border-bottom: 1px solid ${(props) => props.theme.border.primary};
 `;
 
-export const ProductCardTimeStyle = styled.div`
+export const ProductCardTimeStyle = styled.time`
   font-family: ${(props) => props.theme.fonts.primary};
   color: ${(props) => props.theme.color.quaternary};
   font-size: 17px;
 `;
 
-export const ProductCardHeadRightStyle = styled.div`
+export const ProductCardHeadRightStyle = styled.menu`
   display: flex;
   flex-direction: row;
   font-size: 22px;
@@ -47,13 +49,13 @@ export const ProductCardDeleteButtonStyle = styled.button`
   }
 `;
 
-export const ProductCardImgStyle = styled.div`
+export const ProductCardImgStyle = styled.picture`
   height: 180px;
   width: 180px;
   margin-top: 10px;
 `;
 
-export const ProductCardTitleStyle = styled.div`
+export const ProductCardTitleStyle = styled.dt`
   font-family: ${(props) => props.theme.fonts.secondary};
   color: ${(props) => props.theme.color.quaternary};
   font-size: 15px;
@@ -66,7 +68,8 @@ export const ProductCardTitleStyle = styled.div`
   height: 40px;
 `;
 
-export const ProductCardPriceWrapperStyle = styled.div`
+export const ProductCardPriceWrapperStyle = styled.dd`
+  all: unset;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -75,7 +78,7 @@ export const ProductCardPriceWrapperStyle = styled.div`
   border-top: 1px solid ${(props) => props.theme.border.primary};
 `;
 
-export const ProductCardPriceStyle = styled.div<{oos: boolean}>`
+export const ProductCardPriceStyle = styled.data<{oos: boolean}>`
   font-size: 28px;
   color: ${(props) => props.theme.color.quaternary};
   font-family: ${(props) => props.theme.fonts.primary};
@@ -127,7 +130,7 @@ export const ProductDeleteLoadingStyle = styled.div<{isLoading: boolean}>`
   display: ${(props) => (props.isLoading ? 'block' : 'none')};
 `;
 
-export const ProductDeletePromptStyle = styled.div<{isLoading: boolean}>`
+export const ProductDeletePromptStyle = styled.section<{isLoading: boolean}>`
   display: ${(props) => (props.isLoading ? 'none' : 'block')};
 `;
 

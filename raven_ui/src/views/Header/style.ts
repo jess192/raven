@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '@/styles/responsive';
 
-export const HeaderStyle = styled.div`
+export const HeaderStyle = styled.header`
   border-bottom: 1px solid ${(props) => props.theme.border.secondary};
   background-color: ${(props) => props.theme.bgColor.tertiary};
   display: flex;
@@ -10,15 +10,16 @@ export const HeaderStyle = styled.div`
   align-items: center;
 `;
 
-export const HeaderLeftStyle = styled.div`
+export const HeaderLeftStyle = styled.span`
   flex: 1;
 `;
 
-export const HeaderCenterStyle = styled.div`
+export const HeaderCenterStyle = styled.hgroup`
   text-align: center;
+  list-style: none;
 `;
 
-export const HeaderTitleStyle = styled.div`
+export const HeaderTitleStyle = styled.li`
   cursor: pointer;
   font-family: ${(props) => props.theme.fonts.primary};
   font-size: 58px;
@@ -27,7 +28,7 @@ export const HeaderTitleStyle = styled.div`
   filter: brightness(90%);
 `;
 
-export const HeaderSubtitleStyle = styled.div`
+export const HeaderSubtitleStyle = styled.li`
   margin-top: -14px;
   padding-bottom: 10px;
   font-size: 14px;
@@ -35,11 +36,11 @@ export const HeaderSubtitleStyle = styled.div`
   color: ${(props) => props.theme.color.quaternary};
 `;
 
-export const HeaderRightStyle = styled.div`
+export const HeaderRightStyle = styled.section`
   flex: 1;
 `;
 
-export const BigMenuStyle = styled.div`
+export const BigMenuStyle = styled.nav`
   text-align: right;
   display: flex;
   justify-content: end;
@@ -51,7 +52,7 @@ export const BigMenuStyle = styled.div`
   }
 `;
 
-export const SmallMenuStyle = styled.div`
+export const SmallMenuStyle = styled.nav`
   display: none;
   @media screen and ${device.sizeXS} {
     display: flex;
@@ -60,7 +61,7 @@ export const SmallMenuStyle = styled.div`
   }
 `;
 
-export const SmallMenuSlidedownStyle = styled.div<{show: boolean}>`
+export const SmallMenuSlidedownStyle = styled.aside<{show: boolean}>`
   display: none;
   @media screen and ${device.sizeXS} {
     display: ${(props) => (props.show ? 'flex' : 'none')};

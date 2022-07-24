@@ -40,25 +40,29 @@ export default function Filter(props: FilterSortPropsType) {
         </SearchFilterItemStyle>
 
         <FilterItemStyle title="show only products in stock">
-          <li>in stock:</li>
-          <li>
-            <ToggleSwitch
-              label="toggle availability"
-              toggle={availability}
-              setToggle={setAvailability}
-            />
-          </li>
+          <ul>
+            <li>in stock:</li>
+            <li>
+              <ToggleSwitch
+                label="toggle availability"
+                toggle={availability}
+                setToggle={setAvailability}
+              />
+            </li>
+          </ul>
         </FilterItemStyle>
 
         <PriceFilterItemStyle title="price range">
-          <li>price:</li>
-          <li>
-            <PriceSlider
-              priceRange={priceRange}
-              price={price}
-              setPrice={setPrice}
-            />
-          </li>
+          <ul>
+            <li>price:</li>
+            <li>
+              <PriceSlider
+                priceRange={priceRange}
+                price={price}
+                setPrice={setPrice}
+              />
+            </li>
+          </ul>
         </PriceFilterItemStyle>
 
         {/* TODO - add disabled functionality */}
