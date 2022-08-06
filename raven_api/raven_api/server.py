@@ -22,7 +22,7 @@ def get_prices():
     try:
         product_prices: dict = RavenDb().select_products_prices()
     except Exception as e:
-        exception_msg = f'Unable to list of products. {e}'
+        exception_msg = f'Unable to get list of products. {e}'
         logger.error(exception_msg)
         raise HTTPException(status_code=404, detail=exception_msg)
     else:

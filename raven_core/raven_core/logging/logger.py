@@ -32,5 +32,3 @@ def configure_logging():
     except Exception as e:
         print('Logger configuration failed. ', e)
         sys.exit(1)
-    else:
-        logger.success('Logging setup complete')

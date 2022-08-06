@@ -1,16 +1,15 @@
 import os
 import sqlite3
 from sqlite3 import Connection, Cursor
-from dotenv import load_dotenv
 from raven_core.logging.exceptions import UniqueProductException, NotBeingTrackedException
 from raven_core.logging.logger import logger
+from raven_core.utils import get_env
 from raven_scraper.providers.amazon_provider import AmazonProvider
 
 
 class RavenDb:
     def __init__(self):
-        load_dotenv()
-        self._db_name = os.getenv('RAVEN_DB_LOCATION')
+        self._db_name = get_env('RAVEN_DB_LOCATION')
         self._schema_sql = self._get_path('sql/schema.sql')
 
     @staticmethod
