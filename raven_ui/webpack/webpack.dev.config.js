@@ -7,7 +7,6 @@ const DEV_CONFIG = {
   devtool: 'inline-source-map',
   devServer: {
     compress: true,
-    port: 9000,
     hot: true,
     historyApiFallback: true,
   },

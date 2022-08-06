@@ -2,7 +2,7 @@ import { QueryClient, useMutation, useQuery, useQueryClient } from 'react-query'
 import axios from 'axios';
 import { ProductsEndpointType } from '@/api/types';
 
-const API_URL: string = process.env.RAVEN_API_URL;
+const API_URL: string = process.env.RAVEN_API_HOST.concat(':', process.env.RAVEN_API_PORT);
 
 export const useProducts = () => useQuery<ProductsEndpointType, Error>('products', async () => {
   const { data } = await axios.get(`${API_URL}/products`);
