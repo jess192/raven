@@ -16,15 +16,8 @@ class RavenDb:
     def _get_path(path: str) -> str:
         return f'{os.path.dirname(__file__)}/{path}'
 
-    def _create_connection(self) -> Connection:
-        try:
-            return sqlite3.connect(self._db_name)
-        except Exception:
-            raise
-
-    def db_init(self) -> None:
+    def _db_init(self, conn) -> None:
         logger.info('Initializing DB')
-        conn: Connection = self._create_connection()
 
         with conn:
             curr: Cursor = conn.cursor()
@@ -38,6 +31,24 @@ class RavenDb:
                 raise
             else:
                 logger.success('Database has been initialized')
+
+    def _check_db_exists(self, conn: Connection) -> None:
+        with conn:
+            curr: Cursor = conn.cursor()
+
+            statement: str = '''SELECT name FROM sqlite_master'''
+            curr.execute(statement)
+
+            if not curr.fetchall():
+                self._db_init(conn)
+
+    def _create_connection(self) -> Connection:
+        try:
+            conn: Connection = sqlite3.connect(self._db_name)
+            self._check_db_exists(conn)
+            return conn
+        except Exception:
+            raise
 
     def get_product_id_list(self) -> list:
         logger.info('Getting list of product IDs')
@@ -196,7 +207,3 @@ class RavenDb:
 
             statement_items: str = """DELETE FROM ITEMS WHERE ID = ?"""
             curr.execute(statement_items, [product_id])
-
-
-if __name__ == '__main__':
-    RavenDb().db_init()
