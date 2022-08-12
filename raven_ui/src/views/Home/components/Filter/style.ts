@@ -5,7 +5,7 @@ export const FilterSortStyle = styled.menu`
   all: unset;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 30px 0 30px 1px;
 
@@ -50,12 +50,6 @@ export const SearchFilterItemStyle = styled(FilterItemStyle)`
   }
 `;
 
-export const PriceFilterItemStyle = styled(FilterItemStyle)`
-  @media screen and ${device.sizeS} {
-    display: none;
-  }
-`;
-
 export const ShowingItemsStyle = styled.li`
   margin-left: 20px;  
   display: flex;
@@ -63,12 +57,6 @@ export const ShowingItemsStyle = styled.li`
   padding: 10px;
 
   @media screen and ${device.sizeL} {
-    display: none;
-  }
-`;
-
-export const SortStyle = styled.section`
-  @media screen and ${device.sizeXS} {
     display: none;
   }
 `;

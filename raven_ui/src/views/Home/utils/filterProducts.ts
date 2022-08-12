@@ -11,14 +11,6 @@ const filterByAvailability = (currentPrice: number, availability: boolean): bool
   !availability || currentPrice !== null
 );
 
-const filterByMinPrice = (currentPrice: number, min: number): boolean => (
-  min > 0 ? currentPrice >= min : true
-);
-
-const filterByMaxPrice = (currentPrice: number, max: number): boolean => (
-  max > 0 ? currentPrice <= max && currentPrice !== null : true
-);
-
 const sortNotRecentlyAdded = (filtered: ProductListType): ProductListType => (
   filtered.reverse()
 );
@@ -54,10 +46,8 @@ export const filterProducts = (productList: ProductListType, filter: FilterType)
 
     const searchFilter: boolean = filterBySearch(product.title, filter.search);
     const availabilityFilter: boolean = filterByAvailability(currentPrice, filter.availability);
-    const minPriceFilter: boolean = filterByMinPrice(currentPrice, filter.price.min);
-    const maxPriceFilter:boolean = filterByMaxPrice(currentPrice, filter.price.max);
 
-    return searchFilter && availabilityFilter && minPriceFilter && maxPriceFilter;
+    return searchFilter && availabilityFilter;
   });
 
   switch (filter.sort) {

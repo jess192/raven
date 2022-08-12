@@ -36,6 +36,12 @@ export type ThemeObjectType = {
   },
   image: {
     filter: string
+  },
+  shadow: {
+    primary: string
+  },
+  gradient: {
+    primary: string
   }
 }
 
@@ -85,13 +91,19 @@ export const DarkTheme: ThemeObjectType = {
   image: {
     filter: 'brightness(85%)',
   },
+  shadow: {
+    primary: '4px 4px 7px #161616',
+  },
+  gradient: {
+    primary: 'linear-gradient(to bottom right, #6cb3bb 20%, #bfa2f2 70%)',
+  },
 };
 
 export const LightTheme: ThemeObjectType = {
   fonts: shared.fonts,
   bgColor: {
     primary: '#f1efef',
-    secondary: '#FFF',
+    secondary: '#fff',
     tertiary: '#f1f1f1',
   },
   color: {
@@ -113,5 +125,11 @@ export const LightTheme: ThemeObjectType = {
   },
   image: {
     filter: 'none',
+  },
+  shadow: {
+    primary: '4px 4px 7px #dddcdc',
+  },
+  gradient: {
+    primary: 'linear-gradient(to bottom right, #36cbdc 20%, #b89ceb 70%)',
   },
 };

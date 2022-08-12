@@ -12,7 +12,7 @@ export const ProductCardStyle = styled.dl`
   border-radius: 8px;
   padding: 10px;
   background-color: ${(props) => props.theme.bgColor.secondary};
-  transition: .4s;
+  box-shadow: ${(props) => props.theme.shadow.primary};
 
   @media screen and ${device.sizeXS} {
     width: calc(100% - 20px);
@@ -33,7 +33,7 @@ export const ProductCardTimeStyle = styled.time`
   font-size: 17px;
 `;
 
-export const ProductCardHeadRightStyle = styled.menu`
+export const ProductCardHeadRightStyle = styled.div`
   display: flex;
   flex-direction: row;
   font-size: 22px;
@@ -42,7 +42,6 @@ export const ProductCardHeadRightStyle = styled.menu`
 export const ProductCardDeleteButtonStyle = styled.button`
   all: unset;
   cursor: pointer;
-  transition: .4s;
 
   :hover {
     color: ${(props) => props.theme.color.primary};
@@ -104,7 +103,6 @@ export const ProductCardPercentStyle = styled.div<{change: number}>`
   font-family: ${(props) => props.theme.fonts.primary};
   font-size: 18px;
 
-
   svg {
     margin-right: 4px;
     font-size: 15px;
@@ -115,9 +113,8 @@ export const ProviderLinkStyle = styled.a`
   all: unset;
   cursor: pointer;
   margin-right: 7px;
-  transition: .4s;
 
-  :hover {
+  :hover, :focus {
     color: ${(props) => props.theme.color.primary};
   }
 `;

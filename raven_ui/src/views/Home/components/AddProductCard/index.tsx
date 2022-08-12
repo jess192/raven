@@ -1,36 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useInsertProduct } from '@/api';
+import { QueryErrorType } from '@/views/Home/types';
+import { useClickOutside } from '@/hooks/useClickOutside';
 import Throbber from '@/components/Throbber';
 import Button from '@/components/Button';
 import InputBox from '@/components/InputBox';
-import { QueryErrorType } from '@/views/Home/types';
-import { InsertCardBackPropsType } from './types';
 import {
-  InsertCardBackButtonsStyle,
-  InsertCardBackFormStyle, InsertCardBackStatusStyle,
-  InsertCardBackLoadingStyle,
-  InsertCardBackStyle,
-  InsertCardBackTextStyle, SubTextStyle,
+  AddProductCardStyle, AddProductCardFormStyle, AddProductCardTextStyle, AddProductCardSubtextStyle,
+  AddProductCardStatusStyle, AddProductCardButtonWrapperStyle, AddProductCardLoadingStyle,
 } from './style';
 
-export default function InsertCardBack(props: InsertCardBackPropsType) {
-  const { expand, setExpand } = props;
+export default function AddProductCard() {
   const [url, setUrl] = useState('');
-  const [transition, setTransition] = useState(true);
   const { mutate, reset, isLoading, isError, error, isSuccess } = useInsertProduct();
-
-  useEffect(() => {
-    if (expand) {
-      setTransition(true);
-      setTimeout(() => {
-        setTransition(false);
-      }, 400);
-    } else {
-      setTransition(true);
-      reset();
-      setUrl('');
-    }
-  }, [expand]);
+  const { ref } = useClickOutside(() => reset());
 
   useEffect(() => {
     if (isSuccess) {
@@ -47,10 +30,6 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
     mutate(url);
   };
 
-  const closeExpand = (): void => {
-    setExpand(false);
-  };
-
   const showStatus = () => {
     let statusMsg: string = '';
     let statusType: string = '';
@@ -63,30 +42,32 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
       statusType = 'success';
     }
     return (
-      <InsertCardBackStatusStyle type={statusType}>
+      <AddProductCardStatusStyle type={statusType}>
         {statusMsg}
-      </InsertCardBackStatusStyle>
+      </AddProductCardStatusStyle>
     );
   };
 
-  if (isLoading || transition) {
+  if (isLoading) {
     return (
-      <InsertCardBackLoadingStyle>
+      <AddProductCardLoadingStyle>
         <Throbber
           squareSize={50}
           thickness={5}
         />
-      </InsertCardBackLoadingStyle>
+      </AddProductCardLoadingStyle>
     );
   }
 
   return (
-    <InsertCardBackStyle>
-      <InsertCardBackFormStyle onSubmit={handleSubmit}>
-        <InsertCardBackTextStyle>
+    <AddProductCardStyle>
+      <AddProductCardFormStyle onSubmit={handleSubmit}>
+        <AddProductCardTextStyle>
           enter an amazon url to start tracking prices
-        </InsertCardBackTextStyle>
-        <SubTextStyle>raven will support other providers in the future</SubTextStyle>
+        </AddProductCardTextStyle>
+        <AddProductCardSubtextStyle>
+          raven will support other providers in the future
+        </AddProductCardSubtextStyle>
 
         <InputBox
           type="text"
@@ -100,12 +81,11 @@ export default function InsertCardBack(props: InsertCardBackPropsType) {
 
         {showStatus()}
 
-        <InsertCardBackButtonsStyle>
-          <Button type="button" onClick={closeExpand} title="cancel">cancel</Button>
-          <Button type="submit" disabled={isLoading || url === ''} title="add product">add product</Button>
-        </InsertCardBackButtonsStyle>
+        <AddProductCardButtonWrapperStyle>
+          <Button _ref={ref} type="submit" disabled={isLoading || url === ''} title="add product">add product</Button>
+        </AddProductCardButtonWrapperStyle>
 
-      </InsertCardBackFormStyle>
-    </InsertCardBackStyle>
+      </AddProductCardFormStyle>
+    </AddProductCardStyle>
   );
 }

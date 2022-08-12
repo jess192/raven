@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { device } from '@/styles/responsive';
 
 export const HeaderStyle = styled.header`
-  border-bottom: 1px solid ${(props) => props.theme.border.secondary};
-  background-color: ${(props) => props.theme.bgColor.tertiary};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -20,12 +18,13 @@ export const HeaderCenterStyle = styled.hgroup`
 `;
 
 export const HeaderTitleStyle = styled.li`
-  cursor: pointer;
   font-family: ${(props) => props.theme.fonts.primary};
   font-size: 58px;
   margin-top: -10px;
   color: ${(props) => props.theme.color.primary};
-  filter: brightness(90%);
+  background: ${(props) => props.theme.gradient.primary};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 export const HeaderSubtitleStyle = styled.li`

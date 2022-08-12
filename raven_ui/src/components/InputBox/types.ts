@@ -10,4 +10,5 @@ export type InputBoxPropsType = {
   height?: number,
   fontSize?: number,
   title?: string,
+  shadow?: boolean
 }

@@ -7,8 +7,10 @@ export const HomeViewStyle = styled.main`
 export const ProductsWrapperStyle = styled.section`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 90%;
+  margin: auto;
   gap: 16px;
+  justify-content: center;
 `;
 
 export const HomeThrobberWrapperStyle = styled.div`

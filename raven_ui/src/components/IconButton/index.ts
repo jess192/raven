@@ -6,6 +6,7 @@ export const IconButton = styled.button`
   color: ${(props) => props.theme.color.quaternary};
   background-color: ${(props) => props.theme.bgColor.secondary};
   border: 2px solid ${(props) => props.theme.border.primary};
+  box-shadow: ${(props) => props.theme.shadow.primary};
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -14,7 +15,6 @@ export const IconButton = styled.button`
   height: 25px;
   width: 25px;
   font-size: 30px;
-  transition: .2s;
 
   :hover {
     background: ${(props) => props.theme.color.primary};

@@ -45,7 +45,7 @@ export default function Header() {
         <HeaderLeftStyle />
 
         <HeaderCenterStyle title="raven - product price tracker">
-          <HeaderTitleStyle onClick={() => navigate(nav.home)}>raven</HeaderTitleStyle>
+          <HeaderTitleStyle>raven</HeaderTitleStyle>
           <HeaderSubtitleStyle>product price tracker</HeaderSubtitleStyle>
         </HeaderCenterStyle>
 

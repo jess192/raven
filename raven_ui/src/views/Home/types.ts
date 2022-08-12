@@ -2,7 +2,6 @@ export enum HomeActionsEnum {
   SET_SORT = 'SET_SORT',
   SET_SEARCH = 'SET_SEARCH',
   SET_AVAILABILITY = 'SET_AVAILABILITY',
-  SET_PRICE = 'SET_PRICE',
   RESET_FILTERS = 'RESET_FILTERS'
 }
 
@@ -19,10 +18,6 @@ export type FilterType = {
   sort: SortByEnum,
   search: string,
   availability: boolean,
-  price: {
-    min?: number,
-    max?: number
-  }
 }
 
 export type HomeStateType = FilterType

@@ -6,15 +6,6 @@ export type FilterSortPropsType = {
   setSearch: Function,
   availability: boolean,
   setAvailability: Function,
-  priceRange: {
-    min: number,
-    max: number,
-  },
-  price: {
-    min?: number,
-    max?: number
-  },
-  setPrice: Function,
   resetFilters: Function,
   numProducts: number,
   numProductsFiltered: number,

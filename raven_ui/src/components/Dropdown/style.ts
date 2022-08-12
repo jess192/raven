@@ -16,8 +16,9 @@ export const DropdownMenuStyle = styled(DropdownMenu.Root)``;
 export const DropdownTriggerStyle = styled(DropdownMenu.Trigger)<DropdownStyleProps>`
   all: unset;
   cursor: pointer;
-  border: 2px solid ${(props) => props.theme.color.tertiary};
+  border: 1px solid ${(props) => props.theme.color.tertiary};
   background-color: ${(props) => props.theme.bgColor.secondary};
+  box-shadow: ${(props) => props.theme.shadow.primary};
   width: ${(props) => toPixels(props.width)};
   display: flex;
   justify-content: space-between;
@@ -41,9 +42,9 @@ export const DropdownTriggerIconStyle = styled.div`
 export const DropdownContentStyle = styled(DropdownMenu.Content)<DropdownStyleProps>`
   width: ${(props) => toPixels(props.width - 10)};
   background-color: ${(props) => props.theme.bgColor.secondary};
-  border-left: 2px solid ${(props) => props.theme.color.tertiary};
-  border-right: 2px solid ${(props) => props.theme.color.tertiary};
-  border-bottom: 2px solid ${(props) => props.theme.color.tertiary};
+  border: 1px solid ${(props) => props.theme.color.tertiary};
+  box-shadow: ${(props) => props.theme.shadow.primary};
+  border-top: none;
   cursor: pointer;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;

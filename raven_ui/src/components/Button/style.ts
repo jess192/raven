@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { toPixels } from '@/utils/formatting';
 
-export const ButtonStyle = styled.button<{width: number}>`
+export const ButtonStyle = styled.button<{width: number, shadow: boolean}>`
   all: unset;
   cursor: default;
   padding: 6px 15px 7px 15px;
-  transition: .4s;
   width: ${(props) => (props.width ? toPixels(props.width) : 'inherit')};
-  border: 2px solid ${(props) => props.theme.color.tertiary};
+  box-shadow: ${(props) => (props.shadow ? props.theme.shadow.primary : 'none')};
+  border: 1px solid ${(props) => props.theme.color.tertiary};
   border-radius: 17px;
   background-color: ${(props) => props.theme.bgColor.secondary};
 
@@ -16,8 +16,9 @@ export const ButtonStyle = styled.button<{width: number}>`
     color: ${(props) => props.theme.color.tertiary};
   }
   
-  :hover :not(:disabled) {
+  :hover :not(:disabled), :focus {
     cursor: pointer;
-    border: 2px solid ${(props) => props.theme.color.primary};
+    border-color: ${(props) => props.theme.color.primary};
+    transition: .4s;
   }
 `;

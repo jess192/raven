@@ -6,20 +6,17 @@ import { ProductType } from '@/api/types';
 import { HomeContext } from './context';
 import { filterProducts } from './utils/filterProducts';
 import {
-  HomeThrobberWrapperStyle,
-  ProductsWrapperStyle,
-  HomeViewStyle,
-  HomeViewErrorStyle,
-  HomeViewErrorTextStyle,
+  HomeThrobberWrapperStyle, ProductsWrapperStyle, HomeViewStyle,
+  HomeViewErrorStyle, HomeViewErrorTextStyle,
 } from './style';
 import { FilterType, HomeActionsEnum, SortByEnum } from './types';
 import Filter from './components/Filter';
-import InsertCard from './components/InsertCard';
+import AddProductCard from './components/AddProductCard';
 import ProductCard from './components/ProductCard';
 
 export default function HomeView() {
   const { state, dispatch } = useContext(HomeContext);
-  const { isLoading, isError, data, error } = useProducts();
+  const { isLoading, isError, data } = useProducts();
   const [productsFiltered, setProductsFiltered] = useState([]);
 
   useEffect(() => {
@@ -30,7 +27,6 @@ export default function HomeView() {
     const filter: FilterType = {
       search: state.search,
       availability: state.availability,
-      price: state.price,
       sort: state.sort,
     };
 
@@ -68,9 +64,6 @@ export default function HomeView() {
         setSearch={(val: string) => dispatch({ type: HomeActionsEnum.SET_SEARCH, value: val })}
         availability={state.availability}
         setAvailability={() => dispatch({ type: HomeActionsEnum.SET_AVAILABILITY })}
-        priceRange={{ min: data.minPrice, max: data.maxPrice }}
-        price={state.price}
-        setPrice={(val: number[]) => dispatch({ type: HomeActionsEnum.SET_PRICE, value: val })}
         resetFilters={() => dispatch({ type: HomeActionsEnum.RESET_FILTERS })}
         numProducts={data.products.length}
         numProductsFiltered={productsFiltered.length}
@@ -91,7 +84,7 @@ export default function HomeView() {
         setSort={(val: SortByEnum) => dispatch({ type: HomeActionsEnum.SET_SORT, value: val })}
       />
       <ProductsWrapperStyle>
-        <InsertCard />
+        <AddProductCard />
 
         {productsFiltered.map((product: ProductType) => (
           <ProductCard

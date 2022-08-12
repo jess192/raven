@@ -6,7 +6,6 @@ const initialHomeState = {
   sort: SortByEnum.NEWEST,
   search: '',
   availability: false,
-  price: {},
 };
 
 function homeReducer(state: HomeStateType, action: HomeActionType) {
@@ -25,14 +24,6 @@ function homeReducer(state: HomeStateType, action: HomeActionType) {
       return {
         ...state,
         availability: !state.availability,
-      };
-    case HomeActionsEnum.SET_PRICE:
-      return {
-        ...state,
-        price: {
-          min: action.value[0],
-          max: action.value[1],
-        },
       };
     case HomeActionsEnum.RESET_FILTERS:
       return initialHomeState;
