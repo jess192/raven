@@ -26,7 +26,7 @@ type FromNowType = {
 }
 
 function formatFromNow(value: number, unit: FromNowEnum|string): FromNowType {
-  return { value: Math.floor(value), unit: Math.floor(value) > 1 ? unit.concat('s') : unit };
+  return { value: Math.floor(value), unit: Math.floor(value) === 1 ? unit : unit.concat('s') };
 }
 
 function getTimeFromNow(timestamp: string): FromNowType {
