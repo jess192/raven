@@ -1,4 +1,3 @@
-export type InsertCardFrontPropsType = {
-  setExpand: Function
+export type AddProductCardPropsType = {
+  resetFilters: Function,
 }
-

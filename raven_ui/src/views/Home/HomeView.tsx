@@ -84,7 +84,9 @@ export default function HomeView() {
         setSort={(val: SortByEnum) => dispatch({ type: HomeActionsEnum.SET_SORT, value: val })}
       />
       <ProductsWrapperStyle>
-        <AddProductCard />
+        <AddProductCard
+          resetFilters={() => dispatch({ type: HomeActionsEnum.RESET_FILTERS })}
+        />
 
         {productsFiltered.map((product: ProductType) => (
           <ProductCard

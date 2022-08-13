@@ -5,12 +5,14 @@ import { useClickOutside } from '@/hooks/useClickOutside';
 import Throbber from '@/components/Throbber';
 import Button from '@/components/Button';
 import InputBox from '@/components/InputBox';
+import { AddProductCardPropsType } from './types';
 import {
   AddProductCardStyle, AddProductCardFormStyle, AddProductCardTextStyle, AddProductCardSubtextStyle,
   AddProductCardStatusStyle, AddProductCardButtonWrapperStyle, AddProductCardLoadingStyle,
 } from './style';
 
-export default function AddProductCard() {
+export default function AddProductCard(props: AddProductCardPropsType) {
+  const { resetFilters } = props;
   const [url, setUrl] = useState('');
   const { mutate, reset, isLoading, isError, error, isSuccess } = useInsertProduct();
   const { ref } = useClickOutside(() => reset());
@@ -18,6 +20,7 @@ export default function AddProductCard() {
   useEffect(() => {
     if (isSuccess) {
       setUrl('');
+      resetFilters();
     }
   }, [isSuccess]);
 
