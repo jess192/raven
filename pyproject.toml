@@ -5,11 +5,9 @@ description = ""
 authors = []
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 raven_api = {path = "raven_api", develop = true}
 raven_scraper = {path = "raven_scraper", develop = true}
-
-[tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
