@@ -7,8 +7,8 @@ export default function Throbber(props: ThrobberPropsType) {
 
   return (
     <ThrobberStyle
-      squareSize={squareSize}
-      thickness={thickness}
+      $squareSize={squareSize}
+      $thickness={thickness}
     />
   );
 }

@@ -15,7 +15,7 @@ export default function FlipCard(props: FlipCardPropsType) {
   };
 
   return (
-    <FlipCardStyle flipped={flip} ref={ref} speedMs={speedMs}>
+    <FlipCardStyle ref={ref} $flipped={flip} $speedMs={speedMs}>
       <FrontCardStyle>
         {getCard(FlipCardEnum.FRONT_CARD)}
       </FrontCardStyle>

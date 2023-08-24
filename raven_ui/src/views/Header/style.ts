@@ -60,10 +60,10 @@ export const SmallMenuStyle = styled.nav`
   }
 `;
 
-export const SmallMenuSlidedownStyle = styled.aside<{show: boolean}>`
+export const SmallMenuSlidedownStyle = styled.aside<{$show: boolean}>`
   display: none;
   @media screen and ${device.sizeXS} {
-    display: ${(props) => (props.show ? 'flex' : 'none')};
+    display: ${(props) => (props.$show ? 'flex' : 'none')};
   }
   flex-direction: row;
   justify-content: center;

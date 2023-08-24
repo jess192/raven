@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, JSX } from 'react';
 import { BiChevronUp, BiChevronDown } from 'react-icons/bi';
 import { DropdownItemType, DropdownSectionType, DropdownPropsType, DropdownTitleType } from './types';
 import {
   DropdownMenuStyle, DropdownTriggerStyle, DropdownTriggerTitleStyle, DropdownTriggerIconStyle,
-  DropdownContentStyle, DropdownItemStyle, DropDownMenuLabelStyle, DropDownMenuSeparatorStyle,
+  DropdownContentStyleWrapper, DropdownContentStyle, DropdownItemStyle, DropDownMenuLabelStyle,
+  DropDownMenuSeparatorStyle,
 } from './style';
 
 export default function Dropdown(props: DropdownPropsType) {
@@ -15,7 +16,7 @@ export default function Dropdown(props: DropdownPropsType) {
   );
 
   const generateSeparator = (end: boolean): JSX.Element => (
-    !end ? <DropDownMenuSeparatorStyle /> : <></>
+    !end && <DropDownMenuSeparatorStyle />
   );
 
   const generateSections = (
@@ -52,9 +53,11 @@ export default function Dropdown(props: DropdownPropsType) {
         </DropdownTriggerIconStyle>
       </DropdownTriggerStyle>
 
-      <DropdownContentStyle width={width}>
-        {generateOptions(options)}
-      </DropdownContentStyle>
+      <DropdownContentStyleWrapper>
+        <DropdownContentStyle width={width}>
+          {generateOptions(options)}
+        </DropdownContentStyle>
+      </DropdownContentStyleWrapper>
     </DropdownMenuStyle>
   );
 }

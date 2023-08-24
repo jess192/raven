@@ -24,7 +24,7 @@ export const DropdownTriggerStyle = styled(DropdownMenu.Trigger)<DropdownStylePr
   justify-content: space-between;
   align-items: center;
 
-  :hover, :focus {
+  &:hover, &:focus {
     transition: .4s;
     border-color: ${(props) => props.theme.color.primary};
   }
@@ -37,6 +37,10 @@ export const DropdownTriggerTitleStyle = styled.div`
 export const DropdownTriggerIconStyle = styled.div`
   display: flex;
   padding: 7px;
+`;
+
+export const DropdownContentStyleWrapper = styled.div`
+  z-index: 1;
 `;
 
 export const DropdownContentStyle = styled(DropdownMenu.Content)<DropdownStyleProps>`
@@ -70,7 +74,7 @@ export const DropdownItemStyle = styled(DropdownMenu.Item)`
   display: flex;
   align-items: center;
 
-  :focus, :hover {
+  &:focus, &:hover {
     background-color: ${(props) => props.theme.color.primary}90;
     border-radius: 10px;
     outline: none;

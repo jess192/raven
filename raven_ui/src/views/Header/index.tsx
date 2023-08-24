@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, JSX } from 'react';
 import { RiGithubLine } from 'react-icons/ri';
 import { IconButton } from '@/components/IconButton';
 import { CgMenu } from 'react-icons/cg';
@@ -48,7 +48,7 @@ export default function Header() {
         </HeaderRightStyle>
       </HeaderStyle>
 
-      <SmallMenuSlidedownStyle show={menu}>
+      <SmallMenuSlidedownStyle $show={menu}>
         {navIcons}
       </SmallMenuSlidedownStyle>
     </>

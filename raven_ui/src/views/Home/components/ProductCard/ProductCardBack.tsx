@@ -34,14 +34,14 @@ export default function ProductCardBack(props: ProductCardBackPropsType) {
 
   return (
     <ProductDeleteCardStyle>
-      <ProductDeleteLoadingStyle isLoading={isLoading || isSuccess}>
+      <ProductDeleteLoadingStyle $isLoading={isLoading || isSuccess}>
         <Throbber
           squareSize={50}
           thickness={5}
         />
       </ProductDeleteLoadingStyle>
 
-      <ProductDeletePromptStyle isLoading={isLoading || isSuccess}>
+      <ProductDeletePromptStyle $isLoading={isLoading || isSuccess}>
         <DeleteCardHeadTextStyle>
           deleting...
         </DeleteCardHeadTextStyle>

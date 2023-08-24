@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { JSX } from 'react';
 import { VscClose } from 'react-icons/vsc';
 import { AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
 import { formatDate, formatPrice } from '@/utils/formatting';
@@ -31,7 +31,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
 
     // eslint-disable-next-line consistent-return
     return (
-      <ProductCardPercentStyle change={percentChange}>
+      <ProductCardPercentStyle $change={percentChange}>
         {perChange}
       </ProductCardPercentStyle>
     );
@@ -77,7 +77,7 @@ export default function ProductCardFront(props: ProductCardFrontPropsType) {
         title={`current:\t${formattedPrice}\t${formatDate(timestamp)}\noriginal:\t${formatPrice(firstPrice)}\t${formatDate(firstTimestamp)}\nchange:\t${percentChange}%`}
       >
         <ProductCardPriceStyle
-          oos={formattedPrice === 'out of stock'}
+          $oos={formattedPrice === 'out of stock'}
           value={formattedPrice}
         >
           {formattedPrice}

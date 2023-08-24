@@ -12,7 +12,7 @@ export const ToggleSwitchStyle = styled(Switch.Root)`
   position: relative;
   border-radius: 20px;
 
-  :focus, :hover {
+  &:focus, &:hover {
     transition: .4s;
     border-color: ${(props) => props.theme.color.primary};
   }

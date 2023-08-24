@@ -45,7 +45,7 @@ export default function AddProductCard(props: AddProductCardPropsType) {
       statusType = 'success';
     }
     return (
-      <AddProductCardStatusStyle type={statusType}>
+      <AddProductCardStatusStyle $type={statusType}>
         {statusMsg}
       </AddProductCardStatusStyle>
     );

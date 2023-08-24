@@ -43,7 +43,7 @@ export const ProductCardDeleteButtonStyle = styled.button`
   all: unset;
   cursor: pointer;
 
-  :hover {
+  &:hover {
     color: ${(props) => props.theme.color.primary};
   }
 `;
@@ -77,13 +77,13 @@ export const ProductCardPriceWrapperStyle = styled.dd`
   border-top: 1px solid ${(props) => props.theme.border.primary};
 `;
 
-export const ProductCardPriceStyle = styled.data<{oos: boolean}>`
+export const ProductCardPriceStyle = styled.data<{$oos: boolean}>`
   font-size: 28px;
   color: ${(props) => props.theme.color.quaternary};
   font-family: ${(props) => props.theme.fonts.primary};
   display: flex;
 
-  ${(props) => (props.oos ? css`
+  ${(props) => (props.$oos ? css`
     font-size: 26px;
     justify-content: center;
     width: 100%;
@@ -92,12 +92,12 @@ export const ProductCardPriceStyle = styled.data<{oos: boolean}>`
   `)}
 `;
 
-export const ProductCardPercentStyle = styled.div<{change: number}>`
+export const ProductCardPercentStyle = styled.div<{$change: number}>`
   align-self: center;
   display: flex;
   align-items: center;
-  border: 1px solid ${(props) => (props.change > 0 ? props.theme.codes.warning : props.theme.codes.success)};
-  background-color: ${(props) => (props.change > 0 ? props.theme.codes.warning.concat('90') : props.theme.codes.success.concat('90'))};
+  border: 1px solid ${(props) => (props.$change > 0 ? props.theme.codes.warning : props.theme.codes.success)};
+  background-color: ${(props) => (props.$change > 0 ? props.theme.codes.warning.concat('90') : props.theme.codes.success.concat('90'))};
   border-radius: 20px;
   padding: 2px 9px;
   font-family: ${(props) => props.theme.fonts.primary};
@@ -114,7 +114,7 @@ export const ProviderLinkStyle = styled.a`
   cursor: pointer;
   margin-right: 7px;
 
-  :hover, :focus {
+  &:hover, &:focus {
     color: ${(props) => props.theme.color.primary};
   }
 `;
@@ -123,12 +123,12 @@ export const ProductDeleteCardStyle = styled(ProductCardStyle)`
   justify-content: center;
 `;
 
-export const ProductDeleteLoadingStyle = styled.div<{isLoading: boolean}>`
-  display: ${(props) => (props.isLoading ? 'block' : 'none')};
+export const ProductDeleteLoadingStyle = styled.div<{$isLoading: boolean}>`
+  display: ${(props) => (props.$isLoading ? 'block' : 'none')};
 `;
 
-export const ProductDeletePromptStyle = styled.section<{isLoading: boolean}>`
-  display: ${(props) => (props.isLoading ? 'none' : 'block')};
+export const ProductDeletePromptStyle = styled.section<{$isLoading: boolean}>`
+  display: ${(props) => (props.$isLoading ? 'none' : 'block')};
 `;
 
 export const DeleteCardHeadTextStyle = styled.div`

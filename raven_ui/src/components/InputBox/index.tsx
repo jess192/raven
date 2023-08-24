@@ -8,11 +8,11 @@ export default function InputBox(props: InputBoxPropsType) {
 
   return (
     <InputWrapperStyle
-      width={width}
-      height={height}
-      fontSize={fontSize}
+      $width={width}
+      $height={height}
+      $fontSize={fontSize}
+      $shadow={shadow}
       title={title}
-      shadow={shadow}
     >
       {icon ? <IconWrapperStyle>{icon}</IconWrapperStyle> : ''}
       <InputStyle

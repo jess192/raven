@@ -11,9 +11,9 @@ export default function Button(props: ButtonPropsType) {
       type={type}
       onClick={onClick}
       disabled={disabled}
-      width={width}
       title={title}
-      shadow={shadow}
+      $width={width}
+      $shadow={shadow}
     >
       {children}
     </ButtonStyle>

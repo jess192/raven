@@ -35,7 +35,7 @@ module.exports = {
       path: '../.env',
       systemvars: true,
       expand: true,
-      defaults: true
+      defaults: true,
     }),
   ],
 };

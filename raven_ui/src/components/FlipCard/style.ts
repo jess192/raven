@@ -3,15 +3,15 @@ import { toMs } from '@/utils/formatting';
 import { device } from '@/styles/responsive';
 
 type FlipCardStylePropsType = {
-  flipped: boolean,
-  speedMs: number
+  $flipped: boolean,
+  $speedMs: number
 }
 
 export const FlipCardStyle = styled.li<FlipCardStylePropsType>`
   list-style: none;
   position: relative;
-  transform: ${(props: FlipCardStylePropsType) => (props.flipped ? 'rotateY(-180deg)' : '')};
-  transition-duration: ${(props: FlipCardStylePropsType) => toMs(props.speedMs)};
+  transform: ${(props: FlipCardStylePropsType) => (props.$flipped ? 'rotateY(-180deg)' : '')};
+  transition-duration: ${(props: FlipCardStylePropsType) => toMs(props.$speedMs)};
   transition-timing-function: ease-in-out;
   transform-style: preserve-3d;
 

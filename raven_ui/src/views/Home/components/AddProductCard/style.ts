@@ -30,11 +30,11 @@ export const AddProductCardSubtextStyle = styled.div`
   margin-bottom: 30px;
 `;
 
-export const AddProductCardStatusStyle = styled.div<{type: string}>`
+export const AddProductCardStatusStyle = styled.div<{$type: string}>`
   height: 20px;
   margin-top: 5px;
   color: ${(props): string => {
-    switch (props.type) {
+    switch (props.$type) {
       case 'error':
         return props.theme.codes.error;
       case 'success':

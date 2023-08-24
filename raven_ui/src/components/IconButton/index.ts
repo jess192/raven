@@ -16,7 +16,7 @@ export const IconButton = styled.button`
   width: 25px;
   font-size: 30px;
 
-  :hover {
+  &:hover {
     background: ${(props) => props.theme.color.primary};
     color: ${(props) => props.theme.bgColor.secondary};
     border-color: ${(props) => props.theme.color.primary};
