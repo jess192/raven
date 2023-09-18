@@ -5,8 +5,10 @@ class BotException(Exception):
         self.user_agent: str = user_agent
 
     def __str__(self):
-        return f'{self.provider} thinks you are a bot trying to access {self.url} ' \
-               f'with user_agent: {self.user_agent}'
+        return f'{self.provider} thinks you are a bot. Try again.'
+
+    def log(self):
+        return f'{self.provider} Bot Exception. URL: {self.url} USER_AGENT: {self.user_agent}'
 
 
 class InvalidURLException(Exception):
@@ -14,7 +16,10 @@ class InvalidURLException(Exception):
         self.url: str = url
 
     def __str__(self):
-        return f'{self.url}  is not a valid URL.'
+        return f'Invalid url. Try again.'
+
+    def log(self):
+        return f'Invalid URL Exception: {self.url}'
 
 
 class UniqueProductException(Exception):
@@ -22,7 +27,10 @@ class UniqueProductException(Exception):
         self.url: str = url
 
     def __str__(self):
-        return f'{self.url} is already being tracked.'
+        return f'That product is already being tracked.'
+
+    def log(self):
+        return f'Unique Product Exception: {self.url}'
 
 
 class DoesNotExistException(Exception):
@@ -30,7 +38,10 @@ class DoesNotExistException(Exception):
         self.url: str = url
 
     def __str__(self):
-        return f'{self.url} does not exist.'
+        return f'That product does not exist.'
+
+    def log(self):
+        return f'Does Not Exist Exception: {self.url}'
 
 
 class NotBeingTrackedException(Exception):

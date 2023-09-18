@@ -129,6 +129,18 @@ files = [
 ]
 
 [[package]]
+name = "fake-useragent"
+version = "1.2.1"
+description = "Up-to-date simple useragent faker with real world database"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "fake-useragent-1.2.1.tar.gz", hash = "sha256:b411f903331f695e3840ccadcf011f745a405764e97c588f2b8fde9e400a5446"},
+    {file = "fake_useragent-1.2.1-py3-none-any.whl", hash = "sha256:ad2b5414d19493d0789572f04200d4f656f84d20b205cc805233212957fe385d"},
+]
+
+[[package]]
 name = "idna"
 version = "3.4"
 description = "Internationalized Domain Names in Applications (IDNA)"
@@ -173,18 +185,6 @@ files = [
 
 [package.extras]
 cli = ["click (>=5.0)"]
-
-[[package]]
-name = "pyuseragents"
-version = "1.0.5"
-description = "A Python module which does one thing: giving you a random User-Agent Header"
-category = "main"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pyuseragents-1.0.5-py3-none-any.whl", hash = "sha256:c63d66f5d80fc08fd31027be754824292c795e2161c2ccce989d2ce2f23ae19b"},
-    {file = "pyuseragents-1.0.5.tar.gz", hash = "sha256:7300024dcc04ed9ed4072d9aef7fbc18a832686b93acfb75e8835bbe0eb6aae6"},
-]
 
 [[package]]
 name = "raven-core"
@@ -289,4 +289,4 @@ dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "a1d0f857944d6ec133268e174cd83aff984105236f3f3b69ef9124ebd20b1a8c"
+content-hash = "3ff8d25abff1e8ebeee1dd1fc778fdc9ad4e34f3428df50600d5494b22ffe975"

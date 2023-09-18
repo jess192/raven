@@ -37,16 +37,16 @@ def add_product(url: str):
     try:
         RavenDb().insert_product(url)
     except InvalidURLException as e:
-        logger.error(e)
+        logger.error(e.log())
         raise HTTPException(status_code=400, detail=str(e))
     except UniqueProductException as e:
-        logger.error(e)
+        logger.error(e.log())
         raise HTTPException(status_code=400, detail=str(e))
     except DoesNotExistException as e:
-        logger.error(e)
+        logger.error(e.log())
         raise HTTPException(status_code=400, detail=str(e))
     except BotException as e:
-        logger.error(e)
+        logger.error(e.log())
         raise HTTPException(status_code=500, detail=str(e))
     except Exception as e:
         exception_msg = f'Unable to insert product. {e}'

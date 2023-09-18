@@ -8,7 +8,7 @@ authors = []
 python = "^3.10"
 raven_core = {path = "../raven_core", develop = true }
 schedule = "^1.2.0"
-pyuseragents = "^1.0.5"
+fake-useragent = "^1.2.1"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

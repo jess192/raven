@@ -1,6 +1,6 @@
 import requests
 from urllib.parse import urlparse, ParseResult
-from pyuseragents import random as random_useragent
+from fake_useragent import UserAgent
 from bs4 import BeautifulSoup
 from datetime import datetime
 from typing import Optional
@@ -9,18 +9,12 @@ from raven_core.logging.exceptions import BotException, InvalidURLException, Doe
 
 class AmazonProvider:
     def __init__(self):
+        self._user_agent = UserAgent(min_percentage=1.5)
         self._amazon_headers: dict = self._generate_headers()
-
-    @staticmethod
-    def _get_random_agent():
-        random_agent: str = random_useragent()
-        while 'Mobile' in random_agent:
-            random_agent: str = random_useragent()
-        return random_agent
 
     def _generate_headers(self) -> dict:
         return {
-            'user-agent': self._get_random_agent(),
+            'user-agent': self._user_agent.random,
             'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
             'sec-fetch-mode': 'navigate',
             'sec-fetch-dest': 'document',
