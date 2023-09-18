@@ -9,10 +9,10 @@
 
 
 ## About
-raven is built as a mono repo consisting of 3 services that work together to create a simple price trackign application.
-* `raven_api` - python
-* `raven_scraper` - python. scheduler that scrapes Amazon to get current pricing for each product being tracked
-* `raven_ui` - react based UI
+raven is built as a mono repo consisting of 3 services that work together to create a simple price tracking application.
+* `raven_api` - Python
+* `raven_scraper` - Python. Scheduler that scrapes Amazon to get current pricing for each product being tracked.
+* `raven_ui` - React based UI
 
 ## Requirements
 - [poetry](https://github.com/python-poetry/poetry "poetry")
@@ -23,19 +23,19 @@ raven is built as a mono repo consisting of 3 services that work together to cre
 ## Install
 Clone project
 ```shell
-$ git clone https://github.com/jess192/raven.git
+git clone https://github.com/jess192/raven.git
 ```
 
 ### Backend
 Install python based stuff
 ```shell
-$ poetry install
+poetry install
 ```
 
 ### Frontend
 Install react project
 ```shell
-$ npm install --prefix raven_ui
+npm install --prefix raven_ui
 ```
 
 ## Usage
@@ -43,17 +43,17 @@ $ npm install --prefix raven_ui
 ### Backend
 Run API
 ```shell
-$ poetry run python raven_api
+poetry run python raven_api
 ```
 
 Run scraper
 ```shell
-$ poetry run python raven_scraper
+poetry run python raven_scraper
 ```
 
 ### Frontend
 ```shell
-$ npm run start --prefix raven_ui
+npm run start --prefix raven_ui
 ```
 
 
