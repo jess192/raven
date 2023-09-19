@@ -28,10 +28,10 @@ class RavenScraper:
             logger.warning(e)
             status: str = 'No Longer Tracking'
         except DoesNotExistException as e:
-            logger.error(e)
+            logger.error(e.log())
             status: str = 'Does Not Exist'
         except BotException as e:
-            logger.error(e)
+            logger.error(e.log())
             status: str = 'Bot Detected'
         except Exception as e:
             logger.error(e)

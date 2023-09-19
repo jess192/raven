@@ -9,7 +9,7 @@ from raven_core.logging.exceptions import BotException, InvalidURLException, Doe
 
 class AmazonProvider:
     def __init__(self):
-        self._user_agent = UserAgent(min_percentage=1.5)
+        self._user_agent = UserAgent(min_percentage=1.2)
         self._amazon_headers: dict = self._generate_headers()
 
     def _generate_headers(self) -> dict:
