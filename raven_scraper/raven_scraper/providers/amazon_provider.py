@@ -80,13 +80,14 @@ class AmazonProvider:
         price = bs.find('input', {'id': 'twister-plus-price-data-price'})
         return price.get('value') if price else None
 
-    def get_product_prices(self, amazon_id: str, url: str) -> dict:
+    def get_product_updated_info(self, amazon_id: str, url: str) -> dict:
         bs: BeautifulSoup = self._get_beautiful_soup_response(url)
 
         return {
             'id': amazon_id,
             'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            'price': self._get_item_price(bs)
+            'price': self._get_item_price(bs),
+            'image_url': self._get_item_image_url(bs)
         }
 
     def get_product_info(self, url: str) -> dict:

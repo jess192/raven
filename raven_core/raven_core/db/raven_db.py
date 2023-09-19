@@ -88,20 +88,17 @@ class RavenDb:
                 logger.info(f'Getting price for: {product_id} @ {source}')
 
                 try:
-                    price_info = AmazonProvider().get_product_prices(product_id, url)
+                    product: dict = AmazonProvider().get_product_updated_info(product_id, url)
                 except Exception:
                     raise
                 else:
-                    self.insert_price(price_info)
-                    return price_info['price']
+                    self.insert_price(product['id'], product['timestamp'], product['price'])
+                    self.update_image(product['id'], product['image_url'])
+                    return product['price']
             else:
                 logger.error(f'Source does not exist: {source}')
 
-    def insert_price(self, price_info: dict) -> None:
-        product_id: str = price_info['id']
-        timestamp: str = price_info['timestamp']
-        price: str = price_info['price']
-
+    def insert_price(self, product_id, timestamp, price) -> None:
         logger.info(f'Inserting price: {product_id} -> {price}')
         conn: Connection = self._create_connection()
 
@@ -109,6 +106,15 @@ class RavenDb:
             curr: Cursor = conn.cursor()
             statement: str = '''INSERT INTO PRICES (ID, TIMESTAMP, price) VALUES (?, ?, ?)'''
             curr.execute(statement, (product_id, timestamp, price))
+
+    def update_image(self, product_id, image_url):
+        logger.info(f'Updating image_url: {product_id}')
+        conn: Connection = self._create_connection()
+
+        with conn:
+            curr: Cursor = conn.cursor()
+            statement: str = '''UPDATE ITEMS SET IMAGE_URL = ? WHERE ID = ? '''
+            curr.execute(statement, (image_url, product_id))
 
     def insert_product(self, url: str) -> None:
         logger.info(f'Inserting product: {url}')
